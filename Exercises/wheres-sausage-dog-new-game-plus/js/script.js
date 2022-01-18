@@ -103,7 +103,7 @@ function finish(){
   fill(0 + cos(frameCount *.2) * 128);
   text("You've found the Dog!", width/2, height/2);
   fill(0 + sin(frameCount *.2) * 128);
-  text("Press SPACE to find the Dog again!", width/2, 1000);
+  text("Press SPACE to find the Dog again!", width/2, 800);
   if(keyCode === 32){
     location.reload();
     state = "level";
