@@ -23,7 +23,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   createAnimals();
   createDog();
-
+  //creates the animals from the animals class
   function createAnimals() {
     //create the animals
     for (let i = 0; i < NUM_ANIMALS; i++) {
@@ -34,7 +34,7 @@ function setup() {
       animals.push(animal);
     }
   }
-
+  //creates the dog from the dog class
   function createDog() {
     let x = random(0, width);
     let y = random(0, height);
@@ -57,24 +57,25 @@ function draw() {
   } else if (timer === 0){
     timerLose();
   }
-
+  // displays the animals in the array
   function updateAnimals() {
     for (let i = 0; i < animals.length; i++) {
       animals[i].update();
     }
   }
-
+// displays the dog
   function updateDog() {
     sausageDog.update();
   }
 }
+//mousePressed
 function mousePressed() {
   sausageDog.mousePressed();
   if(state === "start"){
     state = "level";
   }
 }
-
+//menu state
 function menu(){
   push();
   cursor(CROSS);
@@ -87,6 +88,7 @@ function menu(){
   fill(0 + sin(frameCount *.2) * 128);
   text("Use the mouse to begin!", width/2, 900);
 }
+//finish state
 function finish(){
   push();
   cursor(CROSS);
@@ -103,10 +105,12 @@ function finish(){
     state = "level";
   }
 }
+//level1 state
 function level1(){
   textSize(50);
   fill(255);
   text(timer, width/2, 700);
+  //timerCountdown
   if(frameCount % 60 === 0 && timer > 0){
     timer--;
   }
@@ -114,6 +118,7 @@ function level1(){
     state = "timerLose";
   }
 }
+//timer state
 function timerLose(){
   push();
   background(0);
