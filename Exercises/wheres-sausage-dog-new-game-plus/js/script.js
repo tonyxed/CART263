@@ -9,6 +9,8 @@ let animals = [];
 let sausageDogImage = undefined;
 let sausageDog = undefined;
 
+let timer = 10;
+
 function preload() {
   for (let i = 0; i < NUM_ANIMAL_IMAGES; i++) {
     let animalImage = loadImage(`assets/images/animal${i}.png`);
@@ -49,8 +51,11 @@ function draw() {
   } else if (state === "level") {
     updateAnimals();
     updateDog();
+    level1();
   } else if (state === "finish") {
     finish();
+  } else if (timer === 0){
+    timerLose();
   }
 
   function updateAnimals() {
@@ -78,7 +83,7 @@ function menu(){
   textSize(50);
   background(100);
   fill(0 + cos(frameCount *.2) * 128);
-  text("Find the Sausage Dog!", width/2, height/2);
+  text("Find the Sausage Dog! You have 10 seconds to do it!", width/2, height/2);
 }
 function finish(){
   push();
@@ -95,4 +100,25 @@ function finish(){
     location.reload();
     state = "level";
   }
+}
+function level1(){
+  textSize(50);
+  fill(255);
+  text(timer, width/2, 700);
+  if(frameCount % 60 === 0 && timer > 0){
+    timer--;
+  }
+  if(timer === 0){
+    state = "timerLose";
+  }
+}
+function timerLose(){
+  push();
+  textSize(30);
+  background(255);
+  textStyle(BOLDITALIC);
+  fill(255);
+  textAlign(CENTER, CENTER);
+  text("You've ran out of time!", width / 2, 1000);
+  pop();
 }
