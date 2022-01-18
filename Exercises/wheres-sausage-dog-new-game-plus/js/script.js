@@ -39,25 +39,58 @@ function setup() {
     sausageDog = new SausageDog(x, y, sausageDogImage);
   }
 }
+//state
+let state = "start";
 
 function draw() {
   background(0);
-  updateAnimals();
-  updateDog();
+  if (state === "start") {
+    menu();
+  } else if (state === "level") {
+    updateAnimals();
+    updateDog();
+  } else if (state === "finish") {
+
+  }
 
   function updateAnimals() {
     for (let i = 0; i < animals.length; i++) {
       animals[i].update();
     }
-
   }
 
   function updateDog() {
     sausageDog.update();
   }
 }
-
-
 function mousePressed() {
   sausageDog.mousePressed();
+}
+
+function menu(){
+  push();
+  cursor(CROSS);
+  strokeWeight(2);
+  textAlign(CENTER,CENTER);
+  textSize(50);
+  background(100);
+  fill(0 + cos(frameCount *.2) * 128);
+  text("Find the Sausage Dog!", width/2, height/2);
+  //play button
+  fill(255,0, 0);
+  textSize(30);
+  rect(1360, 950, 160, 100);
+  fill(255);
+  text("Play!", width/2, 1000);
+  pop();
+}
+//button on menu
+function mouseClicked(){
+  if(state === "start"){
+    if(mouseX < 990 && mouseX > 890){
+      if(mouseY < 275 && mouseY > 200){
+        state = 'level';
+      }
+    }
+  }
 }
