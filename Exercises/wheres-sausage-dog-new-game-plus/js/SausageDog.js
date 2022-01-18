@@ -17,4 +17,5 @@ class SausageDog extends Animal {
       state = "finish";
     }
   }
+
 }

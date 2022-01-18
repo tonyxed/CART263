@@ -45,7 +45,7 @@ function setup() {
 let state = "start";
 
 function draw() {
-  background(0);
+  background(63, 64, 58);
   if (state === "start") {
     menu();
   } else if (state === "level") {
@@ -61,6 +61,8 @@ function draw() {
   function updateAnimals() {
     for (let i = 0; i < animals.length; i++) {
       animals[i].update();
+      animals[i].floating();
+      animals[i].move();
     }
   }
 // displays the dog
