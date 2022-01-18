@@ -50,7 +50,7 @@ function draw() {
     updateAnimals();
     updateDog();
   } else if (state === "finish") {
-
+    finish();
   }
 
   function updateAnimals() {
@@ -65,6 +65,9 @@ function draw() {
 }
 function mousePressed() {
   sausageDog.mousePressed();
+  if(state === "start"){
+    state = "level";
+  }
 }
 
 function menu(){
@@ -77,20 +80,17 @@ function menu(){
   fill(0 + cos(frameCount *.2) * 128);
   text("Find the Sausage Dog!", width/2, height/2);
   //play button
-  fill(255,0, 0);
-  textSize(30);
-  rect(1360, 950, 160, 100);
   fill(255);
   text("Play!", width/2, 1000);
   pop();
 }
-//button on menu
-function mouseClicked(){
-  if(state === "start"){
-    if(mouseX < 990 && mouseX > 890){
-      if(mouseY < 275 && mouseY > 200){
-        state = 'level';
-      }
-    }
-  }
+function finish(){
+  push();
+  cursor(CROSS);
+  strokeWeight(2);
+  textAlign(CENTER,CENTER);
+  textSize(50);
+  background(100);
+  fill(0 + cos(frameCount *.2) * 128);
+  text("You've found the Dog!", width/2, height/2);
 }
