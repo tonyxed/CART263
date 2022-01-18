@@ -84,6 +84,8 @@ function menu(){
   background(100);
   fill(0 + cos(frameCount *.2) * 128);
   text("Find the Sausage Dog! You have 10 seconds to do it!", width/2, height/2);
+  fill(0 + sin(frameCount *.2) * 128);
+  text("Use the mouse to begin!", width/2, 900);
 }
 function finish(){
   push();
@@ -114,11 +116,17 @@ function level1(){
 }
 function timerLose(){
   push();
+  background(0);
   textSize(30);
-  background(255);
   textStyle(BOLDITALIC);
   fill(255);
   textAlign(CENTER, CENTER);
-  text("You've ran out of time!", width / 2, 1000);
+  text("You've ran out of time!", width / 2, 700);
   pop();
+  fill(0 + cos(frameCount *.2) * 128);
+  text("Press SPACE to try again!", width/2, 1000);
+  if(keyCode === 32){
+    location.reload();
+    state = "level";
+  }
 }
