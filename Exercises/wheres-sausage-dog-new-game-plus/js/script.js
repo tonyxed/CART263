@@ -68,6 +68,8 @@ function draw() {
 // displays the dog
   function updateDog() {
     sausageDog.update();
+    sausageDog.move();
+    sausageDog.floating();
   }
 }
 //mousePressed
