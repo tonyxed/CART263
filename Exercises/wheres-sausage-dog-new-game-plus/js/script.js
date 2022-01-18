@@ -1,7 +1,7 @@
 "use strict";
 
 const NUM_ANIMAL_IMAGES = 10;
-const NUM_ANIMALS = 50;
+const NUM_ANIMALS = 100;
 
 let animalImages = [];
 let animals = [];
@@ -79,10 +79,6 @@ function menu(){
   background(100);
   fill(0 + cos(frameCount *.2) * 128);
   text("Find the Sausage Dog!", width/2, height/2);
-  //play button
-  fill(255);
-  text("Play!", width/2, 1000);
-  pop();
 }
 function finish(){
   push();
@@ -93,4 +89,10 @@ function finish(){
   background(100);
   fill(0 + cos(frameCount *.2) * 128);
   text("You've found the Dog!", width/2, height/2);
+  fill(0 + sin(frameCount *.2) * 128);
+  text("Press SPACE to find the Dog again!", width/2, 1000);
+  if(keyCode === 32){
+    location.reload();
+    state = "level";
+  }
 }
