@@ -138,12 +138,12 @@ const animals = [
 ];
 let currentAnimal = ``;
 let currentAnswer = ``;
-
+let score = 0;
 function setup() {
   createCanvas(windowWidth, windowHeight);
   if (annyang) {
     let commands = {
-      'I think it is *animal': guessAnimal
+      '*animal': guessAnimal
     };
     annyang.addCommands(commands);
     annyang.start();
@@ -153,22 +153,36 @@ function setup() {
   }
 }
 
+let state = 'menu';
 function draw() {
-  background(0);
+  background(94, 144, 196);
+
+  //states
+  if (state === 'menu'){
+    menu();
+  } else if (state === "start"){
+    animalGuess();
+  } else if (state === "end"){
+
+  }
+}
+function keyPressed(){
+  if(keyCode === UP_ARROW){
+    currentAnimal = random(animals);
+    let reverseAnimal = reverseString(currentAnimal);
+    responsiveVoice.speak(reverseAnimal);
+  }
+}
+//checks to see if guess is right or wrong
+function animalGuess(){
   if (currentAnswer === currentAnimal) {
     fill(0, 255, 0);
   } else {
     fill(255, 0, 0);
   }
   text(currentAnswer, width / 2, height / 2);
+  text(score, width/2, 50);
 }
-
-function mousePressed() {
-  currentAnimal = random(animals);
-  let reverseAnimal = reverseString(currentAnimal);
-  responsiveVoice.speak(reverseAnimal);
-}
-
 function guessAnimal(animal) {
   currentAnswer = animal.toLowerCase();
 }
@@ -183,3 +197,33 @@ function reverseString(string) {
   // return the result
   return result;
 }
+
+function menu(){
+  push();
+  cursor(CROSS);
+  strokeWeight(2);
+  textAlign(CENTER,CENTER);
+  textSize(50);
+  background(7, 145, 127);
+  fill(0 + cos(frameCount *.2) * 128);
+  text("To play; just say what animal you think is being said. EX: 'Dog'", width/2, height/2);
+  fill(0 + sin(frameCount *.2) * 128);
+  text("Press SPACE to begin!", width/2, 1000);
+  fill(0 + cos(frameCount *.2) * 128);
+  text("Use the arrow up key for reversed animal names to be spoken!", width/2, 900);
+  fill(0 + sin(frameCount *.2) * 128);
+  text("Achive the highest score you can!", width/2, 800);
+  if(keyCode === 32){
+    state = 'start';
+  }
+}
+// function correctAnswers(){
+//   push();
+//   cursor(CROSS);
+//   strokeWeight(2);
+//   textAlign(TOP, CENTER);
+//   textSize(50);
+//   background(7, 145, 127);
+//   fill(0);
+//   text(score, width/2, 50);
+// }
