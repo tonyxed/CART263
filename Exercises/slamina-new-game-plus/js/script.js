@@ -138,7 +138,8 @@ const animals = [
 ];
 let currentAnimal = ``;
 let currentAnswer = ``;
-let totalGuesses = 0;
+let totalGuesses = 10;
+
 
 
 function setup() {
@@ -168,7 +169,7 @@ function draw() {
     amountOfGuesses();
     animalGuess();
   } else if (state === "end") {
-
+    tooManyGuesses();
   }
 }
 
@@ -187,14 +188,20 @@ function animalGuess() {
   } else {
     textSize(50);
     fill(255, 0, 0 + cos(frameCount * .2) * 128);
-
   }
   text(currentAnswer, width / 2, height / 2);
 }
-
 function guessAnimal(animal) {
   currentAnswer = animal.toLowerCase();
-totalGuesses++;
+  if(currentAnswer === currentAnimal){
+    totalGuesses++;
+  }
+  if(currentAnswer !== currentAnimal){
+    totalGuesses--;
+  }
+  if(totalGuesses === 0){
+    state = 'end';
+  }
 }
 
 function reverseString(string) {
@@ -222,13 +229,14 @@ function menu() {
   fill(0);
   text("Use the arrow up key for reversed animal names to be spoken!", width / 2, 900);
   fill(0);
-  text("You have 3 wrong guesses!", width / 2, 1000);
+  text("You have 10 guesses in total!", width / 2, 1000);
   pop();
   if (keyCode === 32) {
     state = 'start';
   }
 }
-function amountOfGuesses(){
+
+function amountOfGuesses() {
   push();
   cursor(CROSS);
   strokeWeight(2);
@@ -237,9 +245,21 @@ function amountOfGuesses(){
   background(7, 145, 127);
   fill(0);
   textSize(30);
-  text("Guesses made:", 1300, 50);
+  text("Total Guesses:", 1300, 50);
   fill(0);
   text(totalGuesses, width / 2, 50);
   pop();
+}
 
+function tooManyGuesses() {
+  push();
+  cursor(CROSS);
+  strokeWeight(2);
+  textAlign(CENTER, CENTER);
+  textSize(50);
+  background(7, 145, 127);
+  fill(0);
+  textSize(50);
+  text("You have no more guesses left!", width / 2, height / 2);
+  pop();
 }
