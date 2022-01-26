@@ -141,11 +141,7 @@ let currentAnswer = ``;
 let correctSound;
 let wrongSound;
 let totalGuesses = 10;
-
-function preload(){
-  correctSound = loadSound("assets/sounds/correct.wav");
-  wrongSound = loadSound("assets/sounds/wrong.mp3");
-}
+let score = 0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -201,7 +197,8 @@ function guessAnimal(animal) {
   if(currentAnswer === currentAnimal){
     totalGuesses++;
     responsiveVoice.speak("Correct!", "UK English Male");
-  }
+    score += 100;
+    }
   if(currentAnswer !== currentAnimal){
     totalGuesses--;
     responsiveVoice.speak("Wrong!", "UK English Male");
@@ -234,9 +231,9 @@ function menu() {
   fill(0 + cos(frameCount * .2) * 128);
   text("Press SPACE to begin!", width / 2, 1100);
   fill(0);
-  text("Use the arrow up key for reversed animal names to be spoken!", width / 2, 900);
+  text("Use the up arrow key for reversed animal names to be spoken!", width / 2, 900);
   fill(0);
-  text("You have 10 guesses in total!", width / 2, 1000);
+  text("You have 10 guesses in total!(-1 wrong, +1 right)", width / 2, 1000);
   pop();
   if (keyCode === 32) {
     state = 'start';
@@ -268,5 +265,9 @@ function tooManyGuesses() {
   fill(0);
   textSize(50);
   text("You have no more guesses left!", width / 2, height / 2);
+  textSize(50);
+  text(score, width / 2, 500);
+  textSize(50);
+  text("Score:", 800, 500);
   pop();
 }
