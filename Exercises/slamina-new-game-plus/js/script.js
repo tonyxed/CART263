@@ -249,7 +249,7 @@ function amountOfGuesses() {
   background(7, 145, 127);
   fill(0);
   textSize(30);
-  text("Total Guesses:", 1300, 50);
+  text("Total Guesses:", 1000, 50);
   fill(0);
   text(totalGuesses, width / 2, 50);
   pop();
