@@ -231,7 +231,7 @@ function menu() {
   fill(0 + cos(frameCount * .2) * 128);
   text("Press SPACE to begin!", width / 2, 1100);
   fill(0);
-  text("Use the up arrow key for reversed animal names to be spoken!", width / 2, 900);
+  text("Use the up arrow key for reversed animal names to be spoken! Every correct answer is 100 points!", width / 2, 900);
   fill(0);
   text("You have 10 guesses in total!(-1 wrong, +1 right)", width / 2, 1000);
   pop();
