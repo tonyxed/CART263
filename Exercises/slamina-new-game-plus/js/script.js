@@ -138,9 +138,14 @@ const animals = [
 ];
 let currentAnimal = ``;
 let currentAnswer = ``;
+let correctSound;
+let wrongSound;
 let totalGuesses = 10;
 
-
+function preload(){
+  correctSound = loadSound("assets/sounds/correct.wav");
+  wrongSound = loadSound("assets/sounds/wrong.mp3");
+}
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -195,9 +200,11 @@ function guessAnimal(animal) {
   currentAnswer = animal.toLowerCase();
   if(currentAnswer === currentAnimal){
     totalGuesses++;
+    responsiveVoice.speak("Correct!", "UK English Male");
   }
   if(currentAnswer !== currentAnimal){
     totalGuesses--;
+    responsiveVoice.speak("Wrong!", "UK English Male");
   }
   if(totalGuesses === 0){
     state = 'end';
