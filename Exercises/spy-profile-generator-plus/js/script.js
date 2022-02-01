@@ -1,6 +1,6 @@
 "use strict";
-//wealth
-//change their spyProfile to whatever they want(weapon etc...)
+//sharing
+
 
 let spyProfile = {
   name: `**N/A**`,
@@ -52,7 +52,7 @@ function generateSpyProfile() {
 
 function draw() {
   background(255);
-
+  howToText();
   let profile = `**CONFIDENTIAL!**
 
   Name: ${spyProfile.name}
@@ -90,4 +90,27 @@ function keyPressed(){
     spyProfile.alias = `The ${instrument}`;
     localStorage.setItem('data_spy',JSON.stringify(spyProfile));
   }
+}
+function howToText(){
+  push();
+  textFont(`Bold, monospace`);
+  textSize(25);
+  textAlign(LEFT, CENTER);
+  fill(0);
+  text('UP arrow key to reset secretWeapon to your liking!', 600, 500);
+  pop();
+  push();
+  textFont(`Bold, monospace`);
+  textSize(25);
+  textAlign(LEFT, CENTER);
+  fill(0);
+  text('DOWN arrow key to reset password to your liking!', 600, 600);
+  pop();
+  push();
+  textFont(`Bold, monospace`);
+  textSize(25);
+  textAlign(LEFT, CENTER);
+  fill(0);
+  text('SHIFT key to reset entire profile to your liking!', 600, 700);
+  pop();
 }
