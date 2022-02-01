@@ -23,7 +23,6 @@ function preload() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-
   let data = JSON.parse(localStorage.getItem('data_spy'));
   if (data !== null) {
     let password = prompt('Password?');
@@ -38,7 +37,7 @@ function setup() {
     generateSpyProfile();
   }
 }
-
+//generates the spyProfile
 function generateSpyProfile() {
   spyProfile.name = prompt(`What is your name?`);
   let instrument = random(instrumentData.instruments);
@@ -49,7 +48,7 @@ function generateSpyProfile() {
 
   localStorage.setItem('data_spy',JSON.stringify(spyProfile));
 }
-
+//draw
 function draw() {
   background(113, 163, 245);
   howToText();
@@ -92,6 +91,7 @@ function keyPressed(){
     localStorage.setItem('data_spy',JSON.stringify(spyProfile));
   }
 }
+//text howToText
 function howToText(){
   push();
   textFont(`Bold, monospace`);
