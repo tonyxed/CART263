@@ -1,10 +1,15 @@
 "use strict";
+//repentance
+
+
+//change their spyProfile to whatever they want(weapon etc...)
 
 let spyProfile = {
-  name: `**REDACTED**`,
-  alias: `**REDACTED**`,
-  secretWeapon: `**REDACTED**`,
-  password: `*REDACTED**`
+  name: `**N/A**`,
+  alias: `**N/A**`,
+  secretWeapon: `**N/A**`,
+  username: `**N/A**`,
+  password: `**N/A**`
 };
 
 let instrumentData = undefined;
@@ -27,6 +32,7 @@ function setup() {
       spyProfile.name = data.name;
       spyProfile.alias = data.alias;
       spyProfile.secretWeapon = data.secretWeapon;
+      spyProfile.username = data.username;
       spyProfile.password = data.password;
     }
   } else {
@@ -62,4 +68,17 @@ function draw() {
   fill(0);
   text(profile, 100, 100);
   pop();
+}
+// using keys to change their profile
+function keyPressed(){
+  //UP_ARROW secretWeapon
+  if(keyCode === UP_ARROW){
+    spyProfile.secretWeapon = random(objectData.objects);
+    localStorage.setItem('data_spy',JSON.stringify(spyProfile));
+  }
+  if(keyCode === DOWN_ARROW){
+    let card = random(tarotData.tarot_interpretations);
+    spyProfile.password = random(card.keywords);
+    localStorage.setItem('data_spy',JSON.stringify(spyProfile));
+  }
 }
