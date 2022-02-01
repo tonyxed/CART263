@@ -71,11 +71,12 @@ function draw() {
 }
 // using keys to change their profile
 function keyPressed(){
-  //UP_ARROW secretWeapon
+  //UP_ARROW secretWeapon change
   if(keyCode === UP_ARROW){
     spyProfile.secretWeapon = random(objectData.objects);
     localStorage.setItem('data_spy',JSON.stringify(spyProfile));
   }
+  //DOWN_ARROW password change
   if(keyCode === DOWN_ARROW){
     let card = random(tarotData.tarot_interpretations);
     spyProfile.password = random(card.keywords);
