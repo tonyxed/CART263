@@ -6,13 +6,13 @@ let spyProfile = {
   name: `**N/A**`,
   alias: `**N/A**`,
   secretWeapon: `**N/A**`,
-  username: `**N/A**`,
   password: `**N/A**`
 };
 
 let instrumentData = undefined;
 let objectData = undefined;
 let tarotData = undefined;
+
 
 function preload() {
   instrumentData = loadJSON('https://raw.githubusercontent.com/dariusk/corpora/master/data/music/instruments.json');
@@ -30,7 +30,6 @@ function setup() {
       spyProfile.name = data.name;
       spyProfile.alias = data.alias;
       spyProfile.secretWeapon = data.secretWeapon;
-      spyProfile.username = data.username;
       spyProfile.password = data.password;
     }
   }
@@ -51,7 +50,7 @@ function generateSpyProfile() {
 }
 
 function draw() {
-  background(255);
+  background(113, 163, 245);
   howToText();
   let profile = `**CONFIDENTIAL!**
 
@@ -88,6 +87,7 @@ function keyPressed(){
     spyProfile.password = random(card.keywords);
     let instrument = random(instrumentData.instruments);
     spyProfile.alias = `The ${instrument}`;
+    spyProfile.name = prompt(`What is your name?`);
     localStorage.setItem('data_spy',JSON.stringify(spyProfile));
   }
 }
