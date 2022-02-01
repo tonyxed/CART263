@@ -1,6 +1,7 @@
 "use strict";
-//sharing
-
+/*
+Generate a spyProfile to your liking. Follow the howToText to generate your own!
+*/
 
 let spyProfile = {
   name: `**N/A**`,
@@ -92,6 +93,13 @@ function keyPressed(){
   }
 }
 function howToText(){
+  push();
+  textFont(`Bold, monospace`);
+  textSize(25);
+  textAlign(LEFT, CENTER);
+  fill(0);
+  text('howToText!', 850, 400);
+  pop();
   push();
   textFont(`Bold, monospace`);
   textSize(25);
