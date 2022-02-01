@@ -1,7 +1,5 @@
 "use strict";
-//repentance
-
-
+//wealth
 //change their spyProfile to whatever they want(weapon etc...)
 
 let spyProfile = {
@@ -35,7 +33,8 @@ function setup() {
       spyProfile.username = data.username;
       spyProfile.password = data.password;
     }
-  } else {
+  }
+  else {
     generateSpyProfile();
   }
 }
@@ -80,6 +79,15 @@ function keyPressed(){
   if(keyCode === DOWN_ARROW){
     let card = random(tarotData.tarot_interpretations);
     spyProfile.password = random(card.keywords);
+    localStorage.setItem('data_spy',JSON.stringify(spyProfile));
+  }
+  //SHIFT key to reset profile to your liking
+  if(keyCode === SHIFT){
+    spyProfile.secretWeapon = random(objectData.objects);
+    let card = random(tarotData.tarot_interpretations);
+    spyProfile.password = random(card.keywords);
+    let instrument = random(instrumentData.instruments);
+    spyProfile.alias = `The ${instrument}`;
     localStorage.setItem('data_spy',JSON.stringify(spyProfile));
   }
 }
