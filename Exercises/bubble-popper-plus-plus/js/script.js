@@ -21,8 +21,8 @@ let scoreBeat = 10;
 let bubblePop;
 
 //sound
-function preload(){
- bubblePop = loadSound("assets/sounds/Pop.mp3");
+function preload() {
+  bubblePop = loadSound("assets/sounds/Pop.mp3");
 }
 
 //setup
@@ -61,19 +61,19 @@ function draw() {
   background(0);
 
   //states
-  if(state === 'loading'){
+  if (state === 'loading') {
     loadingScreen();
-  } else if(state === 'game'){
+  } else if (state === 'game') {
     bubblePopText();
     scoreToBeat();
     simulation();
-  } else if (state === "end"){
+  } else if (state === "end") {
     ending();
-    }
-      }
+  }
+}
 
 // bubble and handpose simulation
-function simulation(){
+function simulation() {
   if (predictions.length > 0) {
     let hand = predictions[0];
     let index = hand.annotations.indexFinger;
@@ -106,7 +106,7 @@ function simulation(){
       bubblePop.play();
     }
     // bubbles popped === to highscore then end state
-    if(bubblesPop == scoreBeat){
+    if (bubblesPop == scoreBeat) {
       state = 'end';
     }
   }
@@ -129,33 +129,33 @@ function simulation(){
 }
 
 // text showing the amount of bubbles popped
-function bubblePopText(){
+function bubblePopText() {
   push();
   fill(255);
   textSize(30);
-  text(bubblesPop, width/2, 50);
+  text(bubblesPop, width / 2, 50);
   pop();
   push();
   fill(255);
   textSize(30);
-  text("Use index finger to pop the bubbles.", 100, height/2);
+  text("Use index finger to pop the bubbles.", 100, height / 2);
   pop();
 }
 // text showing a loading screen
-function loadingScreen(){
+function loadingScreen() {
   push();
   fill(255);
   textSize(40);
-  textAlign(CENTER,CENTER);
-  text("LOADING CONTENT...", width/2,height/2);
+  textAlign(CENTER, CENTER);
+  text("LOADING CONTENT...", width / 2, height / 2);
   pop();
 }
 // score to beat
-function scoreToBeat(){
+function scoreToBeat() {
   push();
   fill(255);
   textSize(30);
-  text(scoreBeat, width/2, 100);
+  text(scoreBeat, width / 2, 100);
   pop();
   push();
   fill(255);
@@ -163,11 +163,12 @@ function scoreToBeat(){
   text("Score to Beat:", 120, 100);
   pop();
 }
-function ending(){
+
+function ending() {
   push();
   fill(255);
   textSize(50);
-  textAlign(CENTER,CENTER);
-  text("NICE!", width/2,height/2);
+  textAlign(CENTER, CENTER);
+  text("NICE!", width / 2, height / 2);
   pop();
 }
