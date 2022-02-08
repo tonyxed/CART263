@@ -14,6 +14,8 @@ let predictions = [];
 let bubble = undefined;
 // bubbles popped
 let bubblesPop = 0;
+// score to beat
+let scoreBeat = 2;
 //sound
 let bubblePop;
 
@@ -39,7 +41,6 @@ function setup() {
 
   //listen for predictions
   handpose.on(`predict`, function(results) {
-    console.log(results);
     predictions = results;
   });
 
@@ -63,9 +64,12 @@ function draw() {
     loadingScreen();
   } else if(state === 'game'){
     bubblePopText();
+    scoreToBeat();
     simulation();
-  }
-  }
+  } else if (state === "end"){
+    ending();
+    }
+      }
 
 // bubble and handpose simulation
 function simulation(){
@@ -99,6 +103,10 @@ function simulation(){
       bubble.y = height;
       bubblesPop += 1;
       bubblePop.play();
+    }
+    // bubbles popped === to highscore then end state
+    if(bubblesPop == scoreBeat){
+      state = 'end';
     }
   }
   //bubble move
@@ -139,5 +147,26 @@ function loadingScreen(){
   textSize(40);
   textAlign(CENTER,CENTER);
   text("LOADING CONTENT...", width/2,height/2);
+  pop();
+}
+// score to beat
+function scoreToBeat(){
+  push();
+  fill(255);
+  textSize(30);
+  text(scoreBeat, width/2, 100);
+  pop();
+  push();
+  fill(255);
+  textSize(30);
+  text("Score to Beat:", 120, 100);
+  pop();
+}
+function ending(){
+  push();
+  fill(255);
+  textSize(50);
+  textAlign(CENTER,CENTER);
+  text("NICE!", width/2,height/2);
   pop();
 }
