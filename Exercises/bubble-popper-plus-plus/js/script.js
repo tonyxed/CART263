@@ -17,14 +17,15 @@ function setup() {
   createCanvas(640, 480);
 
   // access user's webcam
-  //video = createCapture(VIDEO);
-  //video.hide();
+  video = createCapture(VIDEO);
+  video.hide();
 
   //loads handpose model
   handpose = ml5.handpose(video, {
     flipHorizontal: true
   }, function() {
     console.log("loaded");
+    state = "game";
   });
 
   //listen for predictions
@@ -119,6 +120,6 @@ function loadingScreen(){
   fill(255);
   textSize(40);
   textAlign(CENTER,CENTER);
-  text("LOADING CONTENT...");
+  text("LOADING CONTENT...", width/2,height/2);
   pop();
 }
