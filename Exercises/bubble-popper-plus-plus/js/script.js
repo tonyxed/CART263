@@ -1,3 +1,7 @@
+/*
+Pop them bubbles!
+*/
+
 "use strict";
 //user's webcam
 let video = undefined;
