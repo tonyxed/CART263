@@ -2,6 +2,7 @@
 Pop them bubbles!
 
 FYI: AI IS KINDA BUGGY SO CONTENT WAS TOUGH TO IMPLEMENT!
+
 */
 
 "use strict";
@@ -15,7 +16,7 @@ let bubble = undefined;
 // bubbles popped
 let bubblesPop = 0;
 // score to beat
-let scoreBeat = 2;
+let scoreBeat = 10;
 //sound
 let bubblePop;
 
