@@ -1,5 +1,7 @@
 /*
 Pop them bubbles!
+
+FYI: AI IS KINDA BUGGY SO CONTENT WAS TOUGH TO IMPLEMENT!
 */
 
 "use strict";
@@ -12,7 +14,15 @@ let predictions = [];
 let bubble = undefined;
 // bubbles popped
 let bubblesPop = 0;
+//sound
+let bubblePop;
 
+//sound
+function preload(){
+ bubblePop = loadSound("assets/sounds/Pop.mp3");
+}
+
+//setup
 function setup() {
   createCanvas(640, 480);
 
@@ -24,7 +34,6 @@ function setup() {
   handpose = ml5.handpose(video, {
     flipHorizontal: true
   }, function() {
-    console.log("loaded");
     state = "game";
   });
 
@@ -33,24 +42,29 @@ function setup() {
     console.log(results);
     predictions = results;
   });
+
   //bubble
   bubble = {
     x: random(width),
     y: height,
-    size: 100,
+    size: 70,
     vx: 0,
-    vy: -2
+    vy: -2,
+    speed: 5,
   };
 }
 let state = 'loading'; //state
 
 function draw() {
   background(0);
+
+  //states
   if(state === 'loading'){
     loadingScreen();
   } else if(state === 'game'){
-      bubblePopText();
-      simulation();
+    bubblePopText();
+    simulation();
+  }
   }
 
 // bubble and handpose simulation
@@ -84,6 +98,7 @@ function simulation(){
       bubble.x = random(width);
       bubble.y = height;
       bubblesPop += 1;
+      bubblePop.play();
     }
   }
   //bubble move
@@ -91,8 +106,6 @@ function simulation(){
   bubble.y += bubble.vy;
 
   //speed of the bubble on the y axis
-  let speed = bubble.speed;
-  bubble.speed = random(.5,3.5);
   bubble.y -= bubble.speed;
 
   if (bubble.y < 0) {
@@ -105,13 +118,18 @@ function simulation(){
   ellipse(bubble.x, bubble.y, bubble.size);
   pop();
 }
-}
+
 // text showing the amount of bubbles popped
 function bubblePopText(){
   push();
-  fill(255,0,0);
+  fill(255);
   textSize(30);
   text(bubblesPop, width/2, 50);
+  pop();
+  push();
+  fill(255);
+  textSize(30);
+  text("Use index finger to pop the bubbles.", 100, height/2);
   pop();
 }
 // text showing a loading screen
