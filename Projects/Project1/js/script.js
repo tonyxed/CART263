@@ -17,6 +17,10 @@ let border;
 
 //box
 let box;
+
+//road
+let road;
+
 //canvas properties
 const WIDTH = 900;
 const HEIGHT = 1000;
@@ -34,14 +38,17 @@ function setup() {
   let speed = 4;
   let vx = 0;
   user = new Player(x, y, size, speed, vx);
-  //border class
+  //Border class
   border = new Border();
-  //box class
+  //Box class
   box = new Box();
+  //Road class
+  road = new Road();
 }
 
 function draw() {
-  background(100);
+  background(23, 191, 121);
+  roadSimulation();
   userSimulation();
   borderSimulation();
   boxSimulation();
@@ -59,4 +66,7 @@ function borderSimulation() {
 //boxSimulation
 function boxSimulation(){
   box.display();
+}
+function roadSimulation(){
+  road.display();
 }
