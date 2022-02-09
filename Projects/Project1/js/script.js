@@ -2,8 +2,10 @@
 The Need for the Speed!
 Anthony Calderone
 
-My own silly take on the film; Need For Speed!
+A really dubbed down version of the film; Need For Speed!
 */
+//durability (sound effect hit will wall + other cars)
+
 "use strict";
 
 //pictures
@@ -47,11 +49,12 @@ function setup() {
 
 function draw() {
   background(23, 191, 121);
+  boxSimulation();
   roadSimulation();
   linesSimulation();
   userSimulation();
   borderSimulation();
-  boxSimulation();
+
 }
 //userSimulation
 function userSimulation() {

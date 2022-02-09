@@ -4,22 +4,22 @@ class Lines {
     this.y = 150;
     this.w = 10;
     this.h = 150;
-    this.vy = 3;
+    this.vy = 3.5;
     this.x1 = 450;
     this.y1 = 450;
     this.w1 = 10;
     this.h1 = 150;
-    this.vy1 = 3;
+    this.vy1 = 3.5;
     this.x2 = 450;
     this.y2 = 750;
     this.w2 = 10;
     this.h2 = 150;
-    this.vy2 = 3;
+    this.vy2 = 3.5;
     this.x3 = 450;
-    this.y3 = -850;
+    this.y3 = -750;
     this.w3 = 10;
     this.h3 = 150;
-    this.vy2 = 3;
+    this.vy2 = 3.5;
     this.color = "#edea18";
   }
   //displays the road lines
@@ -47,13 +47,13 @@ class Lines {
   //once offScreen come back into canvas
   offScreen(){
     if(this.y > height){
-      this.y = 50;
+      this.y = 10;
     } else if (this.y1 > height){
-      this.y1 = 50;
+      this.y1 = 10;
     } else if (this.y2 > height){
-      this.y2 = 50;
+      this.y2 = 10;
     } else if (this.y3 > height){
-      this.y3 = 50;
+      this.y3 = 10;
     }
   }
 }

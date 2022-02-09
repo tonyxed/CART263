@@ -1,7 +1,7 @@
 class Box {
   constructor(){
     this.x = 0;
-    this.y = 5;
+    this.y = 920;
     this.color = 0;
     this.w = 1000;
     this.h = 70;

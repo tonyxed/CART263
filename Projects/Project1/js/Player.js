@@ -3,8 +3,8 @@ class Player {
     this.x = 450;
     this.y = 900;
     this.size = 40;
-    this.speed = 4;
-    this.vx = 0;
+    this.vx = 4;
+    this.speedBoost = 0;
   }
   //displays the player
   display() {
@@ -17,9 +17,9 @@ class Player {
   //simulation of the player
   simulation() {
     if (keyIsDown(LEFT_ARROW)) {
-      this.x -= this.speed;
+      this.x -= this.vx;
     } else if (keyIsDown(RIGHT_ARROW)) {
-      this.x += this.speed;
+      this.x += this.vx;
     }
   }
   //constrains the player to the road
