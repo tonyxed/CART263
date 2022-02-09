@@ -23,7 +23,7 @@ class Player {
     }
   }
   //constrains the player to the road
-  constrain(){
-    this.x = constrain(this.x, border.x + 25, border.x1 - 25);
+  constrain() {
+    this.x = constrain(this.x, border.x + 27, border.x1 - 25);
   }
 }

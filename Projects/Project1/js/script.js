@@ -21,6 +21,8 @@ let box;
 //road
 let road;
 
+//lines of the road
+let lines;
 //canvas properties
 const WIDTH = 900;
 const HEIGHT = 1000;
@@ -44,11 +46,14 @@ function setup() {
   box = new Box();
   //Road class
   road = new Road();
+  //line class
+  lines = new Lines();
 }
 
 function draw() {
   background(23, 191, 121);
   roadSimulation();
+  linesSimulation();
   userSimulation();
   borderSimulation();
   boxSimulation();
@@ -64,9 +69,16 @@ function borderSimulation() {
   border.display();
 }
 //boxSimulation
-function boxSimulation(){
+function boxSimulation() {
   box.display();
 }
-function roadSimulation(){
+
+function roadSimulation() {
   road.display();
+}
+
+function linesSimulation() {
+  lines.display();
+  lines.movement();
+  lines.offScreen();
 }

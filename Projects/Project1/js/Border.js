@@ -1,11 +1,11 @@
 class Border {
   constructor(){
-    this.x = 150;
+    this.x = 200;
     this.y = 10;
     this.h = 1000;
     this.w = 5;
     this.color = "#0f0e0b";
-    this.x1 = 750;
+    this.x1 = 700;
     this.y1 = 10;
     this.h1 = 1000;
     this.w1 = 5;
