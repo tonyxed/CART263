@@ -1,10 +1,10 @@
 class Player {
-  constructor(x, y, size, speed, vx) {
-    this.x = x;
-    this.y = y;
-    this.size = size;
-    this.speed = speed;
-    this.vx = vx;
+  constructor() {
+    this.x = 450;
+    this.y = 900;
+    this.size = 40;
+    this.speed = 4;
+    this.vx = 0;
   }
   //displays the player
   display() {

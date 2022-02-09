@@ -34,12 +34,7 @@ function preload() {
 function setup() {
   createCanvas(WIDTH, HEIGHT);
   //player class
-  let x = 450;
-  let y = 900;
-  let size = 40;
-  let speed = 4;
-  let vx = 0;
-  user = new Player(x, y, size, speed, vx);
+  user = new Player();
   //Border class
   border = new Border();
   //Box class
@@ -72,11 +67,11 @@ function borderSimulation() {
 function boxSimulation() {
   box.display();
 }
-
+//roadSimulation
 function roadSimulation() {
   road.display();
 }
-
+//linesSimulation
 function linesSimulation() {
   lines.display();
   lines.movement();
