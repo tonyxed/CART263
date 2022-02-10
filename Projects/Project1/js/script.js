@@ -11,7 +11,8 @@ A really dubbed down version of the film; Need For Speed!
 //pictures
 let userPic;
 let treePic;
-let lifePic;
+let carPic1;
+let carPic2;
 //player
 let user;
 
@@ -27,14 +28,23 @@ let road;
 //lines of the road
 let lines;
 
+//car1
+let car1;
+
+//car2
+let car2;
+
 //tree
-// let objects = {
-//   trees: [],
-//   numTrees: 20,
-// };
+let objects = {
+  trees: [],
+  numTrees: 10,
+};
 
 //score
 let score = 0;
+
+//lives
+let lives = 100;
 
 //canvas properties
 const WIDTH = 600;
@@ -43,7 +53,8 @@ const HEIGHT = 1000;
 function preload() {
   userPic = loadImage("assets/images/user.png");
   treePic = loadImage("assets/images/tree.png");
-  lifePic = loadImage("assets/images/life.png");
+  carPic1 = loadImage("assets/images/car.png");
+  carPic2 = loadImage("assets/images/car2.png");
 }
 
 function setup() {
@@ -58,22 +69,35 @@ function setup() {
   road = new Road();
   //line class
   lines = new Lines();
+  //car1 class
+  let x = random(120, 270);
+  let y = random(25, 70);
+  let vy = 5;
+  car1 = new Car1(x, y, vy);
+  //car2 class
+  let x1 = random(120, 270);
+  let y1 = -300;
+  let vy1 = 5;
+  let size1 = 50;
+  car2 = new Car2(x1, y1, vy1,size1);
   //tree class
-  // for (let i = 0; i < objects.numTrees; i++) {
-  //   let x = random(0, -10);
-  //   let y = random(0, 900);
-  //   let vy = 5;
-  //   let tree = new Tree(x, y, vy)
-  //   objects.trees.push(tree);
-  // }
+  for (let i = 0; i < objects.numTrees; i++) {
+    let x = random(0, -10);
+    let y = random(0, 900);
+    let vy = 5;
+    let tree = new Tree(x, y, vy)
+    objects.trees.push(tree);
+  }
 }
 
 function draw() {
   background(23, 191, 121);
   roadSimulation();
   linesSimulation();
-  userSimulation();
   borderSimulation();
+  car1Simulation();
+  car2Simulation();
+  userSimulation();
   //treeSimulation();
   boxSimulation();
   scoreText();
@@ -84,6 +108,7 @@ function userSimulation() {
   user.display();
   user.simulation();
   user.constrain();
+  user.collision();
 }
 //borderSimulation
 function borderSimulation() {
@@ -104,13 +129,25 @@ function linesSimulation() {
   lines.offScreen();
 }
 //treeSimulation
-// function treeSimulation() {
-//   for (let i = 0; i < objects.trees.length; i++) {
-//     objects.trees[i].display();
-//     objects.trees[i].movement();
-//     objects.trees[i].offScreen();
-//   }
-//}
+function treeSimulation() {
+  for (let i = 0; i < objects.trees.length; i++) {
+    objects.trees[i].display();
+    objects.trees[i].movement();
+    objects.trees[i].offScreen();
+  }
+}
+//car1Simulation
+function car1Simulation() {
+    car1.display();
+    car1.movement();
+    car1.offScreen();
+}
+//car2Simulation
+function car2Simulation() {
+    car2.display();
+    car2.movement();
+    car2.offScreen();
+}
 //scoreText
 function scoreText() {
   push();
@@ -129,15 +166,9 @@ function scoreText() {
 //livesText
 function livesText() {
   push();
-  imageMode(CENTER);
-  image(lifePic, 380, 950, 70, 70);
+  textSize(30);
+  fill(255);
+  text(lives, 380, 940, 70, 70);
   pop();
-  push();
-  imageMode(CENTER);
-  image(lifePic, 430, 950, 70, 70);
-  pop();
-  push();
-  imageMode(CENTER);
-  image(lifePic, 480, 950, 70, 70);
-  pop();
+
 }
