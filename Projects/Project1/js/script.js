@@ -44,7 +44,7 @@ let objects = {
 let score = 0;
 
 //lives
-let lives = 100;
+let lives = 3;
 
 //canvas properties
 const WIDTH = 600;
@@ -73,7 +73,8 @@ function setup() {
   let x = random(120, 270);
   let y = random(25, 70);
   let vy = 5;
-  car1 = new Car1(x, y, vy);
+  let size = 50;
+  car1 = new Car1(x, y, vy, size);
   //car2 class
   let x1 = random(120, 270);
   let y1 = -300;
@@ -108,7 +109,8 @@ function userSimulation() {
   user.display();
   user.simulation();
   user.constrain();
-  user.collision();
+  user.collision1();
+  user.collision2();
 }
 //borderSimulation
 function borderSimulation() {

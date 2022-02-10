@@ -1,8 +1,9 @@
 class Car1 {
-  constructor(x, y, vy) {
+  constructor(x, y, vy, size) {
     this.x = x;
     this.y = y;
     this.vy = vy;
+    this.size = size;
   }
   //display's the car
   display() {

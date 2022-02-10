@@ -1,6 +1,6 @@
 class Player {
   constructor() {
-    this.x = 420;
+    this.x = 305;
     this.y = 850;
     this.size = 40;
     this.vx = 4;
@@ -28,11 +28,20 @@ class Player {
   constrain() {
     this.x = constrain(this.x, border.x + 27, border.x1 - 25);
   }
+  collision1(){
+    let d = dist(this.x, this.y, car1.x, car1.y);
+    if (d < this.size / 2 + car1.size / 2) {
+      this.x = 305;
+      this.y = 850;
+      lives -= 1; //play voice
+    }
+  }
   //checks collision between player and car2
-  collision() {
+  collision2() {
     let d = dist(this.x, this.y, car2.x1, car2.y1);
     if (d < this.size / 2 + car2.size1 / 2) {
-      console.log("car2 Collision!");
+      this.x = 305;
+      this.y = 850;
       lives -= 1; //play voice
     }
   }
