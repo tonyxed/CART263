@@ -4,7 +4,7 @@ Anthony Calderone
 
 A really dubbed down version of the film; Need For Speed!
 */
-//durability (sound effect hit will wall + other cars)
+
 
 "use strict";
 
@@ -34,6 +34,9 @@ let car1;
 //car2
 let car2;
 
+//car3
+let car3;
+
 //tree
 let objects = {
   trees: [],
@@ -45,6 +48,10 @@ let score = 0;
 
 //lives
 let lives = 3;
+
+//pause
+let running = true;
+
 
 //canvas properties
 const WIDTH = 600;
@@ -70,17 +77,17 @@ function setup() {
   //line class
   lines = new Lines();
   //car1 class
-  let x = random(120, 270);
+  let x = random(120, 240);
   let y = random(25, 70);
   let vy = 5;
   let size = 50;
   car1 = new Car1(x, y, vy, size);
   //car2 class
-  let x1 = random(120, 270);
+  let x1 = random(120, 240);
   let y1 = -300;
   let vy1 = 5;
   let size1 = 50;
-  car2 = new Car2(x1, y1, vy1,size1);
+  car2 = new Car2(x1, y1, vy1, size1);
   //tree class
   for (let i = 0; i < objects.numTrees; i++) {
     let x = random(0, -10);
@@ -92,17 +99,22 @@ function setup() {
 }
 
 function draw() {
-  background(23, 191, 121);
-  roadSimulation();
-  linesSimulation();
-  borderSimulation();
-  car1Simulation();
-  car2Simulation();
-  userSimulation();
-  //treeSimulation();
-  boxSimulation();
-  scoreText();
-  livesText();
+  if(running){
+    background("#0ceb6c");
+    roadSimulation();
+    linesSimulation();
+    borderSimulation();
+    car1Simulation();
+    car2Simulation();
+    userSimulation();
+    //treeSimulation();
+    boxSimulation();
+    scoreText();
+    livesText();
+    if(!running){
+      livesMenu();
+    }
+  }
 }
 //userSimulation
 function userSimulation() {
@@ -140,15 +152,15 @@ function treeSimulation() {
 }
 //car1Simulation
 function car1Simulation() {
-    car1.display();
-    car1.movement();
-    car1.offScreen();
+  car1.display();
+  car1.movement();
+  car1.offScreen();
 }
 //car2Simulation
 function car2Simulation() {
-    car2.display();
-    car2.movement();
-    car2.offScreen();
+  car2.display();
+  car2.movement();
+  car2.offScreen();
 }
 //scoreText
 function scoreText() {
@@ -172,5 +184,24 @@ function livesText() {
   fill(255);
   text(lives, 380, 940, 70, 70);
   pop();
-
+}
+function livesMenu(){
+  background("#0b783c");
+  push();
+  textSize(30);
+  fill(255);
+  textAlign(CENTER);
+  text("Lives:", 300,height/2);
+  pop();
+  push();
+  textSize(30);
+  fill(255);
+  textAlign(CENTER);
+  text(lives, 350, height/2);
+  pop();
+}
+function keyPressed(){
+ if(keyCode === 32){
+   running = true;
+ }
 }

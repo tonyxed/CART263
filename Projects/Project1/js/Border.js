@@ -5,7 +5,7 @@ class Border {
     this.h = 910;
     this.w = 5;
     this.color = "#0f0e0b";
-    this.x1 = 530;
+    this.x1 = 520;
     this.y1 = 10;
     this.h1 = 910;
     this.w1 = 5;

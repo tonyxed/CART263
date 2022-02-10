@@ -2,7 +2,7 @@ class Road {
   constructor() {
     this.x = 80;
     this.y = 10;
-    this.w = 450;
+    this.w = 440;
     this.h = 1000;
     this.color = "#63756d";
   }

@@ -3,13 +3,15 @@ class Car1 {
     this.x = x;
     this.y = y;
     this.vy = vy;
+    this.w = 180;
+    this.h = 150;
     this.size = size;
   }
   //display's the car
   display() {
     push();
     imageMode(CENTER);
-    image(carPic1, this.x, this.y, 180, 150);
+    image(carPic1, this.x, this.y, this.w, this.h);
     pop();
   } //moves the car
   movement() {
@@ -18,10 +20,9 @@ class Car1 {
   //if car goes offScreen, place it back
   offScreen() {
     let x = random(120, 270);
-    let y = random(-90, 70);
     if (this.y > height) {
       this.x = x;
-      this.y = y;
+      this.y = 0;
     }
   }
 }
