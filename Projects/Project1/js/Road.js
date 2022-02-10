@@ -1,8 +1,8 @@
 class Road {
   constructor() {
-    this.x = 205;
+    this.x = 80;
     this.y = 10;
-    this.w = 500;
+    this.w = 450;
     this.h = 1000;
     this.color = "#63756d";
   }

@@ -1,21 +1,21 @@
 class Lines {
   constructor() {
-    this.x = 450;
+    this.x = 300;
     this.y = 150;
     this.w = 10;
     this.h = 150;
     this.vy = 3.5;
-    this.x1 = 450;
+    this.x1 = 300;
     this.y1 = 450;
     this.w1 = 10;
     this.h1 = 150;
     this.vy1 = 3.5;
-    this.x2 = 450;
+    this.x2 = 300;
     this.y2 = 750;
     this.w2 = 10;
     this.h2 = 150;
     this.vy2 = 3.5;
-    this.x3 = 450;
+    this.x3 = 300;
     this.y3 = -750;
     this.w3 = 10;
     this.h3 = 150;

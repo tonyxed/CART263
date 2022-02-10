@@ -1,9 +1,10 @@
 class Player {
   constructor() {
-    this.x = 450;
-    this.y = 900;
+    this.x = 300;
+    this.y = 850;
     this.size = 40;
     this.vx = 4;
+    this.vy = 4;
     this.speedBoost = 0;
   }
   //displays the player
@@ -16,6 +17,7 @@ class Player {
   }
   //simulation of the player
   simulation() {
+  // doing else if for each if statement doesn't go well with the game and it's movement
     if (keyIsDown(LEFT_ARROW)) {
       this.x -= this.vx;
     } else if (keyIsDown(RIGHT_ARROW)) {

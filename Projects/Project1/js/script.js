@@ -10,7 +10,7 @@ A really dubbed down version of the film; Need For Speed!
 
 //pictures
 let userPic;
-
+let treePic;
 //player
 let user;
 
@@ -25,12 +25,23 @@ let road;
 
 //lines of the road
 let lines;
+
+//tree
+// let objects = {
+//   trees: [],
+//   numTrees: 2,
+// };
+
+//score
+let score = 0;
+
 //canvas properties
-const WIDTH = 900;
+const WIDTH = 600;
 const HEIGHT = 1000;
 
 function preload() {
   userPic = loadImage("assets/images/user.png");
+  treePic = loadImage("assets/images/tree.png");
 }
 
 function setup() {
@@ -45,16 +56,25 @@ function setup() {
   road = new Road();
   //line class
   lines = new Lines();
+  //tree class
+  // for (let i = 0; i < objects.numTrees; i++) {
+  //   let x = random(-40, -20);
+  //   let y = random(600, 0);
+  //   let vy = 5;
+  //   let tree = new Tree(x, y, vy)
+  //   objects.trees.push(tree);
+  // }
 }
 
 function draw() {
   background(23, 191, 121);
-  boxSimulation();
   roadSimulation();
   linesSimulation();
   userSimulation();
   borderSimulation();
-
+  //treeSimulation();
+  boxSimulation();
+  scoreText();
 }
 //userSimulation
 function userSimulation() {
@@ -79,4 +99,26 @@ function linesSimulation() {
   lines.display();
   lines.movement();
   lines.offScreen();
+}
+//treeSimulation
+// function treeSimulation() {
+//   for (let i = 0; i < objects.trees.length; i++) {
+//     objects.trees[i].display();
+//     objects.trees[i].movement();
+//     objects.trees[i].offScreen();
+//   }
+// }
+function scoreText(){
+  push();
+  fill(255);
+  textSize(30);
+  textAlign(BOTTOM,BOTTOM);
+  text(score, 330, 970);
+  pop();
+  push();
+  fill(255);
+  textSize(30);
+  textAlign(BOTTOM,BOTTOM);
+  text("Score:", 220, 970);
+  pop();
 }
