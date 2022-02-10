@@ -11,6 +11,7 @@ A really dubbed down version of the film; Need For Speed!
 //pictures
 let userPic;
 let treePic;
+let lifePic;
 //player
 let user;
 
@@ -42,6 +43,7 @@ const HEIGHT = 1000;
 function preload() {
   userPic = loadImage("assets/images/user.png");
   treePic = loadImage("assets/images/tree.png");
+  lifePic = loadImage("assets/images/life.png");
 }
 
 function setup() {
@@ -75,6 +77,7 @@ function draw() {
   //treeSimulation();
   boxSimulation();
   scoreText();
+  livesText();
 }
 //userSimulation
 function userSimulation() {
@@ -108,17 +111,33 @@ function linesSimulation() {
 //     objects.trees[i].offScreen();
 //   }
 // }
-function scoreText(){
+//scoreText
+function scoreText() {
   push();
   fill(255);
   textSize(30);
-  textAlign(BOTTOM,BOTTOM);
-  text(score, 330, 970);
+  textAlign(BOTTOM, BOTTOM);
+  text(score, 200, 970);
   pop();
   push();
   fill(255);
   textSize(30);
-  textAlign(BOTTOM,BOTTOM);
-  text("Score:", 220, 970);
+  textAlign(BOTTOM, BOTTOM);
+  text("Score:", 100, 970);
+  pop();
+}
+//livesText
+function livesText() {
+  push();
+  imageMode(CENTER);
+  image(lifePic, 380, 950, 70, 70);
+  pop();
+  push();
+  imageMode(CENTER);
+  image(lifePic, 430, 950, 70, 70);
+  pop();
+  push();
+  imageMode(CENTER);
+  image(lifePic, 480, 950, 70, 70);
   pop();
 }
