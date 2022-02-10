@@ -12,7 +12,7 @@ class Player {
     push();
     noStroke();
     imageMode(CENTER);
-    image(userPic, this.x, this.y, 50, 100);
+    image(userPic, this.x, this.y, 60, 110);
     pop();
   }
   //simulation of the player
