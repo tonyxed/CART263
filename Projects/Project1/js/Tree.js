@@ -7,7 +7,7 @@ class Tree {
   //displays the tree
   display() {
     push();
-    image(treePic, this.x, this.y, 150, 150);
+    image(treePic, this.x, this.y, 80, 80);
     pop();
   }
   //moves the tree
@@ -19,7 +19,7 @@ class Tree {
   offScreen() {
     if (this.y > height) {
       this.y = 0
-      this.x = random(-40, -20);
+      this.x = random(0, -20);
     }
   }
   }

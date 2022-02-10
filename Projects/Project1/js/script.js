@@ -30,7 +30,7 @@ let lines;
 //tree
 // let objects = {
 //   trees: [],
-//   numTrees: 2,
+//   numTrees: 20,
 // };
 
 //score
@@ -60,8 +60,8 @@ function setup() {
   lines = new Lines();
   //tree class
   // for (let i = 0; i < objects.numTrees; i++) {
-  //   let x = random(-40, -20);
-  //   let y = random(600, 0);
+  //   let x = random(0, -10);
+  //   let y = random(0, 900);
   //   let vy = 5;
   //   let tree = new Tree(x, y, vy)
   //   objects.trees.push(tree);
@@ -110,7 +110,7 @@ function linesSimulation() {
 //     objects.trees[i].movement();
 //     objects.trees[i].offScreen();
 //   }
-// }
+//}
 //scoreText
 function scoreText() {
   push();
