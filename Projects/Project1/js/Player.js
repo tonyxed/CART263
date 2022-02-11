@@ -42,6 +42,8 @@ class Player {
       this.y = 850;
       running = false;
       lives -= 1;
+      carCrash.play();
+      carCrash.setVolume(.1);
     }
     if (lives === 0) {
       state = 'lose'
@@ -56,6 +58,8 @@ class Player {
       this.y = 850;
       running = false;
       lives -= 1;
+      carCrash.play();
+      carCrash.setVolume(.1);
     }
     if (lives === 0) {
       state = 'lose'
@@ -70,6 +74,8 @@ class Player {
       this.y = 850;
       running = false;
       lives -= 1;
+      carCrash.play();
+      carCrash.setVolume(.1);
     }
     if (lives === 0) {
       state = 'lose'

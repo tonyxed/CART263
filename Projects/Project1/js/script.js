@@ -6,6 +6,7 @@ A really dubbed down version of the film; Need For Speed!
 Race your way through the busy highway 401 in Ontario, Canada. Avoid everything at all costs.
 */
 //needs to be implemented:
+
 //Introduction of back story
 //Sound effects using (ResponsiveVoice)
 //pick ups (lowers speed if bad one?)
@@ -16,6 +17,11 @@ Race your way through the busy highway 401 in Ontario, Canada. Avoid everything 
 let userPic;
 let treePic;
 let truckPic;
+
+//sounds
+let carCrash;
+let traffic;
+let driving;
 
 //cars
 let cars = [];
@@ -74,11 +80,15 @@ function preload() {
   cars[2] = loadImage("assets/images/car3.png");
   truckPic = loadImage("assets/images/truck.png");
 
+  //sounds
+  carCrash = loadSound("assets/sounds/crash.mp3");
+  traffic = loadSound("assets/sounds/traffic.mp3");
+  driving = loadSound("assets/sounds/driving.mp3");
 }
 
 function setup() {
   createCanvas(WIDTH, HEIGHT);
-  //reset();
+
   //player class
   user = new Player();
 
@@ -97,21 +107,21 @@ function setup() {
   //car1 class
   let x = random(120, 190);
   let y = random(25, 70);
-  let vy = 8;
+  let vy = 5;
   let size = 50;
   car1 = new Car1(x, y, vy, size);
 
   //car2 class
   let x1 = random(390, 490);
   let y1 = -300;
-  let vy1 = 8;
+  let vy1 = 5;
   let size1 = 50;
   car2 = new Car2(x1, y1, vy1, size1);
 
   //car3 class
   let x2 = random(250, 340);
   let y2 = -100;
-  let vy2 = 8;
+  let vy2 = 5;
   let size2 = 50;
   car3 = new Car3(x2, y2, vy2, size2);
 
@@ -125,16 +135,14 @@ function setup() {
   }
 }
 
-let state = 'game' //starting state
+let state = 'title' //starting state
 
 //states
 function draw() {
   //if game is running, then display corresponding states
   if (running) {
     if (state === "title") {
-
-    } else if (state === "howTo") {
-
+      titleMenu();
     } else if (state === "game") {
       background("#0ceb6c");
       gameSimulation();
@@ -145,7 +153,7 @@ function draw() {
     }
   }
 
-  //if game isn't running, then display livesMenu()
+  //if game isn't running
   if (!running) {
     livesMenu();
     reset();
@@ -244,6 +252,9 @@ function livesMenu() {
   fill(255);
   text("Hit Space to continue!", 300, 600);
   pop();
+  //stops the traffic noise
+  traffic.stop();
+  driving.stop();
 }
 
 //no more lives
@@ -255,6 +266,8 @@ function livesDone() {
   textAlign(CENTER);
   text("No More Lives!", width / 2, height / 2);
   pop();
+  traffic.stop();
+  driving.stop();
 }
 
 //unpauses the game
@@ -263,6 +276,12 @@ function keyPressed() {
     if (keyCode === 32) {
       running = true;
       state = 'game';
+      traffic.play();
+      traffic.setVolume(.008);
+      traffic.loop();
+      driving.play();
+      driving.setVolume(.010);
+      driving.loop();
     }
   }
 }
@@ -284,4 +303,17 @@ function reset() {
   car3.y2 = random(-100, 0);
   car3.vy2 = 8;
   car3.size2 = 50;
+}
+
+//TEST TITLE
+function titleMenu(){
+  if(keyCode === 32){
+    state = 'game';
+    traffic.play();
+    traffic.setVolume(.008);
+    traffic.loop();
+    driving.play();
+    driving.setVolume(.010);
+    driving.loop();
+  }
 }
