@@ -122,15 +122,7 @@ function draw() {
 
     } else if (state === "game") {
       background("#0ceb6c");
-      roadSimulation();
-      linesSimulation();
-      borderSimulation();
-      car1Simulation();
-      car2Simulation();
-      car3Simulation();
-      userSimulation();
-      //treeSimulation();
-      boxSimulation();
+      gameSimulation();
       scoreText();
       livesText();
     } else if (state === "lose") {
@@ -141,58 +133,51 @@ function draw() {
     livesMenu();
   }
 }
-//userSimulation
-function userSimulation() {
+
+function gameSimulation() {
+  //roadSimulation
+  road.display();
+
+  //linesSimulation
+  lines.display();
+  lines.movement();
+  lines.offScreen();
+
+  //borderSimulation
+  border.display();
+
+  //car1Simulation
+  car1.display();
+  car1.movement();
+  car1.offScreen();
+
+  //car2Simulation
+  car2.display();
+  car2.movement();
+  car2.offScreen();
+
+  //car3Simulation
+  car3.display();
+  car3.movement();
+  car3.offScreen();
+
+  //userSimulation
   user.display();
   user.simulation();
   user.constrain();
   user.collision1();
   user.collision2();
   user.collision3();
-}
-//borderSimulation
-function borderSimulation() {
-  border.display();
-}
-//boxSimulation
-function boxSimulation() {
+
+  //boxSimulation
   box.display();
-}
-//roadSimulation
-function roadSimulation() {
-  road.display();
-}
-//linesSimulation
-function linesSimulation() {
-  lines.display();
-  lines.movement();
-  lines.offScreen();
-}
-//treeSimulation
-function treeSimulation() {
-  for (let i = 0; i < objects.trees.length; i++) {
-    objects.trees[i].display();
-    objects.trees[i].movement();
-    objects.trees[i].offScreen();
-  }
-}
-//car1Simulation
-function car1Simulation() {
-  car1.display();
-  car1.movement();
-  car1.offScreen();
-}
-//car2Simulation
-function car2Simulation() {
-  car2.display();
-  car2.movement();
-  car2.offScreen();
-}
-//car3Simulation
-function car3Simulation() {
-  car3.display();
-  car3.movement();
-  car3.offScreen();
+
+  //treeSimulation
+  // for (let i = 0; i < objects.trees.length; i++) {
+  //   objects.trees[i].display();
+  //   objects.trees[i].movement();
+  //   objects.trees[i].offScreen();
+  // }
 }
 
 //scoreText
@@ -210,6 +195,7 @@ function scoreText() {
   text("Score:", 100, 970);
   pop();
 }
+
 //livesText
 function livesText() {
   push();
@@ -218,6 +204,7 @@ function livesText() {
   text(lives, 380, 940, 70, 70);
   pop();
 }
+
 //livesMenu
 function livesMenu() {
   background("#0b783c");
@@ -240,15 +227,7 @@ function livesMenu() {
   text("Hit Space to continue!", 300, 600);
   pop();
 }
-//unpauses the game
-function keyPressed() {
-  if(!running){
-    if (keyCode === 32) {
-      running = true;
-      state = 'game';
-    }
-  }
-}
+
 //no more lives
 function livesDone() {
   background("#0b783c");
@@ -258,4 +237,14 @@ function livesDone() {
   textAlign(CENTER);
   text("No More Lives!", width / 2, height / 2);
   pop();
+}
+
+//unpauses the game
+function keyPressed() {
+  if (!running) {
+    if (keyCode === 32) {
+      running = true;
+      state = 'game';
+    }
+  }
 }
