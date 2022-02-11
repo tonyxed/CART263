@@ -39,6 +39,9 @@ class Player {
       running = false;
       lives -= 1;
     }
+    if(lives === 0){
+      state = 'lose'
+    }
   }
   //checks collision between player and car2
   collision2() {
@@ -48,6 +51,22 @@ class Player {
       this.y = 850;
       running = false;
       lives -= 1;
+    }
+    if(lives === 0){
+      state = 'lose'
+    }
+  }
+  //checks collision between player and car3
+  collision3() {
+    let d = dist(this.x, this.y, car3.x2, car3.y2);
+    if (d < this.size / 2 + car3.size2 / 2) {
+      this.x = 305;
+      this.y = 850;
+      running = false;
+      lives -= 1;
+    }
+    if(lives === 0){
+      state = 'lose'
     }
   }
 }

@@ -19,7 +19,7 @@ class Car2 {
   }
   //if car2 goes offScreen, place it back
   offScreen() {
-    let x = random(120, 270);
+    let x = random(120, 240);
     if (this.y1 > height) {
       this.x1 = x;
       this.y1 = 0;

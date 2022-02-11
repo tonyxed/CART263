@@ -13,6 +13,7 @@ let userPic;
 let treePic;
 let carPic1;
 let carPic2;
+let carPic3;
 //player
 let user;
 
@@ -49,7 +50,7 @@ let score = 0;
 //lives
 let lives = 3;
 
-//pause
+//game pause
 let running = true;
 
 
@@ -62,6 +63,7 @@ function preload() {
   treePic = loadImage("assets/images/tree.png");
   carPic1 = loadImage("assets/images/car.png");
   carPic2 = loadImage("assets/images/car2.png");
+  carPic3 = loadImage("assets/images/car3.png");
 }
 
 function setup() {
@@ -88,6 +90,13 @@ function setup() {
   let vy1 = 5;
   let size1 = 50;
   car2 = new Car2(x1, y1, vy1, size1);
+  //car3 class
+  let x2 = random(120, 240);
+  let y2 = 300;
+  let vy2 = 5;
+  let size2 = 50;
+  car3 = new Car3(x2, y2, vy2, size2);
+
   //tree class
   for (let i = 0; i < objects.numTrees; i++) {
     let x = random(0, -10);
@@ -97,7 +106,8 @@ function setup() {
     objects.trees.push(tree);
   }
 }
-let state = 'game' //states
+//states
+let state = 'game'
 
 function draw() {
   if (running) {
@@ -112,11 +122,14 @@ function draw() {
       borderSimulation();
       car1Simulation();
       car2Simulation();
+      car3Simulation();
       userSimulation();
       //treeSimulation();
       boxSimulation();
       scoreText();
       livesText();
+    } else if (state === "lose"){
+      livesDone();
     }
   }
   if (!running) {
@@ -130,6 +143,7 @@ function userSimulation() {
   user.constrain();
   user.collision1();
   user.collision2();
+  user.collision3();
 }
 //borderSimulation
 function borderSimulation() {
@@ -169,6 +183,13 @@ function car2Simulation() {
   car2.movement();
   car2.offScreen();
 }
+//car3Simulation
+function car3Simulation() {
+  car3.display();
+  car3.movement();
+  car3.offScreen();
+}
+
 //scoreText
 function scoreText() {
   push();
@@ -220,4 +241,13 @@ function keyPressed() {
     running = true;
     state = 'game';
   }
+}
+function livesDone(){
+  background("#0b783c");
+  push();
+  textSize(30);
+  fill(255);
+  textAlign(CENTER);
+  text("No More Lives!", width/2, height / 2);
+  pop();
 }
