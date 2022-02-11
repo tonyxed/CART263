@@ -306,8 +306,8 @@ function reset() {
 }
 
 //TEST TITLE
-function titleMenu(){
-  if(keyCode === 32){
+function titleMenu() {
+  if (keyCode === 32) {
     state = 'game';
     traffic.play();
     traffic.setVolume(.008);
