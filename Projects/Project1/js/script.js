@@ -19,6 +19,7 @@ let treePic;
 let carPic1;
 let carPic2;
 let carPic3;
+
 //player
 let user;
 
@@ -58,17 +59,19 @@ let lives = 3;
 //game pause
 let running = true;
 
-
 //canvas properties
 const WIDTH = 600;
 const HEIGHT = 1000;
 
 function preload() {
+
+  //images
   userPic = loadImage("assets/images/user.png");
   treePic = loadImage("assets/images/tree.png");
   carPic1 = loadImage("assets/images/car.png");
   carPic2 = loadImage("assets/images/car2.png");
   carPic3 = loadImage("assets/images/car3.png");
+
 }
 
 function setup() {
@@ -119,6 +122,7 @@ function setup() {
     objects.trees.push(tree);
   }
 }
+
 //states
 let state = 'game'
 
@@ -142,6 +146,7 @@ function draw() {
   }
 }
 
+//gameSimulation
 function gameSimulation() {
   //roadSimulation
   road.display();
