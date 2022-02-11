@@ -123,10 +123,11 @@ function setup() {
   }
 }
 
-//states
-let state = 'game'
+let state = 'game' //starting state
 
+//states
 function draw() {
+  //if game is running, then display corresponding states
   if (running) {
     if (state === "title") {
 
@@ -141,6 +142,8 @@ function draw() {
       livesDone();
     }
   }
+
+  //if game isn't running, then display livesMenu()
   if (!running) {
     livesMenu();
   }
