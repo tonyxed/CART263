@@ -97,23 +97,30 @@ function setup() {
     objects.trees.push(tree);
   }
 }
+let state = 'game' //states
 
 function draw() {
-  if(running){
-    background("#0ceb6c");
-    roadSimulation();
-    linesSimulation();
-    borderSimulation();
-    car1Simulation();
-    car2Simulation();
-    userSimulation();
-    //treeSimulation();
-    boxSimulation();
-    scoreText();
-    livesText();
-    if(!running){
-      livesMenu();
+  if (running) {
+    if (state === "title") {
+
+    } else if (state === "howTo") {
+
+    } else if (state === "game") {
+      background("#0ceb6c");
+      roadSimulation();
+      linesSimulation();
+      borderSimulation();
+      car1Simulation();
+      car2Simulation();
+      userSimulation();
+      //treeSimulation();
+      boxSimulation();
+      scoreText();
+      livesText();
     }
+  }
+  if (!running) {
+    livesMenu();
   }
 }
 //userSimulation
@@ -185,23 +192,32 @@ function livesText() {
   text(lives, 380, 940, 70, 70);
   pop();
 }
-function livesMenu(){
+//livesMenu
+function livesMenu() {
   background("#0b783c");
   push();
   textSize(30);
   fill(255);
   textAlign(CENTER);
-  text("Lives:", 300,height/2);
+  text("Lives:", 300, height / 2);
   pop();
   push();
   textSize(30);
-  fill(255);
   textAlign(CENTER);
-  text(lives, 350, height/2);
+  fill(255);
+  text(lives, 350, height / 2);
+  pop();
+  push();
+  textSize(30);
+  textAlign(CENTER);
+  fill(255);
+  text("Hit Space to continue!", 300, 600);
   pop();
 }
-function keyPressed(){
- if(keyCode === 32){
-   running = true;
- }
+//unpauses the game
+function keyPressed() {
+  if (keyCode === 32) {
+    running = true;
+    state = 'game';
+  }
 }
