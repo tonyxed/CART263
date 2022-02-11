@@ -8,19 +8,17 @@ Race your way through the busy highway 401 in Ontario, Canada. Avoid everything 
 //needs to be implemented:
 //Introduction of back story
 //Sound effects using (ResponsiveVoice)
-//traffic going with user
-//pick ups
-//work on reset cars to original values when hit
+//pick ups (lowers speed if bad one?)
 
 "use strict";
 
 //pictures
 let userPic;
 let treePic;
+let truckPic;
 
 //cars
 let cars = [];
-
 
 //player
 let user;
@@ -74,6 +72,7 @@ function preload() {
   cars[0] = loadImage("assets/images/car.png");
   cars[1] = loadImage("assets/images/car2.png");
   cars[2] = loadImage("assets/images/car3.png");
+  truckPic = loadImage("assets/images/truck.png");
 
 }
 
@@ -267,21 +266,22 @@ function keyPressed() {
     }
   }
 }
+
 //reset the cars when hit
-function reset(){
+function reset() {
   //car1 reset
   car1.x = random(120, 190);
-  car1.y = random(25, 70);
+  car1.y = random(0, 70);
   car1.vy = 8;
   car1.size = 50;
   //car2 reset
   car2.x1 = random(390, 490);
-  car2.y1 = -300;
+  car2.y1 = random(-300, -100);
   car2.vy1 = 8;
   car2.size1 = 50;
   //car3 reset
   car3.x2 = random(250, 340);
-  car3.y2 = -100;
+  car3.y2 = random(-100, 0);
   car3.vy2 = 8;
   car3.size2 = 50;
 }
