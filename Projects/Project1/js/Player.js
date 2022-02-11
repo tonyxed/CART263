@@ -9,6 +9,7 @@ class Player {
     this.h = 150;
     this.speedBoost = 0;
   }
+
   //displays the player
   display() {
     push();
@@ -17,6 +18,7 @@ class Player {
     image(userPic, this.x, this.y, this.w, this.h);
     pop();
   }
+
   //simulation of the player
   simulation() {
     // doing else if for each if statement doesn't go well with the game and it's movement
@@ -26,10 +28,12 @@ class Player {
       this.x += this.vx;
     }
   }
+
   //constrains the player to the road
   constrain() {
     this.x = constrain(this.x, border.x + 27, border.x1 - 25);
   }
+
   //checks collision between player and car1
   collision1() {
     let d = dist(this.x, this.y, car1.x, car1.y);
@@ -39,10 +43,11 @@ class Player {
       running = false;
       lives -= 1;
     }
-    if(lives === 0){
+    if (lives === 0) {
       state = 'lose'
     }
   }
+
   //checks collision between player and car2
   collision2() {
     let d = dist(this.x, this.y, car2.x1, car2.y1);
@@ -52,10 +57,11 @@ class Player {
       running = false;
       lives -= 1;
     }
-    if(lives === 0){
+    if (lives === 0) {
       state = 'lose'
     }
   }
+
   //checks collision between player and car3
   collision3() {
     let d = dist(this.x, this.y, car3.x2, car3.y2);
@@ -65,7 +71,7 @@ class Player {
       running = false;
       lives -= 1;
     }
-    if(lives === 0){
+    if (lives === 0) {
       state = 'lose'
     }
   }

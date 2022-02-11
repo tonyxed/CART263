@@ -7,16 +7,19 @@ class Car3 {
     this.h2 = 130;
     this.size2 = size2;
   }
+
   //display's the car
   display() {
     push();
     imageMode(CENTER);
     image(carPic3, this.x2, this.y2, this.w2, this.h2);
     pop();
-  } //moves the car
+  }
+  //moves the car
   movement() {
     this.y2 = this.y2 + this.vy2;
   }
+
   //if car2 goes offScreen, place it back
   offScreen() {
     let x = random(120, 240);

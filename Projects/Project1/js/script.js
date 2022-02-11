@@ -73,28 +73,36 @@ function preload() {
 
 function setup() {
   createCanvas(WIDTH, HEIGHT);
+
   //player class
   user = new Player();
+
   //Border class
   border = new Border();
+
   //Box class
   box = new Box();
+
   //Road class
   road = new Road();
+
   //line class
   lines = new Lines();
+
   //car1 class
   let x = random(120, 240);
   let y = random(25, 70);
   let vy = 5;
   let size = 50;
   car1 = new Car1(x, y, vy, size);
+
   //car2 class
   let x1 = random(120, 240);
   let y1 = -300;
   let vy1 = 5;
   let size1 = 50;
   car2 = new Car2(x1, y1, vy1, size1);
+
   //car3 class
   let x2 = random(120, 240);
   let y2 = 300;
@@ -207,7 +215,6 @@ function livesText() {
 
 //livesMenu
 function livesMenu() {
-  background("#0b783c");
   push();
   textSize(30);
   fill(255);

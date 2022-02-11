@@ -27,6 +27,7 @@ class Lines {
     this.vy4 = 4;
     this.color = "#edea18";
   }
+
   //displays the road lines
   display() {
     push();
@@ -42,6 +43,7 @@ class Lines {
     rect(this.x2, this.y2, this.w2, this.h2);
     pop();
   }
+
   //movement of the lines of the road
   movement() {
     this.y += this.vy;
@@ -50,6 +52,7 @@ class Lines {
     this.y3 += this.vy3;
     this.y4 += this.vy4;
   }
+
   //once offScreen come back into canvas
   offScreen() {
     if (this.y > height) {

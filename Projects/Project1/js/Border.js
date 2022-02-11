@@ -10,6 +10,7 @@ class Border {
     this.h1 = 910;
     this.w1 = 5;
   }
+  
   //displays the borders of the road
   display(){
     //left border of road

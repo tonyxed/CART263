@@ -6,6 +6,7 @@ class Road {
     this.h = 1000;
     this.color = "#63756d";
   }
+
   //displays the road
   display() {
     push();
