@@ -10,15 +10,17 @@ Race your way through the busy highway 401 in Ontario, Canada. Avoid everything 
 //Sound effects using (ResponsiveVoice)
 //traffic going with user
 //pick ups
+//work on reset cars to original values when hit
 
 "use strict";
 
 //pictures
 let userPic;
 let treePic;
-let carPic1;
-let carPic2;
-let carPic3;
+
+//cars
+let cars = [];
+
 
 //player
 let user;
@@ -59,6 +61,7 @@ let lives = 3;
 //game pause
 let running = true;
 
+
 //canvas properties
 const WIDTH = 600;
 const HEIGHT = 1000;
@@ -68,15 +71,15 @@ function preload() {
   //images
   userPic = loadImage("assets/images/user.png");
   treePic = loadImage("assets/images/tree.png");
-  carPic1 = loadImage("assets/images/car.png");
-  carPic2 = loadImage("assets/images/car2.png");
-  carPic3 = loadImage("assets/images/car3.png");
+  cars[0] = loadImage("assets/images/car.png");
+  cars[1] = loadImage("assets/images/car2.png");
+  cars[2] = loadImage("assets/images/car3.png");
 
 }
 
 function setup() {
   createCanvas(WIDTH, HEIGHT);
-
+  //reset();
   //player class
   user = new Player();
 
@@ -93,23 +96,23 @@ function setup() {
   lines = new Lines();
 
   //car1 class
-  let x = random(120, 240);
+  let x = random(120, 190);
   let y = random(25, 70);
-  let vy = 5;
+  let vy = 8;
   let size = 50;
   car1 = new Car1(x, y, vy, size);
 
   //car2 class
-  let x1 = random(120, 240);
+  let x1 = random(390, 490);
   let y1 = -300;
-  let vy1 = 5;
+  let vy1 = 8;
   let size1 = 50;
   car2 = new Car2(x1, y1, vy1, size1);
 
   //car3 class
-  let x2 = random(120, 240);
-  let y2 = 300;
-  let vy2 = 5;
+  let x2 = random(250, 340);
+  let y2 = -100;
+  let vy2 = 8;
   let size2 = 50;
   car3 = new Car3(x2, y2, vy2, size2);
 
@@ -146,6 +149,7 @@ function draw() {
   //if game isn't running, then display livesMenu()
   if (!running) {
     livesMenu();
+    reset();
   }
 }
 
@@ -262,4 +266,22 @@ function keyPressed() {
       state = 'game';
     }
   }
+}
+//reset the cars when hit
+function reset(){
+  //car1 reset
+  car1.x = random(120, 190);
+  car1.y = random(25, 70);
+  car1.vy = 8;
+  car1.size = 50;
+  //car2 reset
+  car2.x1 = random(390, 490);
+  car2.y1 = -300;
+  car2.vy1 = 8;
+  car2.size1 = 50;
+  //car3 reset
+  car3.x2 = random(250, 340);
+  car3.y2 = -100;
+  car3.vy2 = 8;
+  car3.size2 = 50;
 }

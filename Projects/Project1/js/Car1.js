@@ -8,21 +8,22 @@ class Car1 {
     this.size = size;
   }
 
-  //display's the car
+  //display's the car1
   display() {
     push();
     imageMode(CENTER);
-    image(carPic1, this.x, this.y, this.w, this.h);
+    image(cars[0], this.x, this.y, this.w, this.h);
     pop();
   }
-  //moves the car
+  //moves the car1
   movement() {
     this.y = this.y + this.vy;
   }
 
   //if car goes offScreen, place it back
   offScreen() {
-    let x = random(120, 240);
+    let y = 0;
+    let x = random(120, 190);
     if (this.y > height) {
       this.x = x;
       this.y = 0;
