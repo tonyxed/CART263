@@ -3,8 +3,13 @@ The Need for the Speed!
 Anthony Calderone
 
 A really dubbed down version of the film; Need For Speed!
+Race your way through the busy highway 401 in Ontario, Canada. Avoid everything at all costs.
 */
-
+//needs to be implemented:
+//Introduction of back story
+//Sound effects using (ResponsiveVoice)
+//traffic going with user
+//pick ups
 
 "use strict";
 
@@ -128,7 +133,7 @@ function draw() {
       boxSimulation();
       scoreText();
       livesText();
-    } else if (state === "lose"){
+    } else if (state === "lose") {
       livesDone();
     }
   }
@@ -237,17 +242,20 @@ function livesMenu() {
 }
 //unpauses the game
 function keyPressed() {
-  if (keyCode === 32) {
-    running = true;
-    state = 'game';
+  if(!running){
+    if (keyCode === 32) {
+      running = true;
+      state = 'game';
+    }
   }
 }
-function livesDone(){
+//no more lives
+function livesDone() {
   background("#0b783c");
   push();
   textSize(30);
   fill(255);
   textAlign(CENTER);
-  text("No More Lives!", width/2, height / 2);
+  text("No More Lives!", width / 2, height / 2);
   pop();
 }
