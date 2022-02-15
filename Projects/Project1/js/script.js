@@ -5,25 +5,23 @@ Anthony Calderone
 A really dubbed down version of the film; Need For Speed!
 Race your way through the busy Georgian Highway. Avoid everything at all costs.
 */
-
-//needs to be implemented:
-
-//Introduction of back story
-//Sound effects using (ResponsiveVoice)
-//pick ups (lowers speed if bad one?)
-//beat the timer, and make your way off the highway
+//lives in a for loop (draws 3 lives, every hit for loop -- 1 life)
+//change timer to something else
 "use strict";
 
 //pictures
 let userPic;
 let crashPic;
 let titlePic;
+let winPic;
 
 //sounds
 let carCrash;
 let traffic;
 let driving;
 let titleMusic;
+let winMusic;
+
 //cars
 let cars = [];
 
@@ -76,12 +74,14 @@ function preload() {
   cars[2] = loadImage("assets/images/car3.png");
   crashPic = loadImage("assets/images/crash.png");
   titlePic = loadImage("assets/images/title.png");
+  winPic = loadImage("assets/images/win.png");
 
   //sounds
   carCrash = loadSound("assets/sounds/crash.mp3");
   traffic = loadSound("assets/sounds/traffic.mp3");
   driving = loadSound("assets/sounds/driving.mp3");
   titleMusic = loadSound("assets/sounds/title.wav");
+  winMusic = loadSound("assets/sounds/win.mp3");
 }
 
 function setup() {
@@ -142,7 +142,7 @@ function draw() {
     } else if (state === "lose") {
       livesDone();
     } else if (state === 'end') {
-
+      endScreen();
     }
   }
 
@@ -197,9 +197,12 @@ function gameSimulation() {
     timer--;
   }
   if (timer === 0) {
-    if (keyIsDown(UP_ARROW)) {
-      user.y -= user.vy1;
-    }
+    state = 'end';
+    winMusic.setVolume(0.1);
+    winMusic.play();
+    titleMusic.stop();
+    traffic.stop();
+    driving.stop();
   }
 }
 
@@ -252,7 +255,7 @@ function livesDone() {
   textSize(30);
   fill(255);
   textAlign(CENTER);
-  text("No More Lives!", width / 2, 800);
+  text("You're done for!", width / 2, 800);
   pop();
   traffic.stop();
   driving.stop();
@@ -276,41 +279,41 @@ function keyPressed() {
       });
     }
   }
-  //Y key
-  if (keyCode === 89) {
-    responsiveVoice.speak("Embark on a ride that makes no sense. This is a dumbed down version of the film need for speed, my own take!.", "UK English Male", {
-      volume: 1
-    });
-  } //U key
-  else if (keyCode === 85) {
-    responsiveVoice.speak("Avoid the oncoming traffic. Once you beat the timer, you will be allowed to get off the highway!", "UK English Male", {
-      volume: 1
-    });
-  } //P key
-  else if (keyCode === 80) {
-    responsiveVoice.speak("To your demise!", "UK English Male", {
-      volume: 1
-    });
-  }
-
+  if(state === 'title'){
+    //Y key
+    if (keyCode === 89) {
+      responsiveVoice.speak("Embark on a ride that makes no sense. This is a dumbed down version of the film need for speed, my own take!.", "UK English Male", {
+        volume: 1
+      });
+    } //U key
+    else if (keyCode === 85) {
+      responsiveVoice.speak("Avoid the oncoming traffic. Beat the timer to win!", "UK English Male", {
+        volume: 1
+      });
+    } //P key
+    else if (keyCode === 80) {
+      responsiveVoice.speak("To your demise!", "UK English Male", {
+        volume: 1
+      });
+    }
 }
-
+}
 //reset the cars when hit
 function reset() {
   //car1 reset
   car1.x = random(120, 190);
   car1.y = random(0, 70);
-  car1.vy = 8;
+  car1.vy = 5;
   car1.size = 50;
   //car2 reset
   car2.x1 = random(390, 490);
   car2.y1 = random(-300, -100);
-  car2.vy1 = 8;
+  car2.vy1 = 5;
   car2.size1 = 50;
   //car3 reset
   car3.x2 = random(250, 340);
   car3.y2 = random(-100, 0);
-  car3.vy2 = 8;
+  car3.vy2 = 5;
   car3.size2 = 50;
   timer = 30;
 }
@@ -327,7 +330,7 @@ function titleMenu() {
   text("Play: 'P'", width / 2, 800);
   pop();
   push();
-  fill(150 + sin(frameCount * 0.1) * 128);
+  fill(150 + cos(frameCount * 0.1) * 128);
   textSize(19);
   textStyle(ITALIC);
   textAlign(CENTER);
@@ -351,6 +354,7 @@ function titleMenu() {
     driving.loop();
   }
 }
+
 //timerCountdown
 function timerCountdown() {
   push();
@@ -359,6 +363,7 @@ function timerCountdown() {
   textAlign(CENTER);
   text(timer, width / 2, 400);
   pop();
+
   //when timer hits 0, flash text
   if (timer === 0) {
     fill(255 + cos(frameCount * 0.1) * 128);
@@ -366,4 +371,12 @@ function timerCountdown() {
     textAlign(CENTER);
     text(timer, width / 2, 400);
   }
+}
+//endScreen
+function endScreen(){
+  push();
+  background(0);
+  imageMode(CENTER);
+  image(winPic, width/2, height/2, 800, 800);
+  pop();
 }
