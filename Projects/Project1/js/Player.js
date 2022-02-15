@@ -5,7 +5,7 @@ class Player {
     this.size = 50;
     this.vx = 4;
     this.vy = 4;
-    this.vy1 = 1;   //new speed after timer end
+    this.vy1 = 1; //new speed after timer end
     this.w = 180;
     this.h = 150;
   }
@@ -82,19 +82,35 @@ class Player {
     }
   }
 
-    //checks collision between player and bike
-    collision4() {
-      let d = dist(this.x, this.y, bike.x3, bike.y3);
-      if (d < this.size / 2 + bike.size3 / 2) {
-        this.x = 305;
-        this.y = 850;
-        running = false;
-        lives -= 1;
-        carCrash.play();
-        carCrash.setVolume(.1);
-      }
-      if (lives === 0) {
-        state = 'lose'
-      }
+  //checks collision between player and bike
+  collision4() {
+    let d = dist(this.x, this.y, bike.x3, bike.y3);
+    if (d < this.size / 2 + bike.size3 / 2) {
+      this.x = 305;
+      this.y = 850;
+      running = false;
+      lives -= 1;
+      carCrash.play();
+      carCrash.setVolume(.1);
     }
+    if (lives === 0) {
+      state = 'lose'
+    }
+  }
+
+  //checks collision between player and bike1
+  collision5() {
+    let d = dist(this.x, this.y, bike1.x4, bike1.y4);
+    if (d < this.size / 2 + bike1.size4 / 2) {
+      this.x = 305;
+      this.y = 850;
+      running = false;
+      lives -= 1;
+      carCrash.play();
+      carCrash.setVolume(.1);
+    }
+    if (lives === 0) {
+      state = 'lose'
+    }
+  }
 }

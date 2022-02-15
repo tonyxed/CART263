@@ -4,6 +4,7 @@ Anthony Calderone
 
 A really dubbed down version of the film; Need For Speed!
 Race your way through the busy Georgian Highway. Avoid everything at all costs.
+
 */
 //change lives
 //change timer to something else
@@ -16,6 +17,7 @@ let crashPic;
 let titlePic;
 let winPic;
 let bikePic;
+let bike1Pic;
 
 //sounds
 let carCrash;
@@ -54,6 +56,9 @@ let car3;
 //bike
 let bike;
 
+//bike1
+let bike1;
+
 //score
 let score = 0;
 
@@ -81,6 +86,7 @@ function preload() {
   titlePic = loadImage("assets/images/title.png");
   winPic = loadImage("assets/images/win.png");
   bikePic = loadImage("assets/images/bike.png");
+  bike1Pic = loadImage("assets/images/bike1.png");
 
   //sounds
   carCrash = loadSound("assets/sounds/crash.mp3");
@@ -111,32 +117,39 @@ function setup() {
   lines = new Lines();
 
   //car1 class
-  let x = random(120, 170);
-  let y = random(25, 70);
+  let x = random(120, 150);
+  let y = 0
   let vy = 5;
   let size = 50;
   car1 = new Car1(x, y, vy, size);
 
   //car2 class
-  let x1 = random(390, 490);
+  let x1 = random(410, 470);
   let y1 = -300;
   let vy1 = 5;
   let size1 = 50;
   car2 = new Car2(x1, y1, vy1, size1);
 
   //car3 class
-  let x2 = random(250, 340);
+  let x2 = random(270, 320);
   let y2 = -100;
   let vy2 = 5;
   let size2 = 50;
   car3 = new Car3(x2, y2, vy2, size2);
 
   //bike class
-  let x3 = random(200, 240);
+  let x3 = random(220, 240);
   let y3 = -500;
   let vy3 = 5;
   let size3 = 50;
   bike = new Bike(x3, y3, vy3, size3);
+
+  //bike1 class
+  let x4 = random(360, 390);
+  let y4 = 200;
+  let vy4 = 5;
+  let size4 = 50;
+  bike1 = new Bike1(x4, y4, vy4, size4);
 }
 
 let state = 'title' //starting state
@@ -199,6 +212,11 @@ function gameSimulation() {
   bike.movement();
   bike.offScreen();
 
+  //bike1Simulation
+  bike1.display();
+  bike1.movement();
+  bike1.offScreen();
+
   //userSimulation
   user.display();
   user.simulation();
@@ -207,6 +225,7 @@ function gameSimulation() {
   user.collision2();
   user.collision3();
   user.collision4();
+  user.collision5();
 
   //boxSimulation
   box.display();
@@ -334,12 +353,18 @@ function reset() {
   car3.y2 = random(-100, 0);
   car3.vy2 = 5;
   car3.size2 = 50;
-  timer = 30;
   //bike reset
   bike.x3 = random(200, 240);
   bike.y3 = -400;
   bike.vy3 = 5;
   bike.size3 = 50;
+  //bike1 reset
+  bike1.x4 = random(360, 400);
+  bike1.y4 = 200;
+  bike1.vy4 = 5;
+  bike1.size4 = 50;
+  //timer reset
+  timer = 50;
 }
 
 //title

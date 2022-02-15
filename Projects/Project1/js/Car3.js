@@ -23,7 +23,7 @@ class Car3 {
 
   //if car3 goes offScreen, place it back
   offScreen() {
-    let x = random(250, 340);
+    let x = random(270, 320);
     if (this.y2 > height) {
       this.x2 = x;
       this.y2 = -100;

@@ -23,8 +23,8 @@ class Bike {
 
   //if bike goes offScreen, place it back
   offScreen() {
-    let y = -400;
-    let x = random(200, 240);
+    let y = -500;
+    let x = random(220, 240);
     if (this.y3 > height) {
       this.x3 = x;
       this.y3 = 0;
