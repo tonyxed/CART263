@@ -16,7 +16,7 @@ Race your way through the busy Georgian Highway. Avoid everything at all costs.
 
 //pictures
 let userPic;
-let truckPic;
+let crashPic;
 let titlePic;
 
 //sounds
@@ -74,7 +74,7 @@ function preload() {
   cars[0] = loadImage("assets/images/car.png");
   cars[1] = loadImage("assets/images/car2.png");
   cars[2] = loadImage("assets/images/car3.png");
-  truckPic = loadImage("assets/images/truck.png");
+  crashPic = loadImage("assets/images/crash.png");
   titlePic = loadImage("assets/images/title.png");
 
   //sounds
@@ -246,11 +246,13 @@ function livesMenu() {
 //no more lives
 function livesDone() {
   background("black");
+  imageMode(CENTER);
+  image(crashPic, width / 2, height/2, 400, 500)
   push();
   textSize(30);
   fill(255);
   textAlign(CENTER);
-  text("No More Lives!", width / 2, height / 2);
+  text("No More Lives!", width / 2, 800);
   pop();
   traffic.stop();
   driving.stop();
@@ -267,6 +269,7 @@ function keyPressed() {
     driving.play();
     driving.setVolume(.010);
     driving.loop();
+    //space key
     if (keyCode === 32) {
       responsiveVoice.speak("AGAIN!", "UK English Male", {
         volume: 1
@@ -349,17 +352,18 @@ function titleMenu() {
   }
 }
 //timerCountdown
-function timerCountdown(){
+function timerCountdown() {
   push();
   fill(0);
   textSize(40);
   textAlign(CENTER);
-  text(timer, width/2, 400);
+  text(timer, width / 2, 400);
   pop();
-  if(timer === 0){
+  //when timer hits 0, flash text
+  if (timer === 0) {
     fill(255 + cos(frameCount * 0.1) * 128);
     textSize(40);
     textAlign(CENTER);
-    text(timer, width/2, 400);
+    text(timer, width / 2, 400);
   }
 }
