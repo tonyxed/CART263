@@ -5,8 +5,9 @@ Anthony Calderone
 A really dubbed down version of the film; Need For Speed!
 Race your way through the busy Georgian Highway. Avoid everything at all costs.
 */
-//lives in a for loop (draws 3 lives, every hit for loop -- 1 life)
+//change lives
 //change timer to something else
+
 "use strict";
 
 //pictures
@@ -14,6 +15,7 @@ let userPic;
 let crashPic;
 let titlePic;
 let winPic;
+let bikePic;
 
 //sounds
 let carCrash;
@@ -49,6 +51,9 @@ let car2;
 //car3
 let car3;
 
+//bike
+let bike;
+
 //score
 let score = 0;
 
@@ -59,7 +64,7 @@ let lives = 3;
 let running = true;
 
 //timer
-let timer = 30;
+let timer = 50;
 
 //canvas properties
 const WIDTH = 600;
@@ -75,6 +80,7 @@ function preload() {
   crashPic = loadImage("assets/images/crash.png");
   titlePic = loadImage("assets/images/title.png");
   winPic = loadImage("assets/images/win.png");
+  bikePic = loadImage("assets/images/bike.png");
 
   //sounds
   carCrash = loadSound("assets/sounds/crash.mp3");
@@ -105,7 +111,7 @@ function setup() {
   lines = new Lines();
 
   //car1 class
-  let x = random(120, 190);
+  let x = random(120, 170);
   let y = random(25, 70);
   let vy = 5;
   let size = 50;
@@ -124,6 +130,13 @@ function setup() {
   let vy2 = 5;
   let size2 = 50;
   car3 = new Car3(x2, y2, vy2, size2);
+
+  //bike class
+  let x3 = random(200, 240);
+  let y3 = -500;
+  let vy3 = 5;
+  let size3 = 50;
+  bike = new Bike(x3, y3, vy3, size3);
 }
 
 let state = 'title' //starting state
@@ -181,6 +194,11 @@ function gameSimulation() {
   car3.movement();
   car3.offScreen();
 
+  //bikeSimulation
+  bike.display();
+  bike.movement();
+  bike.offScreen();
+
   //userSimulation
   user.display();
   user.simulation();
@@ -188,6 +206,7 @@ function gameSimulation() {
   user.collision1();
   user.collision2();
   user.collision3();
+  user.collision4();
 
   //boxSimulation
   box.display();
@@ -250,7 +269,7 @@ function livesMenu() {
 function livesDone() {
   background("black");
   imageMode(CENTER);
-  image(crashPic, width / 2, height/2, 400, 500)
+  image(crashPic, width / 2, height / 2, 400, 500)
   push();
   textSize(30);
   fill(255);
@@ -279,7 +298,7 @@ function keyPressed() {
       });
     }
   }
-  if(state === 'title'){
+  if (state === 'title') {
     //Y key
     if (keyCode === 89) {
       responsiveVoice.speak("Embark on a ride that makes no sense. This is a dumbed down version of the film need for speed, my own take!.", "UK English Male", {
@@ -296,7 +315,7 @@ function keyPressed() {
         volume: 1
       });
     }
-}
+  }
 }
 //reset the cars when hit
 function reset() {
@@ -316,6 +335,11 @@ function reset() {
   car3.vy2 = 5;
   car3.size2 = 50;
   timer = 30;
+  //bike reset
+  bike.x3 = random(200, 240);
+  bike.y3 = -400;
+  bike.vy3 = 5;
+  bike.size3 = 50;
 }
 
 //title
@@ -373,10 +397,10 @@ function timerCountdown() {
   }
 }
 //endScreen
-function endScreen(){
+function endScreen() {
   push();
   background(0);
   imageMode(CENTER);
-  image(winPic, width/2, height/2, 800, 800);
+  image(winPic, width / 2, height / 2, 800, 800);
   pop();
 }

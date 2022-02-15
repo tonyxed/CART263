@@ -81,4 +81,20 @@ class Player {
       state = 'lose'
     }
   }
+
+    //checks collision between player and bike
+    collision4() {
+      let d = dist(this.x, this.y, bike.x3, bike.y3);
+      if (d < this.size / 2 + bike.size3 / 2) {
+        this.x = 305;
+        this.y = 850;
+        running = false;
+        lives -= 1;
+        carCrash.play();
+        carCrash.setVolume(.1);
+      }
+      if (lives === 0) {
+        state = 'lose'
+      }
+    }
 }
