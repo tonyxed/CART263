@@ -11,7 +11,7 @@ Race your way through the busy Georgian Highway. Avoid everything at all costs.
 //Introduction of back story
 //Sound effects using (ResponsiveVoice)
 //pick ups (lowers speed if bad one?)
-
+//beat the timer, and make your way off the highway
 "use strict";
 
 //pictures
@@ -61,7 +61,7 @@ let lives = 3;
 let running = true;
 
 //timer
-let timer = 20;
+let timer = 30;
 
 //canvas properties
 const WIDTH = 600;
@@ -134,12 +134,11 @@ function draw() {
   if (running) {
     if (state === "title") {
       titleMenu();
-    } else if (state === 'howTo') {
-
     } else if (state === "game") {
       background("#0ceb6c");
       gameSimulation();
       livesText();
+      timerCountdown();
     } else if (state === "lose") {
       livesDone();
     } else if (state === 'end') {
@@ -238,6 +237,7 @@ function livesMenu() {
   fill(255);
   text("Hit Space to continue!", 300, 600);
   pop();
+
   //stops the traffic noise
   traffic.stop();
   driving.stop();
@@ -256,20 +256,40 @@ function livesDone() {
   driving.stop();
 }
 
-//unpauses the game
+//unpauses the game + responsiveVoice
 function keyPressed() {
   if (!running) {
+    running = true;
+    state = 'game';
+    traffic.play();
+    traffic.setVolume(.008);
+    traffic.loop();
+    driving.play();
+    driving.setVolume(.010);
+    driving.loop();
     if (keyCode === 32) {
-      running = true;
-      state = 'game';
-      traffic.play();
-      traffic.setVolume(.008);
-      traffic.loop();
-      driving.play();
-      driving.setVolume(.010);
-      driving.loop();
+      responsiveVoice.speak("AGAIN!", "UK English Male", {
+        volume: 1
+      });
     }
   }
+  //Y key
+  if (keyCode === 89) {
+    responsiveVoice.speak("Embark on a ride that makes no sense. This is a dumbed down version of the film need for speed, my own take!.", "UK English Male", {
+      volume: 1
+    });
+  } //U key
+  else if (keyCode === 85) {
+    responsiveVoice.speak("Avoid the oncoming traffic. Once you beat the timer, you will be allowed to get off the highway!", "UK English Male", {
+      volume: 1
+    });
+  } //P key
+  else if (keyCode === 80) {
+    responsiveVoice.speak("To your demise!", "UK English Male", {
+      volume: 1
+    });
+  }
+
 }
 
 //reset the cars when hit
@@ -289,6 +309,7 @@ function reset() {
   car3.y2 = random(-100, 0);
   car3.vy2 = 8;
   car3.size2 = 50;
+  timer = 30;
 }
 
 //title
@@ -300,9 +321,24 @@ function titleMenu() {
   textSize(20);
   textStyle(ITALIC);
   textAlign(CENTER);
-  text("SPACE is waiting to be pressed!", width / 2, 800);
+  text("Play: 'P'", width / 2, 800);
   pop();
-  if (keyCode === 32) {
+  push();
+  fill(150 + sin(frameCount * 0.1) * 128);
+  textSize(19);
+  textStyle(ITALIC);
+  textAlign(CENTER);
+  text("GOAL: 'U'", width / 2, 900);
+  pop();
+  push();
+  fill(150 + sin(frameCount * 0.1) * 128);
+  textSize(19);
+  textStyle(ITALIC);
+  textAlign(CENTER);
+  text("BACKSTORY: 'Y'", width / 2, 850);
+  pop();
+  //P key
+  if (keyCode === 80) {
     state = 'game';
     traffic.play();
     traffic.setVolume(.008);
@@ -310,5 +346,20 @@ function titleMenu() {
     driving.play();
     driving.setVolume(.010);
     driving.loop();
+  }
+}
+//timerCountdown
+function timerCountdown(){
+  push();
+  fill(0);
+  textSize(40);
+  textAlign(CENTER);
+  text(timer, width/2, 400);
+  pop();
+  if(timer === 0){
+    fill(255 + cos(frameCount * 0.1) * 128);
+    textSize(40);
+    textAlign(CENTER);
+    text(timer, width/2, 400);
   }
 }
