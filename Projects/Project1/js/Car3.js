@@ -1,3 +1,4 @@
+//white van
 class Car3 {
   constructor(x2, y2, vy2, size2) {
     this.x2 = x2;
@@ -26,7 +27,7 @@ class Car3 {
     if (this.y2 > height) {
       this.x2 = x;
       this.y2 = -100;
-      this.vy2 += .5;
+      this.vy2 += .4;
     }
   }
 }

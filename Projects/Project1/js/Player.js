@@ -5,6 +5,7 @@ class Player {
     this.size = 50;
     this.vx = 4;
     this.vy = 4;
+    this.vy1 = .5;
     this.w = 180;
     this.h = 150;
     this.speedBoost = 0;

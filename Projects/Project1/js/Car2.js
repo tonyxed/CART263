@@ -1,3 +1,4 @@
+//grey car
 class Car2 {
   constructor(x1, y1, vy1, size1) {
     this.x1 = x1;
@@ -26,7 +27,7 @@ class Car2 {
     if (this.y1 > height) {
       this.x1 = x;
       this.y1 = -300;
-      this.vy1 += .5;
+      this.vy1 += .4;
     }
   }
 }

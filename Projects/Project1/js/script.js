@@ -3,8 +3,9 @@ The Need for the Speed!
 Anthony Calderone
 
 A really dubbed down version of the film; Need For Speed!
-Race your way through the busy highway 401 in Ontario, Canada. Avoid everything at all costs.
+Race your way through the busy Georgian Highway. Avoid everything at all costs.
 */
+
 //needs to be implemented:
 
 //Introduction of back story
@@ -15,14 +16,14 @@ Race your way through the busy highway 401 in Ontario, Canada. Avoid everything 
 
 //pictures
 let userPic;
-let treePic;
 let truckPic;
+let titlePic;
 
 //sounds
 let carCrash;
 let traffic;
 let driving;
-
+let titleMusic;
 //cars
 let cars = [];
 
@@ -50,12 +51,6 @@ let car2;
 //car3
 let car3;
 
-//tree
-let objects = {
-  trees: [],
-  numTrees: 10,
-};
-
 //score
 let score = 0;
 
@@ -65,6 +60,8 @@ let lives = 3;
 //game pause
 let running = true;
 
+//timer
+let timer = 20;
 
 //canvas properties
 const WIDTH = 600;
@@ -74,20 +71,23 @@ function preload() {
 
   //images
   userPic = loadImage("assets/images/user.png");
-  treePic = loadImage("assets/images/tree.png");
   cars[0] = loadImage("assets/images/car.png");
   cars[1] = loadImage("assets/images/car2.png");
   cars[2] = loadImage("assets/images/car3.png");
   truckPic = loadImage("assets/images/truck.png");
+  titlePic = loadImage("assets/images/title.png");
 
   //sounds
   carCrash = loadSound("assets/sounds/crash.mp3");
   traffic = loadSound("assets/sounds/traffic.mp3");
   driving = loadSound("assets/sounds/driving.mp3");
+  titleMusic = loadSound("assets/sounds/title.wav");
 }
 
 function setup() {
   createCanvas(WIDTH, HEIGHT);
+  titleMusic.setVolume(.005);
+  titleMusic.play();
 
   //player class
   user = new Player();
@@ -124,15 +124,6 @@ function setup() {
   let vy2 = 5;
   let size2 = 50;
   car3 = new Car3(x2, y2, vy2, size2);
-
-  //tree class
-  for (let i = 0; i < objects.numTrees; i++) {
-    let x = random(0, -10);
-    let y = random(0, 900);
-    let vy = 5;
-    let tree = new Tree(x, y, vy)
-    objects.trees.push(tree);
-  }
 }
 
 let state = 'title' //starting state
@@ -143,13 +134,16 @@ function draw() {
   if (running) {
     if (state === "title") {
       titleMenu();
+    } else if (state === 'howTo') {
+
     } else if (state === "game") {
       background("#0ceb6c");
       gameSimulation();
-      scoreText();
       livesText();
     } else if (state === "lose") {
       livesDone();
+    } else if (state === 'end') {
+
     }
   }
 
@@ -199,28 +193,15 @@ function gameSimulation() {
   //boxSimulation
   box.display();
 
-  //treeSimulation
-  // for (let i = 0; i < objects.trees.length; i++) {
-  //   objects.trees[i].display();
-  //   objects.trees[i].movement();
-  //   objects.trees[i].offScreen();
-  // }
-}
-
-//scoreText
-function scoreText() {
-  push();
-  fill(255);
-  textSize(30);
-  textAlign(BOTTOM, BOTTOM);
-  text(score, 200, 970);
-  pop();
-  push();
-  fill(255);
-  textSize(30);
-  textAlign(BOTTOM, BOTTOM);
-  text("Score:", 100, 970);
-  pop();
+  //once timer hits 0, user able to move
+  if (frameCount % 60 === 0 && timer > 0) {
+    timer--;
+  }
+  if (timer === 0) {
+    if (keyIsDown(UP_ARROW)) {
+      user.y -= user.vy1;
+    }
+  }
 }
 
 //livesText
@@ -228,7 +209,12 @@ function livesText() {
   push();
   textSize(30);
   fill(255);
-  text(lives, 380, 940, 70, 70);
+  text(lives, 330, 940, 70, 70);
+  pop();
+  push();
+  textSize(30);
+  fill(255);
+  text("Lives:", 230, 940, 70, 70);
   pop();
 }
 
@@ -259,7 +245,7 @@ function livesMenu() {
 
 //no more lives
 function livesDone() {
-  background("#0b783c");
+  background("black");
   push();
   textSize(30);
   fill(255);
@@ -305,8 +291,17 @@ function reset() {
   car3.size2 = 50;
 }
 
-//TEST TITLE
+//title
 function titleMenu() {
+  push();
+  imageMode(CENTER);
+  image(titlePic, width / 2, height / 2, 800, 900);
+  fill(150 + cos(frameCount * 0.1) * 128);
+  textSize(20);
+  textStyle(ITALIC);
+  textAlign(CENTER);
+  text("SPACE is waiting to be pressed!", width / 2, 800);
+  pop();
   if (keyCode === 32) {
     state = 'game';
     traffic.play();
