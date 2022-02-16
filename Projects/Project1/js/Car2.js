@@ -27,7 +27,7 @@ class Car2 {
     if (this.y1 > height) {
       this.x1 = x;
       this.y1 = -300;
-      this.vy1 += .4;
+      this.vy1 += .3;
     }
   }
 }

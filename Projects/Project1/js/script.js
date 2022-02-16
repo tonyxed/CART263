@@ -69,7 +69,7 @@ let lives = 3;
 let running = true;
 
 //timer
-let timer = 50;
+let timer = 60;
 
 //canvas properties
 const WIDTH = 600;
@@ -164,7 +164,7 @@ function draw() {
       background("#0ceb6c");
       gameSimulation();
       livesText();
-      timerCountdown();
+      //timerCountdown();
     } else if (state === "lose") {
       livesDone();
     } else if (state === 'end') {
@@ -230,11 +230,25 @@ function gameSimulation() {
   //boxSimulation
   box.display();
 
-  //once timer hits 0, user able to move
   if (frameCount % 60 === 0 && timer > 0) {
     timer--;
-  }
-  if (timer === 0) {
+  } //once timer hits 51
+  if (timer === 51) {
+    responsiveVoice.speak("Avoid the on coming traffic if you want to live!", "UK English Male", {
+      volume: 1
+    });
+  } //once timer hits 35
+  else if (timer === 35) {
+    responsiveVoice.speak("Keep going, I can see the exit coming up!", "UK English Male", {
+      volume: 1
+    });
+  } //once timer hits 15
+  else if (timer === 15) {
+    responsiveVoice.speak("Almost there!", "UK English Male", {
+      volume: 1
+    });
+  } //once timer hits 0, user able to move
+  else if (timer === 0) {
     state = 'end';
     winMusic.setVolume(0.1);
     winMusic.play();
@@ -330,7 +344,7 @@ function keyPressed() {
       });
     } //P key
     else if (keyCode === 80) {
-      responsiveVoice.speak("To your demise!", "UK English Male", {
+      responsiveVoice.speak("I am your car, I will be your annoyance for today!", "UK English Male", {
         volume: 1
       });
     }

@@ -28,7 +28,7 @@ class Bike1 {
     if (this.y4 > height) {
       this.x4 = x;
       this.y4 = 0;
-      this.vy4 += .4;
+      this.vy4 += .3;
     }
   }
 }
