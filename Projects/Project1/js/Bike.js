@@ -9,6 +9,13 @@ class Bike {
     this.size3 = size3;
   }
 
+  //simulation of all functions in one function
+  simulation(){
+    this.display();
+    this.movement();
+    this.offScreen();
+  }
+  
   //display's the bike
   display() {
     push();

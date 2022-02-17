@@ -32,6 +32,12 @@ class Lines {
     this.vy5 = 4;
     this.color = "#edea18";
   }
+  //simulation of all functions in one function
+  simulation(){
+    this.display();
+    this.movement();
+    this.offScreen();
+  }
 
   //displays the road lines
   display() {

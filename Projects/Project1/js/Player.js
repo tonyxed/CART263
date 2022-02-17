@@ -10,6 +10,18 @@ class Player {
     this.h = 150;
   }
 
+  //simulation of all functions in one function
+  simulation(){
+    this.display();
+    this.movement();
+    this.constrain();
+    this.collision1();
+    this.collision2();
+    this.collision3();
+    this.collision4();
+    this.collision5();
+  }
+
   //displays the player
   display() {
     push();
@@ -20,7 +32,7 @@ class Player {
   }
 
   //simulation of the player
-  simulation() {
+  movement() {
     // doing else if for each if statement doesn't go well with the game and it's movement
     if (keyIsDown(LEFT_ARROW)) {
       this.x -= this.vx;

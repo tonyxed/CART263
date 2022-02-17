@@ -6,8 +6,7 @@ A really dubbed down version of the film; Need For Speed!
 Race your way through the busy Georgian Highway. Avoid everything at all costs.
 
 */
-//change lives
-//change timer to something else
+
 
 "use strict";
 
@@ -185,58 +184,34 @@ function gameSimulation() {
   road.display();
 
   //linesSimulation
-  lines.display();
-  lines.movement();
-  lines.offScreen();
+  lines.simulation();
 
   //borderSimulation
   border.display();
 
   //car1Simulation
-  car1.display();
-  car1.movement();
-  car1.offScreen();
+  car1.simulation();
 
   //car2Simulation
-  car2.display();
-  car2.movement();
-  car2.offScreen();
+  car2.simulation();
 
   //car3Simulation
-  car3.display();
-  car3.movement();
-  car3.offScreen();
+  car3.simulation();
 
   //bikeSimulation
-  bike.display();
-  bike.movement();
-  bike.offScreen();
+  bike.simulation();
 
   //bike1Simulation
-  bike1.display();
-  bike1.movement();
-  bike1.offScreen();
+  bike1.simulation();
 
   //userSimulation
-  user.display();
   user.simulation();
-  user.constrain();
-  user.collision1();
-  user.collision2();
-  user.collision3();
-  user.collision4();
-  user.collision5();
 
   //boxSimulation
   box.display();
 
   if (frameCount % 60 === 0 && timer > 0) {
     timer--;
-  } //once timer hits 51
-  if (timer === 51) {
-    responsiveVoice.speak("Avoid the on coming traffic if you want to live!", "UK English Male", {
-      volume: 1
-    });
   } //once timer hits 35
   else if (timer === 35) {
     responsiveVoice.speak("Keep going, I can see the exit coming up!", "UK English Male", {

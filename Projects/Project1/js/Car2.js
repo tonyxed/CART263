@@ -8,6 +8,13 @@ class Car2 {
     this.h1 = 130;
     this.size1 = size1;
   }
+  
+  //simulation of all functions in one function
+  simulation(){
+    this.display();
+    this.movement();
+    this.offScreen();
+  }
 
   //display's the car2
   display() {
