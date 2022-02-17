@@ -73,6 +73,9 @@ let running = true;
 //timer
 let timer = 60;
 
+//credits
+let credits;
+
 //canvas properties
 const WIDTH = 600;
 const HEIGHT = 1000;
@@ -155,11 +158,14 @@ function setup() {
   let size4 = 50;
   bike1 = new Bike1(x4, y4, vy4, size4);
 
+  //credits class
+  credits = new Credits();
 }
 
 let state = 'title' //starting state
 
 function draw() {
+
   //if game is running, then display corresponding states
   if (running) {
     if (state === "title") {
@@ -168,11 +174,11 @@ function draw() {
       background("#0ceb6c");
       gameSimulation();
       livesText();
-      //timerCountdown();
     } else if (state === "lose") {
       livesDone();
     } else if (state === 'end') {
-      endScreen();
+      background(0);
+      credits.simulation();
     }
   }
 
@@ -214,7 +220,6 @@ function gameSimulation() {
 
   //boxSimulation
   box.display();
-
 
   //timerCountdown
   if (frameCount % 60 === 0 && timer > 0) {
@@ -428,12 +433,4 @@ function timerCountdown() {
     textAlign(CENTER);
     text(timer, width / 2, 400);
   }
-}
-//endScreen
-function endScreen() {
-  push();
-  background(0);
-  imageMode(CENTER);
-  image(winPic, width / 2, height / 2, 800, 800);
-  pop();
 }
