@@ -1,4 +1,5 @@
 /**
+
 The Need for the Speed!
 Anthony Calderone
 
@@ -153,7 +154,6 @@ function setup() {
 
 let state = 'title' //starting state
 
-//states
 function draw() {
   //if game is running, then display corresponding states
   if (running) {
@@ -210,19 +210,23 @@ function gameSimulation() {
   //boxSimulation
   box.display();
 
+  //timerCountdown
   if (frameCount % 60 === 0 && timer > 0) {
     timer--;
-  } //once timer hits 35
+  }
+  //once timer hits 35
   else if (timer === 35) {
     responsiveVoice.speak("Keep going, I can see the exit coming up!", "UK English Male", {
       volume: 1
     });
-  } //once timer hits 15
+  }
+  //once timer hits 15
   else if (timer === 15) {
     responsiveVoice.speak("Almost there!", "UK English Male", {
       volume: 1
     });
-  } //once timer hits 0, user able to move
+  }
+  //once timer hits 0, user able to move
   else if (timer === 0) {
     state = 'end';
     winMusic.setVolume(0.1);

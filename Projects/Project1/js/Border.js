@@ -5,12 +5,13 @@ class Border {
     this.h = 910;
     this.w = 5;
     this.color = "#0f0e0b";
+    //second border
     this.x1 = 520;
     this.y1 = 10;
     this.h1 = 910;
     this.w1 = 5;
   }
-  
+
   //displays the borders of the road
   display(){
     //left border of road
