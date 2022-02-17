@@ -8,18 +8,19 @@ class Player {
     this.vy1 = 1; //new speed after timer end
     this.w = 180;
     this.h = 150;
+    this.boost = 3;
   }
 
   //simulation of all functions in one function
-  simulation(){
+  simulation() {
     this.display();
     this.movement();
     this.constrain();
-    this.collision1();
-    this.collision2();
-    this.collision3();
-    this.collision4();
-    this.collision5();
+    this.collisionRedCar();
+    this.collisionGreyCar();
+    this.collisionVan();
+    this.collisionBike();
+    this.collisionBike1();
   }
 
   //displays the player
@@ -46,8 +47,8 @@ class Player {
     this.x = constrain(this.x, border.x + 27, border.x1 - 25);
   }
 
-  //checks collision between player and car1
-  collision1() {
+  //checks collision between player and red car
+  collisionRedCar() {
     let d = dist(this.x, this.y, car1.x, car1.y);
     if (d < this.size / 2 + car1.size / 2) {
       this.x = 305;
@@ -62,8 +63,8 @@ class Player {
     }
   }
 
-  //checks collision between player and car2
-  collision2() {
+  //checks collision between player and grey car
+  collisionGreyCar() {
     let d = dist(this.x, this.y, car2.x1, car2.y1);
     if (d < this.size / 2 + car2.size1 / 2) {
       this.x = 305;
@@ -78,8 +79,8 @@ class Player {
     }
   }
 
-  //checks collision between player and car3
-  collision3() {
+  //checks collision between player and van
+  collisionVan() {
     let d = dist(this.x, this.y, car3.x2, car3.y2);
     if (d < this.size / 2 + car3.size2 / 2) {
       this.x = 305;
@@ -95,7 +96,7 @@ class Player {
   }
 
   //checks collision between player and bike
-  collision4() {
+  collisionBike() {
     let d = dist(this.x, this.y, bike.x3, bike.y3);
     if (d < this.size / 2 + bike.size3 / 2) {
       this.x = 305;
@@ -111,7 +112,7 @@ class Player {
   }
 
   //checks collision between player and bike1
-  collision5() {
+  collisionBike1() {
     let d = dist(this.x, this.y, bike1.x4, bike1.y4);
     if (d < this.size / 2 + bike1.size4 / 2) {
       this.x = 305;

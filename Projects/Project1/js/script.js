@@ -4,7 +4,7 @@ The Need for the Speed!
 Anthony Calderone
 
 A really dubbed down version of the film; Need For Speed!
-Race your way through the busy Georgian Highway. Avoid everything at all costs.
+Race your way through the busy Georgian Highway. Avoid all vehicles at all costs.
 
 */
 
@@ -18,6 +18,7 @@ let titlePic;
 let winPic;
 let bikePic;
 let bike1Pic;
+let speedBoostPic;
 
 //sounds
 let carCrash;
@@ -25,6 +26,7 @@ let traffic;
 let driving;
 let titleMusic;
 let winMusic;
+let boost;
 
 //cars
 let cars = [];
@@ -87,6 +89,7 @@ function preload() {
   winPic = loadImage("assets/images/win.png");
   bikePic = loadImage("assets/images/bike.png");
   bike1Pic = loadImage("assets/images/bike1.png");
+  speedBoostPic = loadImage("assets/images/speedBoost.png");
 
   //sounds
   carCrash = loadSound("assets/sounds/crash.mp3");
@@ -94,6 +97,7 @@ function preload() {
   driving = loadSound("assets/sounds/driving.mp3");
   titleMusic = loadSound("assets/sounds/title.wav");
   winMusic = loadSound("assets/sounds/win.mp3");
+  boost = loadSound("assets/sounds/boost.mp3");
 }
 
 function setup() {
@@ -150,6 +154,7 @@ function setup() {
   let vy4 = 5;
   let size4 = 50;
   bike1 = new Bike1(x4, y4, vy4, size4);
+
 }
 
 let state = 'title' //starting state
@@ -210,22 +215,26 @@ function gameSimulation() {
   //boxSimulation
   box.display();
 
+
   //timerCountdown
   if (frameCount % 60 === 0 && timer > 0) {
     timer--;
   }
+
   //once timer hits 35
   else if (timer === 35) {
     responsiveVoice.speak("Keep going, I can see the exit coming up!", "UK English Male", {
       volume: 1
     });
   }
+
   //once timer hits 15
   else if (timer === 15) {
-    responsiveVoice.speak("Almost there!", "UK English Male", {
+    responsiveVoice.speak("T-Minus 15 Seconds until destination!", "UK English Male", {
       volume: 1
     });
   }
+
   //once timer hits 0, user able to move
   else if (timer === 0) {
     state = 'end';
@@ -269,12 +278,13 @@ function livesMenu() {
   textSize(30);
   textAlign(CENTER);
   fill(255);
-  text("Hit Space to continue!", 300, 600);
+  text("Hit space to continue!", 300, 600);
   pop();
 
   //stops the traffic noise
   traffic.stop();
   driving.stop();
+  boost.stop();
 }
 
 //no more lives
@@ -290,26 +300,30 @@ function livesDone() {
   pop();
   traffic.stop();
   driving.stop();
+  titleMusic.stop();
+  boost.stop();
 }
 
 //unpauses the game + responsiveVoice
 function keyPressed() {
   if (!running) {
-    running = true;
-    state = 'game';
-    traffic.play();
-    traffic.setVolume(.008);
-    traffic.loop();
-    driving.play();
-    driving.setVolume(.010);
-    driving.loop();
+
     //space key
     if (keyCode === 32) {
-      responsiveVoice.speak("AGAIN!", "UK English Male", {
+      running = true;
+      state = 'game';
+      traffic.play();
+      traffic.setVolume(.008);
+      traffic.loop();
+      driving.play();
+      driving.setVolume(.010);
+      driving.loop();
+      responsiveVoice.speak("Again!", "UK English Male", {
         volume: 1
       });
     }
   }
+
   if (state === 'title') {
     //Y key
     if (keyCode === 89) {
@@ -323,12 +337,13 @@ function keyPressed() {
       });
     } //P key
     else if (keyCode === 80) {
-      responsiveVoice.speak("I am your car, I will be your annoyance for today!", "UK English Male", {
+      responsiveVoice.speak("Good luck driver!", "UK English Male", {
         volume: 1
       });
     }
   }
 }
+
 //reset the cars when hit
 function reset() {
   //car1 reset
