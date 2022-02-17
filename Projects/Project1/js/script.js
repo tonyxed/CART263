@@ -172,7 +172,7 @@ function draw() {
   }
 
   //if game isn't running
-  if (!running) {
+  else if (!running) {
     livesMenu();
     reset();
   }
