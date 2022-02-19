@@ -4,7 +4,7 @@ The Need for the Speed!
 Anthony Calderone
 
 A really dubbed down version of the film; Need For Speed!
-Race your way through the busy Georgian Highway. Avoid all vehicles at all costs.
+Race your way through the busy Georgian Highway. Avoid all vehicles.
 
 */
 
