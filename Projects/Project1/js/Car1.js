@@ -13,8 +13,9 @@ class Car1 {
     this.display();
     this.movement();
     this.offScreen();
+    this.constrain();
     }
-    
+
   //display's the car1
   display() {
     push();
@@ -36,5 +37,8 @@ class Car1 {
       this.y = 0;
       this.vy += .3;
     }
+  }
+  constrain(){
+    this.vy = constrain(this.vy, 5, 9);
   }
 }

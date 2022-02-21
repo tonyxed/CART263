@@ -8,12 +8,13 @@ class Car2 {
     this.h1 = 130;
     this.size1 = size1;
   }
-  
+
   //simulation of all functions in one function
-  simulation(){
+  simulation() {
     this.display();
     this.movement();
     this.offScreen();
+    this.constrain();
   }
 
   //display's the car2
@@ -36,5 +37,8 @@ class Car2 {
       this.y1 = -300;
       this.vy1 += .3;
     }
+  }
+  constrain() {
+    this.vy1 = constrain(this.vy1, 5, 9);
   }
 }

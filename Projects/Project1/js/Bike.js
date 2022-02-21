@@ -14,8 +14,9 @@ class Bike {
     this.display();
     this.movement();
     this.offScreen();
+    this.constrain();
   }
-  
+
   //display's the bike
   display() {
     push();
@@ -37,5 +38,8 @@ class Bike {
       this.y3 = 0;
       this.vy3 += .3;
     }
+  }
+  constrain(){
+    this.vy3 = constrain(this.vy3, 5 , 9);
   }
 }

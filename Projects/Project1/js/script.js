@@ -61,9 +61,6 @@ let bike;
 //bike1
 let bike1;
 
-//score
-let score = 0;
-
 //lives
 let lives = 3;
 
@@ -71,7 +68,7 @@ let lives = 3;
 let running = true;
 
 //timer
-let timer = 60;
+let timer = 110;
 
 //credits
 let credits;
@@ -105,6 +102,7 @@ function preload() {
 
 function setup() {
   createCanvas(WIDTH, HEIGHT);
+  //music
   titleMusic.setVolume(.005);
   titleMusic.play();
 
@@ -113,9 +111,6 @@ function setup() {
 
   //Border class
   border = new Border();
-
-  //Box class
-  box = new Box();
 
   //Road class
   road = new Road();
@@ -172,6 +167,7 @@ function draw() {
       titleMenu();
     } else if (state === "game") {
       background("#0ceb6c");
+      canvasSimulation();
       gameSimulation();
       livesText();
     } else if (state === "lose") {
@@ -190,16 +186,7 @@ function draw() {
 }
 
 //gameSimulation
-function gameSimulation() {
-  //roadSimulation
-  road.display();
-
-  //linesSimulation
-  lines.simulation();
-
-  //borderSimulation
-  border.display();
-
+function vehiclesSimulation() {
   //car1Simulation
   car1.simulation();
 
@@ -214,34 +201,86 @@ function gameSimulation() {
 
   //bike1Simulation
   bike1.simulation();
+}
 
-  //userSimulation
-  user.simulation();
-
-  //boxSimulation
-  box.display();
+//gameSimulation
+function gameSimulation() {
 
   //timerCountdown
   if (frameCount % 60 === 0 && timer > 0) {
     timer--;
   }
 
-  //once timer hits 35
-  else if (timer === 35) {
+  //onces timer hits 86, simulate the game
+  else if (timer < 86) {
+    vehiclesSimulation();
+    traffic.setVolume(.008);
+  }
+
+  //onces timer hits 86 do following
+  if (timer === 86) {
+    responsiveVoice.speak("Avoid all traffic for starters.", "UK English Male", {
+      volume: 1
+    });
+  }
+
+  //once timer hits 82, do following
+  if (timer === 82) {
+    responsiveVoice.speak("I'm impressed!.", "UK English Male", {
+      volume: 1
+    });
+  }
+  //once timer hits 75, do following
+  if (timer === 75) {
+    responsiveVoice.speak("Don't get too cocky!.", "UK English Male", {
+      volume: 1
+    });
+  }
+
+  //once timer hits 68, do following
+  if (timer === 68) {
+    responsiveVoice.speak("Is my talking distracting you?.", "UK English Male", {
+      volume: 1
+    });
+  }
+
+  //once timer hits 63, do following
+  if (timer === 63) {
+    responsiveVoice.speak("You're a natural!.", "UK English Male", {
+      volume: 1
+    });
+  }
+
+  //once timer hits 58, do following
+  if (timer === 58) {
+    responsiveVoice.speak("Don't let your ego get to you, or this will end quick!.", "UK English Male", {
+      volume: 1
+    });
+  }
+
+  //once timer hits 52, do following
+  if (timer === 52) {
+    responsiveVoice.speak("It would be a shame if I were to do something to make you crash.", "UK English Male", {
+      volume: 1
+    });
+  }
+
+  //once timer hits 40, do following
+  if (timer === 40) {
     responsiveVoice.speak("Keep going, I can see the exit coming up!", "UK English Male", {
       volume: 1
     });
   }
 
-  //once timer hits 15
-  else if (timer === 15) {
-    responsiveVoice.speak("T-Minus 15 Seconds until destination!", "UK English Male", {
+  //once timer hits 15, do following
+  if (timer === 15) {
+    responsiveVoice.speak("You're actually going to make it, i'm impressed.", "UK English Male", {
       volume: 1
     });
   }
 
-  //once timer hits 0, user able to move
-  else if (timer === 0) {
+  //once timer hits 0, do following
+  if (timer === 0) {
     state = 'end';
     winMusic.setVolume(0.1);
     winMusic.play();
@@ -249,6 +288,21 @@ function gameSimulation() {
     traffic.stop();
     driving.stop();
   }
+}
+
+//canvasSimulation
+function canvasSimulation() {
+  //roadSimulation
+  road.display();
+
+  //linesSimulation
+  lines.simulation();
+
+  //borderSimulation
+  border.display();
+
+  //userSimulation
+  user.simulation();
 }
 
 //livesText
@@ -289,7 +343,7 @@ function livesMenu() {
   //stops the traffic noise
   traffic.stop();
   driving.stop();
-  boost.stop();
+  responsiveVoice.cancel();
 }
 
 //no more lives
@@ -307,6 +361,7 @@ function livesDone() {
   driving.stop();
   titleMusic.stop();
   boost.stop();
+  responsiveVoice.cancel();
 }
 
 //unpauses the game + responsiveVoice
@@ -328,7 +383,7 @@ function keyPressed() {
       });
     }
   }
-
+  //if state === title then do what's in the function
   if (state === 'title') {
     //Y key
     if (keyCode === 89) {
@@ -342,7 +397,7 @@ function keyPressed() {
       });
     } //P key
     else if (keyCode === 80) {
-      responsiveVoice.speak("Good luck driver!", "UK English Male", {
+      responsiveVoice.speak("Listen up, I'll be your assisted driver this evening. Listen to my advice and you will get off the highway without a scratch. Fail to listen and you won't be getting off this highway! Get comfortable with the controls, while you still have time. T-Minus 4 seconds.", "UK English Male", {
         volume: 1
       });
     }
@@ -377,7 +432,9 @@ function reset() {
   bike1.vy4 = 5;
   bike1.size4 = 50;
   //timer reset
-  timer = 50;
+  timer = 80;
+  //responsiveVoice stop playing
+  responsiveVoice.cancel();
 }
 
 //title
@@ -408,9 +465,8 @@ function titleMenu() {
   //P key
   if (keyCode === 80) {
     state = 'game';
+    traffic.setVolume(0.001);
     traffic.play();
-    traffic.setVolume(.008);
-    traffic.loop();
     driving.play();
     driving.setVolume(.010);
     driving.loop();
