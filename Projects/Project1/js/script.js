@@ -212,7 +212,7 @@ function gameSimulation() {
   }
 
   //onces timer hits 86, simulate the game
-  else if (timer < 86) {
+  if (timer < 86) {
     vehiclesSimulation();
     traffic.setVolume(.008);
   }
@@ -323,20 +323,20 @@ function livesText() {
 function livesMenu() {
   push();
   textSize(30);
-  fill(255);
+  fill(0);
   textAlign(CENTER);
   text("Lives:", 300, height / 2);
   pop();
   push();
   textSize(30);
   textAlign(CENTER);
-  fill(255);
+  fill(0);
   text(lives, 350, height / 2);
   pop();
   push();
   textSize(30);
   textAlign(CENTER);
-  fill(255);
+  fill(0);
   text("Hit space to continue!", 300, 600);
   pop();
 
