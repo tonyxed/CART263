@@ -31,6 +31,23 @@ let sevenSyllableLines = [
   `Distancing and distancing with my parkway`
 ];
 
+//oneWordLines array
+let oneWordLines = [
+  `Commision`,
+  `fill`,
+  `divide`,
+  `oh`,
+  `remark`,
+  `nationalist`,
+  `protect`,
+  `peace`,
+  `mistake`,
+  `occurence`,
+  `jeapordy`,
+  `will`,
+  `disturbed`
+];
+
 //title array
 let titleLines = [
   `TITLE: SPEAR AND SICKLE`,
@@ -46,6 +63,7 @@ let titleLines = [
 let line1 = random(fiveSyllableLines);
 let line2 = random(sevenSyllableLines);
 let line3 = random(fiveSyllableLines);
+let word = random(oneWordLines);
 
 //sets titleLines into variable
 let title = random(titleLines);
@@ -55,18 +73,21 @@ let line1P = document.getElementById(`line-1`);
 let line2P = document.getElementById(`line-2`);
 let line3P = document.getElementById(`line-3`);
 let titleP = document.getElementById(`title`);
+let wordP = document.getElementById(`oneWord`);
 
 //set innerText to appropriate line
 line1P.innerText = line1;
 line2P.innerText = line2;
 line3P.innerText = line3;
 titleP.innerText = title;
+wordP.innerText = word;
 
 //click events
 line1P.addEventListener(`click`, lineClicked);
 line2P.addEventListener(`click`, lineClicked);
 line3P.addEventListener(`click`, lineClicked);
 titleP.addEventListener(`click`, lineClicked);
+wordP.addEventListener(`click`, lineClicked);
 
 //click on a line
 function lineClicked(event) {
@@ -97,6 +118,7 @@ function fadeIn(element, opacity) {
     });
   }
 }
+
 //randomizes a line
 function setNewLine(element) {
   if (element === line1P || element === line3P) {
@@ -105,6 +127,8 @@ function setNewLine(element) {
     element.innerText = random(sevenSyllableLines);
   } else if (element === titleP){
     element.innerText = random(titleLines);
+  } else if (element === wordP){
+    element.innerText = random(oneWordLines);
   }
 }
 
