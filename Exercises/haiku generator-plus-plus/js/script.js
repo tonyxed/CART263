@@ -1,5 +1,5 @@
 /**
-Haiku Generator
+Haiku Generator-plus-plus
 Anthony Calderone
 
 Geneates a random Haiku.
@@ -13,7 +13,10 @@ let fiveSyllableLines = [
   `The cat does not know`,
   `We are all forests`,
   `You have done your best`,
-  `They are all gone now`
+  `They are all gone now`,
+  `Death shall bring railings`,
+  `And the passersby never whispering`,
+  `An echo murmured back the word, 'mere!'`
 ];
 
 //sevenSyllableLines array
@@ -22,7 +25,21 @@ let sevenSyllableLines = [
   `Never believe the wind's lies`,
   `The autumn stretches its legs`,
   `Nothing can satisfy you`,
-  `They will not come back again`
+  `They will not come back again`,
+  `Once upon a midnight lonely`,
+  `Once I sat engaged and pathing`,
+  `Distancing and distancing with my parkway`
+];
+
+//title array
+let titleLines = [
+  `TITLE: SPEAR AND SICKLE`,
+  `TITLE: DROWN THE SPECTER`,
+  `TITLE: ABYSS AND SEERS`,
+  `TITLE: MARK OF FIRE`,
+  `TITLE: THE WEEPING DREAM`,
+  `TITLE: TRAP THE OATH`,
+  `TITLE: VISION OF FIRE`
 ];
 
 //sets random syllable lines into random variables
@@ -30,20 +47,26 @@ let line1 = random(fiveSyllableLines);
 let line2 = random(sevenSyllableLines);
 let line3 = random(fiveSyllableLines);
 
+//sets titleLines into variable
+let title = random(titleLines);
+
 //gets hold of each P tag
 let line1P = document.getElementById(`line-1`);
 let line2P = document.getElementById(`line-2`);
 let line3P = document.getElementById(`line-3`);
+let titleP = document.getElementById(`title`);
 
 //set innerText to appropriate line
 line1P.innerText = line1;
 line2P.innerText = line2;
 line3P.innerText = line3;
+titleP.innerText = title;
 
 //click events
 line1P.addEventListener(`click`, lineClicked);
 line2P.addEventListener(`click`, lineClicked);
 line3P.addEventListener(`click`, lineClicked);
+titleP.addEventListener(`click`, lineClicked);
 
 //click on a line
 function lineClicked(event) {
@@ -80,6 +103,8 @@ function setNewLine(element) {
     element.innerText = random(fiveSyllableLines);
   } else if (element === line2P) {
     element.innerText = random(sevenSyllableLines);
+  } else if (element === titleP){
+    element.innerText = random(titleLines);
   }
 }
 
