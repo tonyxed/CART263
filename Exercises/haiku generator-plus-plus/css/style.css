@@ -2,13 +2,20 @@ body {
   background-color: #213456;
 }
 
+h1 {
+  font-family: Helvetica, sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #a1d132;
+  text-align: center;
+}
+
 #button {
-  background-color: #4CAF50;
-  /* Green */
+  background-color: #875411;
   border: none;
   color: white;
   padding: 20px 30px;
-  margin-top: 50px;
+  margin-top: 30px;
   text-align: center;
   position: relative;
   font-size: 16px;
@@ -22,16 +29,16 @@ body {
   font-family: Helvetica, sans-serif;
   font-size: 2rem;
   font-weight: bold;
-  color: #1af029;
+  color: #f5a57a;
   text-align: center;
-  margin: -100px;
+  margin: -0px;
 }
 
 #haiku {
   font-family: Helvetica, sans-serif;
   font-size: 1.5rem;
   font-weight: bold;
-  color: white;
+  color: black;
   text-align: center;
-  padding: 300px;
+  margin: 250px;
 }

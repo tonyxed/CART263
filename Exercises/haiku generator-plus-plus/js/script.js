@@ -9,7 +9,7 @@ Geneates a random Haiku.
 
 //fiveSyllableLines array
 let fiveSyllableLines = [
-  `0 to be a tree`,
+  `Oh thee oh thee`,
   `The cat does not know`,
   `We are all forests`,
   `You have done your best`,
@@ -33,30 +33,30 @@ let sevenSyllableLines = [
 
 //oneWordLines array
 let oneWordLines = [
-  `Commision`,
-  `Fill`,
-  `Divide`,
-  `Oh`,
-  `Remark`,
-  `Nationalist`,
-  `Protect`,
-  `Peace`,
-  `Mistake`,
-  `Occurence`,
-  `Jeapordy`,
-  `Will`,
-  `Disturbed`
+  `Sharp,`,
+  `Imperfect,`,
+  `Divide,`,
+  `Upset,`,
+  `Remark,`,
+  `Acidic,`,
+  `Protect,`,
+  `Peace,`,
+  `Mistake,`,
+  `Occurence,`,
+  `Maddly,`,
+  `Sad,`,
+  `Disturbed,`
 ];
 
 //title array
 let titleLines = [
-  `TITLE: SPEAR AND SICKLE`,
-  `TITLE: DROWN THE SPECTER`,
-  `TITLE: ABYSS AND SEERS`,
-  `TITLE: MARK OF FIRE`,
-  `TITLE: THE WEEPING DREAM`,
-  `TITLE: TRAP THE OATH`,
-  `TITLE: VISION OF FIRE`
+  `SPEAR AND SICKLE`,
+  `DROWN THE SPECTER`,
+  `ABYSS AND SEERS`,
+  `MARK OF FIRE`,
+  `THE WEEPING DREAM`,
+  `TRAP THE OATH`,
+  `VISION OF FIRE`
 ];
 
 //sets random syllable lines into random variables
@@ -83,11 +83,11 @@ titleP.innerText = title;
 wordP.innerText = word;
 
 //click events
-line1P.addEventListener(`click`, lineClicked);
-line2P.addEventListener(`click`, lineClicked);
-line3P.addEventListener(`click`, lineClicked);
-titleP.addEventListener(`click`, lineClicked);
-wordP.addEventListener(`click`, lineClicked);
+line1P.addEventListener(`mouseover`, lineClicked);
+line2P.addEventListener(`mouseover`, lineClicked);
+line3P.addEventListener(`mouseover`, lineClicked);
+titleP.addEventListener(`mouseover`, lineClicked);
+wordP.addEventListener(`mouseover`, lineClicked);
 
 //click on a line
 function lineClicked(event) {
@@ -125,9 +125,9 @@ function setNewLine(element) {
     element.innerText = random(fiveSyllableLines);
   } else if (element === line2P) {
     element.innerText = random(sevenSyllableLines);
-  } else if (element === titleP){
+  } else if (element === titleP) {
     element.innerText = random(titleLines);
-  } else if (element === wordP){
+  } else if (element === wordP) {
     element.innerText = random(oneWordLines);
   }
 }
