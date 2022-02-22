@@ -8,6 +8,7 @@ class Car1 {
     this.h = 150;
     this.size = size;
   }
+  
   //simulation of all functions in one function
   simulation(){
     this.display();
@@ -23,6 +24,7 @@ class Car1 {
     image(cars[0], this.x, this.y, this.w, this.h);
     pop();
   }
+
   //moves the car1
   movement() {
     this.y = this.y + this.vy;
