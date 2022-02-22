@@ -34,18 +34,18 @@ let sevenSyllableLines = [
 //oneWordLines array
 let oneWordLines = [
   `Commision`,
-  `fill`,
-  `divide`,
-  `oh`,
-  `remark`,
-  `nationalist`,
-  `protect`,
-  `peace`,
-  `mistake`,
-  `occurence`,
-  `jeapordy`,
-  `will`,
-  `disturbed`
+  `Fill`,
+  `Divide`,
+  `Oh`,
+  `Remark`,
+  `Nationalist`,
+  `Protect`,
+  `Peace`,
+  `Mistake`,
+  `Occurence`,
+  `Jeapordy`,
+  `Will`,
+  `Disturbed`
 ];
 
 //title array
