@@ -38,6 +38,7 @@ class Car3 {
       this.vy2 += .3;
     }
   }
+  //constrains the speed
   constrain(){
     this.vy2 = constrain(this.vy2, 5, 9);
   }

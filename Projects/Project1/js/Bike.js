@@ -39,6 +39,7 @@ class Bike {
       this.vy3 += .3;
     }
   }
+  //constrains the speed
   constrain(){
     this.vy3 = constrain(this.vy3, 5 , 9);
   }
