@@ -1,6 +1,22 @@
-/*********************************************
+#secret-document {
+  font-family: monospace;
+  width: 50vw;
+  margin: auto;
+  font-size: 1rem;
+}
 
-Here is a description of any special CSS used.
-By default that's nothing.
+h2 {
+  font-family: cursive;
+  width: 50vw;
+  padding-left: 240px;
+}
 
-**********************************************/
+.redacted {
+background-color: black;
+user-select: none;
+}
+
+.revealed {
+  color: red;
+  text-decoration: underline;
+}
