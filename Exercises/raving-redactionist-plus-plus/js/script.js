@@ -7,7 +7,7 @@ Anthony Calderone
 "use strict";
 
 //on click function of top-secret spans
-$(`.top-secret`).on(`click`, redact);
+$(`.top-secret`).on(`mouseover`, redact);
 
 //sets the interval to 5 seconds
 setInterval(revelation, 500);

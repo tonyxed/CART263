@@ -2,13 +2,15 @@
   font-family: monospace;
   width: 50vw;
   margin: auto;
-  font-size: 1rem;
+  font-size: 1.3rem;
+  padding: 60px;
 }
 
 h2 {
   font-family: cursive;
   width: 50vw;
-  padding-left: 240px;
+  margin: auto;
+  text-align: center;
 }
 
 .redacted {
@@ -17,6 +19,6 @@ user-select: none;
 }
 
 .revealed {
-  color: red;
+  color: green;
   text-decoration: underline;
 }
