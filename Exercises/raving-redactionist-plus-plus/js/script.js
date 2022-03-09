@@ -1,5 +1,6 @@
 /**
 Raving Redactionist-Plus-Plus
+Hover over the secret messages to hide them from sight.
 Anthony Calderone
 
 */
@@ -8,10 +9,11 @@ Anthony Calderone
 
 //on click function of top-secret spans
 $(`.top-secret`).on(`mouseover`, redact);
+//button click to toggle messages
 $("button").on(`click`, buttonClick);
 
 //sets the interval to 5 seconds
-setInterval(revelation, 1000);
+setInterval(revelation, 500);
 
 //selects all redacted
 function revelation() {
@@ -33,7 +35,8 @@ function redact(event) {
   $(this).addClass(`redacted`);
 }
 
-//click the button and an alert pops up
 function buttonClick(){
-  alert($(`.revealed`).length);
+  $(`.top-secret`).animate({
+    height: 'toggle'
+  });
 }
