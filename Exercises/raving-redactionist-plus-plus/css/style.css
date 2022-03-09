@@ -1,13 +1,26 @@
 #secret-document {
-  font-family: cursive;
+  font-family: fantasy;
   width: 50vw;
   margin: auto;
   font-size: 1.3rem;
   padding: 60px;
 }
-
+.button-group button {
+  background-color: #522411;
+ border: none;
+ color: white;
+ padding: 20px 30px;
+ margin-top: 30px;
+ text-align: center;
+ position: relative;
+ font-size: 16px;
+ top: 50%;
+ left: 50%;
+ cursor: pointer;
+ transform: translate(-100%, -50%);
+}
 h2 {
-  font-family: cursive;
+  font-family: fantasy;
   width: 50vw;
   margin: auto;
   text-align: center;
@@ -21,19 +34,4 @@ h2 {
 .revealed {
   color: green;
   text-decoration: underline;
-}
-
-#button {
-  background-color: black;
-  border: none;
-  color: red;
-  padding: 20px 30px;
-  margin-top: 30px;
-  text-align: center;
-  position: relative;
-  font-size: 16px;
-  top: 50%;
-  left: 50%;
-  cursor: pointer;
-  transform: translate(-50%, -50%);
 }
