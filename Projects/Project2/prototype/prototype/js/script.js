@@ -30,9 +30,9 @@ https://api.jquery.com/
 
 //**only 3 to see if it works, will place more in the project later**//
 let randomSentences = [
-  "It took me too long to realize that the ceiling hadn't been painted to look like the sky. The tour bus was packed with teenage girls heading toward their next adventure.",
-  "The urgent care center was flooded with patients after the news of a new deadly virus was made public.",
-  "The rain pelted the windshield as the darkness engulfed us."
+  "it took me too long to realize that the ceiling hadn't been painted to look like the sky. the tour bus was packed with teenage girls heading toward their next adventure.",
+  "the urgent care center was flooded with patients after the news of a new deadly virus was made public.",
+  "the rain pelted the windshield as the darkness engulfed us."
 ];
 
 //selects a random sentence from the variable of randomSentences
@@ -55,7 +55,6 @@ document.addEventListener('keydown', function ({ key }){
     initialCharacter.classList.add('incorrect');
   }
 });
-
 
 //splits the characters into single characters including spacing. Then placed into an array
 let singularCharacters = randomSentences[random].split('').map((character) => { //Places the randomized string into an array and then loops over each array using an empty string
