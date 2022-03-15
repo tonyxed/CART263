@@ -57,7 +57,7 @@ document.addEventListener('keydown', function ({ key }){
 });
 
 
-//slipts the characters into single characters including spacing. Then placed into an array
+//splits the characters into single characters including spacing. Then placed into an array
 let singularCharacters = randomSentences[random].split('').map((character) => { //Places the randomized string into an array and then loops over each array using an empty string
   let span = document.createElement("span");
   $("body").append([span]); //appends span element to the body
