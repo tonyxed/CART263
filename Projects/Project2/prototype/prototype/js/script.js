@@ -15,6 +15,7 @@ With regards to my previous project, I felt that I neeeded to actually make an e
 -AI???
 -prompt showing up asking which level to type on? easy to impossible with harder sentences + less time to type
 -accuracy to the typing? WPM??? CPM???
+-timer
 
 Documentation // tutorials
 
@@ -28,12 +29,11 @@ https://api.jquery.com/
 
 "use strict";
 
-//**only 3 to see if it works, will place more in the project later**//
+//**only 2 to see if it works, will place more in the project later**//
 //EASY LEVEL
 let randomSentencesEasy = [
   "it took me too long to realize that the ceiling hadn't been painted to look like the sky. the tour bus was packed with teenage girls heading toward their next adventure.",
-  "the urgent care center was flooded with patients after the news of a new deadly virus was made public.",
-  "the rain pelted the windshield as the darkness engulfed us."
+  "the urgent care center was flooded with patients after the news of a new deadly virus was made public. the rain pelted the windshield as the darkness engulfed us."
 ];
 
 //selects a random sentence from the variable of randomSentences
@@ -41,23 +41,6 @@ let random = Math.floor(Math.random() * randomSentencesEasy.length); // to get v
 
 //creates the random sentences from the div
 const RANDOM_SENTENCES_DIV = $(`#random-sentences`)[0];
-
-//if keypress is down
-$(document).on('keydown', function({
-  key
-}) {
-  console.log(key);
-  if (key === initialCharacter.innerHTML) {
-    $(initialCharacter).removeClass('start'); //removes the class of 'start' if initialCharacter is the same as the character being typed
-    $(initialCharacter).addClass('correct'); //add correct class to the correct character typed
-    initialCharacter = singularCharacters[++correctIndex]; //adds 1 onto the index // moves on to the next character in the array
-    $(initialCharacter).addClass('start'); //adds the class 'start'
-  }
-  //if key isn't the same as initialCharacter then add class 'incorrect' to current index
-  else if (key !== initialCharacter.innerHTML) {
-    $(initialCharacter).addClass('incorrect');
-  }
-});
 
 //splits the characters into single characters including spacing. Then placed into an array
 let singularCharacters = randomSentencesEasy[random].split('').map((character) => { //Places the randomized string into an array and then loops over each array using an empty string
@@ -69,6 +52,26 @@ let singularCharacters = randomSentencesEasy[random].split('').map((character) =
 });
 
 //highlights the first character in the array of singleCharacters
-let correctIndex = 0;
-let initialCharacter = singularCharacters[correctIndex];
+let currentIndex = 0;
+let initialCharacter = singularCharacters[currentIndex];
 $(initialCharacter).addClass('start'); //whichever # is in the array, add a class for it and edit its CSS
+
+//if keypress is down
+$(document).on('keydown', function({
+  key
+}) {
+  if (key === $(initialCharacter).text()) {
+    $(initialCharacter).removeClass('start'); //removes the class of 'start' if initialCharacter is the same as the character being typed
+    $(initialCharacter).addClass('correct'); //add correct class to the correct character typed
+    initialCharacter = singularCharacters[++currentIndex]; //adds 1 onto the index // moves on to the next character in the array
+    $(initialCharacter).addClass('start'); //adds the class 'start'
+  }
+  //if key isn't the same as initialCharacter then add class 'incorrect' to current index
+  else if (key !== $(initialCharacter).text()) {
+    $(initialCharacter).addClass('incorrect');
+  }
+  if (currentIndex >= singularCharacters.length) { 
+    alert("DONE");
+    location.reload();
+  }
+});
