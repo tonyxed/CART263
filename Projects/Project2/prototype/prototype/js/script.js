@@ -11,7 +11,7 @@ With regards to my previous project, I felt that I neeeded to actually make an e
 
 /*
 -correct word/letters turn green on correct and vice versa with red on wrong
--players move on correct spelling/what kind of movement???
+-players move on correct spelling
 -AI???
 -prompt showing up asking which level to type on? easy to impossible with harder sentences + less time to type
 -accuracy to the typing? WPM??? CPM???
@@ -30,13 +30,13 @@ https://api.jquery.com/
 
 "use strict";
 
-//**only 2 to see if it works, will place more in the project later**//
+//**only 4 to see if it works, will place more in the project later**//
 //EASY LEVEL
 let randomSentencesEasy = [
-  "it took me too long to realize that the ceiling hadn't been painted to look like the sky. the tour bus was packed with teenage girls heading toward their next adventure.",
-  "the urgent care center was flooded with patients after the news of a new deadly virus was made public. the rain pelted the windshield as the darkness engulfed us.",
-  "joe discovered that traffic cones make excellent megaphones.",
-  "his get rich quick scheme was to grow a cactus farm."
+  "It took me too long to realize that the ceiling hadn't been painted to look like the sky. The tour bus was packed with teenage girls heading toward their next adventure.",
+  "The urgent care center was flooded with patients after the news of a new deadly virus was made public. The rain pelted the windshield as the darkness engulfed us.",
+  "Joe discovered that traffic cones make excellent megaphones.",
+  "His get rich quick scheme was to grow a cactus farm."
 ];
 
 //selects a random sentence from the variable of randomSentences
@@ -46,7 +46,7 @@ let random = Math.floor(Math.random() * randomSentencesEasy.length); // to get v
 const RANDOM_SENTENCES_DIV = $(`#random-sentences`)[0];
 
 //splits the characters into single characters including spacing. Then placed into an array
-let singularCharacters = randomSentencesEasy[random].split('').map((character) => { //Places the randomized string into an array and then loops over each array using an empty string
+let singularCharacters = randomSentencesEasy[random].split("").map((character) => { //Places the randomized string into an array and then loops over each array using an empty string
   let span = document.createElement("span");
   $("body").append([span]); //appends span element to the body
   $(span).text(character); //innerText the appended [span]
@@ -60,9 +60,10 @@ let initialCharacter = singularCharacters[currentIndex];
 $(initialCharacter).addClass('start'); //whichever # is in the array, add a class for it and edit its CSS
 
 //if keypress is down
-$(document).on('keydown', function({
+$(document).on('keypress', function({
   key
 }) {
+  console.log(key);
   if (key === $(initialCharacter).text()) {
     $(initialCharacter).removeClass('start'); //removes the class of 'start' if initialCharacter is the same as the character being typed
     $(initialCharacter).addClass('correct'); //add correct class to the correct character typed
@@ -73,9 +74,9 @@ $(document).on('keydown', function({
   else if (key !== $(initialCharacter).text()) {
     $(initialCharacter).addClass('incorrect');
   }
-  if (currentIndex >= singularCharacters.length) {
-    alert("DONE");
-    location.reload();
+  if (currentIndex === singularCharacters.length) {
+    alert("DONE"); //temporary
+    location.reload(); //temporary
   }
 });
 
