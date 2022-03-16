@@ -23,6 +23,7 @@ E5 Haiku Generator
 https://www.tutorialrepublic.com/codelab.php?topic=faq&file=javascript-get-the-value-of-text-input-field
 https://www.w3schools.com/jsref/jsref_split.asp split the text, as in spliting the words in solo letters into an array
 https://stackoverflow.com/questions/6484670/how-do-i-split-a-string-into-an-array-of-characters
+https://stackoverflow.com/questions/895171/prevent-users-from-submitting-a-form-by-hitting-enter
 https://api.jquery.com/
 
 */
@@ -33,7 +34,9 @@ https://api.jquery.com/
 //EASY LEVEL
 let randomSentencesEasy = [
   "it took me too long to realize that the ceiling hadn't been painted to look like the sky. the tour bus was packed with teenage girls heading toward their next adventure.",
-  "the urgent care center was flooded with patients after the news of a new deadly virus was made public. the rain pelted the windshield as the darkness engulfed us."
+  "the urgent care center was flooded with patients after the news of a new deadly virus was made public. the rain pelted the windshield as the darkness engulfed us.",
+  "joe discovered that traffic cones make excellent megaphones.",
+  "his get rich quick scheme was to grow a cactus farm."
 ];
 
 //selects a random sentence from the variable of randomSentences
@@ -70,8 +73,16 @@ $(document).on('keydown', function({
   else if (key !== $(initialCharacter).text()) {
     $(initialCharacter).addClass('incorrect');
   }
-  if (currentIndex >= singularCharacters.length) { 
+  if (currentIndex >= singularCharacters.length) {
     alert("DONE");
     location.reload();
+  }
+});
+
+//prevents the player from using 'enter' to refresh the page
+$(window).keydown(function(key) {
+  if (key.keyCode === 13) {
+    event.preventDefault();
+    return false;
   }
 });
