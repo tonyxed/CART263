@@ -29,35 +29,38 @@ https://api.jquery.com/
 "use strict";
 
 //**only 3 to see if it works, will place more in the project later**//
-let randomSentences = [
+//EASY LEVEL
+let randomSentencesEasy = [
   "it took me too long to realize that the ceiling hadn't been painted to look like the sky. the tour bus was packed with teenage girls heading toward their next adventure.",
   "the urgent care center was flooded with patients after the news of a new deadly virus was made public.",
   "the rain pelted the windshield as the darkness engulfed us."
 ];
 
 //selects a random sentence from the variable of randomSentences
-let random = Math.floor(Math.random() * randomSentences.length); // to get variable of randomSentences you need to use (randomSentences[random])
+let random = Math.floor(Math.random() * randomSentencesEasy.length); // to get variable of randomSentences you need to use (randomSentences[random])
 
 //creates the random sentences from the div
 const RANDOM_SENTENCES_DIV = $(`#random-sentences`)[0];
 
-//keydown function
-document.addEventListener('keydown', function ({ key }){
+//if keypress is down
+$(document).on('keydown', function({
+  key
+}) {
   console.log(key);
-  if (key === initialCharacter.innerText){
-    initialCharacter.classList.remove('start'); //removes the class of 'start' if initialCharacter is the same as the character being typed
-    initialCharacter.classList.add('correct'); //add correct class to the correct character typed
+  if (key === initialCharacter.innerHTML) {
+    $(initialCharacter).removeClass('start'); //removes the class of 'start' if initialCharacter is the same as the character being typed
+    $(initialCharacter).addClass('correct'); //add correct class to the correct character typed
     initialCharacter = singularCharacters[++correctIndex]; //adds 1 onto the index // moves on to the next character in the array
-    initialCharacter.classList.add('start'); //adds the class 'start'
+    $(initialCharacter).addClass('start'); //adds the class 'start'
   }
   //if key isn't the same as initialCharacter then add class 'incorrect' to current index
-  else if (key !== initialCharacter.innerText){
-    initialCharacter.classList.add('incorrect');
+  else if (key !== initialCharacter.innerHTML) {
+    $(initialCharacter).addClass('incorrect');
   }
 });
 
 //splits the characters into single characters including spacing. Then placed into an array
-let singularCharacters = randomSentences[random].split('').map((character) => { //Places the randomized string into an array and then loops over each array using an empty string
+let singularCharacters = randomSentencesEasy[random].split('').map((character) => { //Places the randomized string into an array and then loops over each array using an empty string
   let span = document.createElement("span");
   $("body").append([span]); //appends span element to the body
   $(span).text(character); //innerText the appended [span]
@@ -68,4 +71,4 @@ let singularCharacters = randomSentences[random].split('').map((character) => { 
 //highlights the first character in the array of singleCharacters
 let correctIndex = 0;
 let initialCharacter = singularCharacters[correctIndex];
-initialCharacter.classList.add('start'); //whichever # is in the array, add a class for it and edit its CSS
+$(initialCharacter).addClass('start'); //whichever # is in the array, add a class for it and edit its CSS
