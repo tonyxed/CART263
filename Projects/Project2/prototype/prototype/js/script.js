@@ -54,11 +54,11 @@ let random = Math.floor(Math.random() * randomSentencesEasy.length); // to get v
 //creates the random sentences from the div
 const RANDOM_SENTENCES_DIV = $(`#random-sentences`)[0];
 
-//text showing what level you are on
-$('#easy-level').text("(Easy)");
+
 
 //splits the characters into single characters including spacing, then placed into an array
 let singularCharacters = randomSentencesEasy[random].split("").map((character) => { //Places the randomized string into an array and then loops over each array using an empty string
+  $('#easy-level').text("(Easy)");  //text showing what level you are on
   let span = document.createElement("span");
   $("body").append([span]); //appends span element to the body
   $(span).text(character); //innerText the appended [span]
