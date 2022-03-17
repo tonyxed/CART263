@@ -17,6 +17,7 @@ This is my goal when creating this interactive project.
 -prompt asking which level to type on? easy to impossible with harder sentences + less time to type
 -accuracy to the typing? WPM??? CPM???
 -timer
+-change levels with different html's
 
 Documentation // tutorials
 
@@ -48,17 +49,16 @@ let randomSentencesMedium = [
   "It's always a good idea to seek shelter from the evil gaze of the sun. He put heat on the wound to see what would grow. Always bring cinnamon buns on a deep-sea diving expedition."
 ];
 
+//$('#easy-level').text("(Easy)");
+
 //selects a random sentence from the variable of randomSentences
 let random = Math.floor(Math.random() * randomSentencesEasy.length); // to get variable of randomSentences you need to use (randomSentences[random])
 
 //creates the random sentences from the div
-const RANDOM_SENTENCES_DIV = $(`#random-sentences`)[0];
-
-
+const RANDOM_SENTENCES_DIV = $(`#random-sentences-easy`)[0];
 
 //splits the characters into single characters including spacing, then placed into an array
 let singularCharacters = randomSentencesEasy[random].split("").map((character) => { //Places the randomized string into an array and then loops over each array using an empty string
-  $('#easy-level').text("(Easy)");  //text showing what level you are on
   let span = document.createElement("span");
   $("body").append([span]); //appends span element to the body
   $(span).text(character); //innerText the appended [span]
@@ -75,7 +75,6 @@ $(initialCharacter).addClass('start'); //adds class 'start' to initialCharacter 
 $(document).on('keypress', function({
   key
 }) {
-  console.log(key);
   if (key === $(initialCharacter).text()) {
     $(initialCharacter).removeClass('start'); //removes the class of 'start' if initialCharacter is the same as the character being typed
     $(initialCharacter).addClass('correct'); //add correct class to the correct character typed
