@@ -14,7 +14,7 @@ This is my goal when creating this interactive project.
 -correct word/letters turn green on correct and vice versa with red on wrong
 -players move on correct spelling
 -AI???
--prompt showing up asking which level to type on? easy to impossible with harder sentences + less time to type
+-prompt asking which level to type on? easy to impossible with harder sentences + less time to type
 -accuracy to the typing? WPM??? CPM???
 -timer
 
@@ -26,18 +26,26 @@ https://www.w3schools.com/jsref/jsref_split.asp split the text, as in spliting t
 https://stackoverflow.com/questions/6484670/how-do-i-split-a-string-into-an-array-of-characters
 https://stackoverflow.com/questions/895171/prevent-users-from-submitting-a-form-by-hitting-enter
 https://api.jquery.com/
-
 */
 
 "use strict";
 
-//**only 4 to see if it works, will place more in the project later**//
 //EASY LEVEL
 let randomSentencesEasy = [
   "It took me too long to realize that the ceiling hadn't been painted to look like the sky. The tour bus was packed with teenage girls heading toward their next adventure.",
   "The urgent care center was flooded with patients after the news of a new deadly virus was made public. The rain pelted the windshield as the darkness engulfed us.",
-  "Joe discovered that traffic cones make excellent megaphones.",
-  "His get rich quick scheme was to grow a cactus farm."
+  "Joe discovered that traffic cones make excellent megaphones. His get rich quick scheme was to grow a cactus farm.",
+  "Cursive writing is the best way to build a race track. Flying fish few by the space station.",
+  "The overpass went under the highway and into a secret world. The estate agent quickly marked out his territory on the dance floor."
+];
+
+//MEDIUM LEVEL
+let randomSentencesMedium = [
+  "He enjoys practicing his ballet in the bathroom. Don't piss in my garden and tell me you're trying to help my plants grow. His son quipped that power bars were nothing more than adult candy bars.",
+  "He wasn't bitter that she had moved on but from the radish. He found rain fascinating yet unpleasant. The heat",
+  "It isn't difficult to do a handstand if you just stand on your hands. You bite up because of your lower jaw. At that moment he wasn't listening to music, he was living an experience.",
+  "Flying fish few by the space station. The urgent care center was flooded with patients after the news of a new deadly virus was made public. Jim liked driving around town with his hazard lights on.",
+  "It's always a good idea to seek shelter from the evil gaze of the sun. He put heat on the wound to see what would grow. Always bring cinnamon buns on a deep-sea diving expedition."
 ];
 
 //selects a random sentence from the variable of randomSentences
@@ -46,7 +54,10 @@ let random = Math.floor(Math.random() * randomSentencesEasy.length); // to get v
 //creates the random sentences from the div
 const RANDOM_SENTENCES_DIV = $(`#random-sentences`)[0];
 
-//splits the characters into single characters including spacing. Then placed into an array
+//text showing what level you are on
+$('#easy-level').text("(Easy)");
+
+//splits the characters into single characters including spacing, then placed into an array
 let singularCharacters = randomSentencesEasy[random].split("").map((character) => { //Places the randomized string into an array and then loops over each array using an empty string
   let span = document.createElement("span");
   $("body").append([span]); //appends span element to the body
@@ -58,7 +69,7 @@ let singularCharacters = randomSentencesEasy[random].split("").map((character) =
 //highlights the first character in the array of singleCharacters
 let currentIndex = 0;
 let initialCharacter = singularCharacters[currentIndex];
-$(initialCharacter).addClass('start'); //whichever # is in the array, add a class for it and edit its CSS
+$(initialCharacter).addClass('start'); //adds class 'start' to initialCharacter in the array
 
 //if keypress is down
 $(document).on('keypress', function({
@@ -68,7 +79,7 @@ $(document).on('keypress', function({
   if (key === $(initialCharacter).text()) {
     $(initialCharacter).removeClass('start'); //removes the class of 'start' if initialCharacter is the same as the character being typed
     $(initialCharacter).addClass('correct'); //add correct class to the correct character typed
-    initialCharacter = singularCharacters[++currentIndex]; //adds 1 onto the index // moves on to the next character in the array
+    initialCharacter = singularCharacters[++currentIndex]; //adds 1 onto the index, moves on to the next character in the array
     $(initialCharacter).addClass('start'); //adds the class 'start'
   }
   //if key isn't the same as initialCharacter then add class 'incorrect' to current index
