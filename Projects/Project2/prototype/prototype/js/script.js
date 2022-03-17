@@ -29,7 +29,11 @@ https://stackoverflow.com/questions/895171/prevent-users-from-submitting-a-form-
 https://api.jquery.com/
 */
 
-"use strict";
+$(document).ready(btnGroup); //on start up load btnGroup first
+
+let easyLevelSentences = false;
+let mediumLevelSentences = false;
+let hardLevelSentences = false;
 
 //EASY LEVEL
 let randomSentencesEasy = [
@@ -49,47 +53,60 @@ let randomSentencesMedium = [
   "It's always a good idea to seek shelter from the evil gaze of the sun. He put heat on the wound to see what would grow. Always bring cinnamon buns on a deep-sea diving expedition."
 ];
 
-//$('#easy-level').text("(Easy)");
+//HARD LEVEL
+let randomSentencesHard = [
+  // hardLevelSentences go here
+];
 
-//selects a random sentence from the variable of randomSentences
-let random = Math.floor(Math.random() * randomSentencesEasy.length); // to get variable of randomSentences you need to use (randomSentences[random])
+//button group
+function btnGroup() {
+  $('#btn-easy').on(`click`, btnEasyPress);
+}
 
-//creates the random sentences from the div
-const RANDOM_SENTENCES_DIV = $(`#random-sentences-easy`)[0];
+//easy level function
+function btnEasyPress() {
+  easyLevelSentences = true;
+  $('#easy-level').text("(Click on the text box to start typing!)");
+  //selects a random sentence from the variable of randomSentences
+  let random = Math.floor(Math.random() * randomSentencesEasy.length); // to get variable of randomSentences you need to use (randomSentences[random])
 
-//splits the characters into single characters including spacing, then placed into an array
-let singularCharacters = randomSentencesEasy[random].split("").map((character) => { //Places the randomized string into an array and then loops over each array using an empty string
-  let span = document.createElement("span");
-  $("body").append([span]); //appends span element to the body
-  $(span).text(character); //innerText the appended [span]
-  RANDOM_SENTENCES_DIV.appendChild(span); //appends span to each string in the array including spaces
-  return span; //returns the value of span // errors would appear if I didn't return the value of the span
-});
+  //creates the random sentences from the div
+  const RANDOM_SENTENCES_DIV = $(`#random-sentences-easy`)[0];
 
-//highlights the first character in the array of singleCharacters
-let currentIndex = 0;
-let initialCharacter = singularCharacters[currentIndex];
-$(initialCharacter).addClass('start'); //adds class 'start' to initialCharacter in the array
+  //splits the characters into single characters including spacing, then placed into an array
+  let singularCharacters = randomSentencesEasy[random].split("").map((character) => { //Places the randomized string into an array and then loops over each array using an empty string
+    let span = document.createElement("span");
+    $("body").append([span]); //appends span element to the body
+    $(span).text(character); //innerText the appended [span]
+    RANDOM_SENTENCES_DIV.appendChild(span); //appends span to each string in the array including spaces
+    return span; //returns the value of span // errors would appear if I didn't return the value of the span
+  });
 
-//if keypress is down
-$(document).on('keypress', function({
-  key
-}) {
-  if (key === $(initialCharacter).text()) {
-    $(initialCharacter).removeClass('start'); //removes the class of 'start' if initialCharacter is the same as the character being typed
-    $(initialCharacter).addClass('correct'); //add correct class to the correct character typed
-    initialCharacter = singularCharacters[++currentIndex]; //adds 1 onto the index, moves on to the next character in the array
-    $(initialCharacter).addClass('start'); //adds the class 'start'
-  }
-  //if key isn't the same as initialCharacter then add class 'incorrect' to current index
-  else if (key !== $(initialCharacter).text()) {
-    $(initialCharacter).addClass('incorrect');
-  }
-  if (currentIndex === singularCharacters.length) {
-    alert("DONE"); //temporary
-    location.reload(); //temporary
-  }
-});
+  //highlights the first character in the array of singleCharacters
+  let currentIndex = 0;
+  let initialCharacter = singularCharacters[currentIndex];
+  $(initialCharacter).addClass('start'); //adds class 'start' to initialCharacter in the array
+  //if keypress is down
+  $(document).on('keypress', function({
+    key
+  }) {
+    if (key === $(initialCharacter).text()) {
+      $(initialCharacter).removeClass('start'); //removes the class of 'start' if initialCharacter is the same as the character being typed
+      $(initialCharacter).addClass('correct'); //add correct class to the correct character typed
+      initialCharacter = singularCharacters[++currentIndex]; //adds 1 onto the index, moves on to the next character in the array
+      $(initialCharacter).addClass('start'); //adds the class 'start'
+    }
+    //if key isn't the same as initialCharacter then add class 'incorrect' to current index
+    else if (key !== $(initialCharacter).text()) {
+      $(initialCharacter).addClass('incorrect');
+    }
+    if (currentIndex === singularCharacters.length) {
+      alert("DONE"); //temporary
+      location.reload(); //temporary
+    }
+  });
+  $(`#btn-easy`).prop(`disabled`, true); //only able to click on the button once
+}
 
 //prevents the player from using 'enter' to refresh the page
 $(window).keydown(function(key) {
