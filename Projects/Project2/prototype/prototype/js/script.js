@@ -10,7 +10,8 @@ This project will encoorporate JQUERY, CSS, and obviously JAVASCRIPT.
 With regards to my previous project, I felt that I neeeded to actually make an effort and prove that I can get higher than a B, so I decided why not, i'll do my best to get myself on the CART website as a project to show to future students taking the course.
 This is my goal when creating this interactive project.
 
-/*
+***WHAT NEEDS TO BE IMPLEMENTED FOR FINAL PROJECT***
+
 -correct word/letters turn green on correct and vice versa with red on wrong
 -players move on correct spelling
 -AI???
@@ -29,11 +30,16 @@ https://stackoverflow.com/questions/895171/prevent-users-from-submitting-a-form-
 https://api.jquery.com/
 */
 
-$(document).ready(btnGroup); //on start up load btnGroup first
+$(document).ready(btnGroupEasy); //on start up load btnGroup first
 
-let easyLevelSentences = false;
-let mediumLevelSentences = false;
-let hardLevelSentences = false;
+let easyLevelSentencesShow = false;
+let easyLevelSentencesTyped = false;
+
+let mediumLevelSentencesShow = false;
+let mediumLevelSentencesTyped = false;
+
+let hardLevelSentencesShow = false;
+let hardLevelSentencesTyped = false;
 
 //EASY LEVEL
 let randomSentencesEasy = [
@@ -58,57 +64,64 @@ let randomSentencesHard = [
   // hardLevelSentences go here
 ];
 
-//button group
-function btnGroup() {
-  $('#btn-easy').on(`click`, btnEasyPress);
+//button group to show easy text
+function btnGroupEasy() {
+  $('#btn-easy').on(`click`, btnEasyPress); //TEMPORARY TO SEE IF IT WORKS
+  easyLevelSentencesShow = true; //change to false for testing
 }
 
 //easy level function
 function btnEasyPress() {
-  easyLevelSentences = true;
-  $('#easy-level').text("(Click on the text box to start typing!)");
-  //selects a random sentence from the variable of randomSentences
-  let random = Math.floor(Math.random() * randomSentencesEasy.length); // to get variable of randomSentences you need to use (randomSentences[random])
+  if (easyLevelSentencesShow) {
+    $('#easy-level').text("Click on the text box to start typing!");
+    //selects a random sentence from the variable of randomSentences
+    let random = Math.floor(Math.random() * randomSentencesEasy.length); //chooses a random string from the randomSentencesEasy array
 
-  //creates the random sentences from the div
-  const RANDOM_SENTENCES_DIV = $(`#random-sentences-easy`)[0];
+    //creates the random sentences from the div
+    const RANDOM_SENTENCES_DIV = $(`#random-sentences-easy`)[0];
 
-  //splits the characters into single characters including spacing, then placed into an array
-  let singularCharacters = randomSentencesEasy[random].split("").map((character) => { //Places the randomized string into an array and then loops over each array using an empty string
-    let span = document.createElement("span");
-    $("body").append([span]); //appends span element to the body
-    $(span).text(character); //innerText the appended [span]
-    RANDOM_SENTENCES_DIV.appendChild(span); //appends span to each string in the array including spaces
-    return span; //returns the value of span // errors would appear if I didn't return the value of the span
-  });
+    //splits the characters into single characters including spacing, then placed into an array
+    let singularCharacters = randomSentencesEasy[random].split("").map((character) => { //Places the randomized string into an array and then loops over each array using an empty string
+      let span = document.createElement("span");
+      $("body").append([span]); //appends span element to the body
+      $(span).text(character); //innerText the appended [span]
+      RANDOM_SENTENCES_DIV.appendChild(span); //appends span to each string in the array including spaces
+      return span; //returns the value of span // errors would appear if I didn't return the value of the span
+    });
 
-  //highlights the first character in the array of singleCharacters
-  let currentIndex = 0;
-  let initialCharacter = singularCharacters[currentIndex];
-  $(initialCharacter).addClass('start'); //adds class 'start' to initialCharacter in the array
-  //if keypress is down
-  $(document).on('keypress', function({
-    key
-  }) {
-    if (key === $(initialCharacter).text()) {
-      $(initialCharacter).removeClass('start'); //removes the class of 'start' if initialCharacter is the same as the character being typed
-      $(initialCharacter).addClass('correct'); //add correct class to the correct character typed
-      initialCharacter = singularCharacters[++currentIndex]; //adds 1 onto the index, moves on to the next character in the array
-      $(initialCharacter).addClass('start'); //adds the class 'start'
-    }
-    //if key isn't the same as initialCharacter then add class 'incorrect' to current index
-    else if (key !== $(initialCharacter).text()) {
-      $(initialCharacter).addClass('incorrect');
-    }
-    if (currentIndex === singularCharacters.length) {
-      alert("DONE"); //temporary
-      location.reload(); //temporary
-    }
-  });
-  $(`#btn-easy`).prop(`disabled`, true); //only able to click on the button once
+    //highlights the first character in the array of singleCharacters
+    let currentIndex = 0;
+    let initialCharacter = singularCharacters[currentIndex];
+    $(initialCharacter).addClass('start'); //adds class 'start' to initialCharacter in the array
+    //if keypress is down
+    $(document).on('keypress', function({
+      key
+    }) {
+      if (key === $(initialCharacter).text()) {
+        $(initialCharacter).removeClass('start'); //removes the class of 'start' if initialCharacter is the same as the character being typed
+        $(initialCharacter).addClass('correct'); //add correct class to the correct character typed
+        initialCharacter = singularCharacters[++currentIndex]; //adds 1 onto the index, moves on to the next character in the array
+        $(initialCharacter).addClass('start'); //adds the class 'start'
+      }
+      //if key isn't the same as initialCharacter then add class 'incorrect' to current index
+      else if (key !== $(initialCharacter).text()) {
+        $(initialCharacter).addClass('incorrect');
+      }
+      if (currentIndex === singularCharacters.length) {
+        easyLevelSentencesTyped = true;
+      }
+      if (easyLevelSentencesTyped) {
+        alert("TYPED"); //temporary
+        location.reload(); //temporary
+      } else {
+        //do something like timer keeps going and wpm + cpm keeps calculating once implemented
+      }
+    });
+    $(`#btn-easy`).prop(`disabled`, true); //only able to click on the easy button once
+  }
 }
 
-//prevents the player from using 'enter' to refresh the page
+//prevents the player from pressing 'enter' to refresh the page
 $(window).keydown(function(key) {
   if (key.keyCode === 13) {
     event.preventDefault();
