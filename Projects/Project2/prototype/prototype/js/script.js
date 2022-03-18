@@ -100,7 +100,8 @@ function btnEasyPress() {
       if (key === $(initialCharacter).text()) {
         $(initialCharacter).removeClass('start'); //removes the class of 'start' if initialCharacter is the same as the character being typed
         $(initialCharacter).addClass('correct'); //add correct class to the correct character typed
-        initialCharacter = singularCharacters[++currentIndex]; //adds 1 onto the index, moves on to the next character in the array
+        initialCharacter = singularCharacters[currentIndex+=1]; //adds 1 onto the array, moves on to the next character in the array //for loop didn't work here
+        console.log(singularCharacters[currentIndex]);
         $(initialCharacter).addClass('start'); //adds the class 'start'
       }
       //if key isn't the same as initialCharacter then add class 'incorrect' to current index
