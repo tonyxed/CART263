@@ -78,15 +78,15 @@ function btnEasyPress() {
     let random = Math.floor(Math.random() * randomSentencesEasy.length); //chooses a random string from the randomSentencesEasy array
 
     //creates the random sentences from the div
-    const RANDOM_SENTENCES_DIV = $(`#random-sentences-easy`)[0];
+    let easyIndex = 0;
+    const RANDOM_SENTENCES_DIV = $(`#random-sentences-easy`)[easyIndex];
 
     //splits the characters into single characters including spacing, then placed into an array
-    let singularCharacters = randomSentencesEasy[random].split("").map((character) => { //Places the randomized string into an array and then loops over each array using an empty string
-      let span = document.createElement("span");
-      $("body").append([span]); //appends span element to the body
-      $(span).text(character); //innerText the appended [span]
-      RANDOM_SENTENCES_DIV.appendChild(span); //appends span to each string in the array including spaces
-      return span; //returns the value of span // errors would appear if I didn't return the value of the span
+    let singularCharacters = randomSentencesEasy[random].split("").map((character) => { //Places the randomized string into an array and then maps over each array using an empty string
+      let span = $('<span/>'); //creates the <span>
+      $(span).text(character); //give each character with a <span>
+      $(RANDOM_SENTENCES_DIV).append(span);
+      return span; //returns the value of span
     });
 
     //highlights the first character in the array of singleCharacters
