@@ -31,6 +31,7 @@ https://api.jquery.com/
 */
 
 $(document).ready(btnGroupEasy); //on start up load btnGroup first
+$('#t-box').hide(); //hides the text box until level is choosen
 
 let easyLevelSentencesShow = false;
 let easyLevelSentencesTyped = false;
@@ -73,7 +74,8 @@ function btnGroupEasy() {
 //easy level function
 function btnEasyPress() {
   if (easyLevelSentencesShow) {
-    $('#easy-level').text("Click on the text box to start typing!");
+    $('#t-box').show().focus();
+    $('#easy-level').text("Start typing into the text box!");
     //selects a random sentence from the variable of randomSentences
     let random = Math.floor(Math.random() * randomSentencesEasy.length); //chooses a random string from the randomSentencesEasy array
 
@@ -112,7 +114,7 @@ function btnEasyPress() {
         easyLevelSentencesTyped = true;
       }
       if (easyLevelSentencesTyped) {
-        alert("TYPED"); //temporary
+        $(`#btn-easy`).prop(`disabled`, false); //able to click on the easy button once all typed
         location.reload(); //temporary
       } else {
         //do something like timer keeps going and wpm + cpm keeps calculating once implemented
