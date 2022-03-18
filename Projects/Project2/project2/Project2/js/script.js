@@ -12,9 +12,8 @@ This is my goal when creating this interactive project.
 
 ***WHAT NEEDS TO BE IMPLEMENTED FOR FINAL PROJECT***
 
--correct word/letters turn green on correct and vice versa with red on wrong
--players move on correct spelling
--AI???
+-correct word/letters turn green on correct and vice versa with red on wrong //DONE
+-players move on correct spelling/AI???
 -prompt asking which level to type on? easy to impossible with harder sentences + less time to type
 -accuracy to the typing? WPM??? CPM???
 -timer
@@ -31,7 +30,7 @@ https://api.jquery.com/
 */
 
 $(document).ready(btnGroupEasy); //on start up load btnGroup first
-$('#t-box').hide(); //hides the text box until level is choosen
+$('#t-box').hide(); //hides the text box until a level is choosen
 
 let easyLevelSentencesShow = false;
 let easyLevelSentencesTyped = false;
@@ -62,7 +61,11 @@ let randomSentencesMedium = [
 
 //HARD LEVEL
 let randomSentencesHard = [
-  // hardLevelSentences go here
+  "Every manager should be able to recite at least ten nursery rhymes backward. Being unacquainted with the chief raccoon was harming his prospects for promotion. Nothing is as cautiously cuddly as a pet porcupine.",
+  "If you don't like toenails, you probably shouldn't look at your feet. The tree fell unexpectedly short. Henry couldn't decide if he was an auto mechanic or a priest.",
+  "She saw no irony asking me to change but wanting me to accept her for who she is. The stench from the feedlot permeated the car despite having the air conditioning on recycled air. Every manager should be able to recite at least ten nursery rhymes backward.",
+  "Peter found road kill an excellent way to save money on dinner. Nothing is as cautiously cuddly as a pet porcupine. Douglas figured the best way to succeed was to do the opposite of what he'd been doing all his life.",
+  "The fish listened intently to what the frogs had to say. The thunderous roar of the jet overhead confirmed her worst fears. A quiet house is nice until you are ordered to stay in it for months."
 ];
 
 //button group to show easy text
@@ -86,8 +89,8 @@ function btnEasyPress() {
     //splits the characters into single characters including spacing, then placed into an array
     let singularCharacters = randomSentencesEasy[random].split("").map((character) => { //Places the randomized string into an array and then maps over each array using an empty string
       let span = $('<span/>'); //creates the <span>
-      $(span).text(character); //give each character with a <span>
-      $(RANDOM_SENTENCES_DIV).append(span);
+      $(span).text(character);
+      $(RANDOM_SENTENCES_DIV).append(span); //give each character a <span>
       return span; //returns the value of span
     });
 
@@ -100,9 +103,10 @@ function btnEasyPress() {
       key
     }) {
       if (key === $(initialCharacter).text()) {
+        let addedIndex = 1;
         $(initialCharacter).removeClass('start'); //removes the class of 'start' if initialCharacter is the same as the character being typed
         $(initialCharacter).addClass('correct'); //add correct class to the correct character typed
-        initialCharacter = singularCharacters[currentIndex+=1]; //adds 1 onto the array, moves on to the next character in the array //for loop didn't work here
+        initialCharacter = singularCharacters[currentIndex += addedIndex]; //adds 1 onto the array, moves on to the next character in the array //for loop didn't work here
         console.log(singularCharacters[currentIndex]);
         $(initialCharacter).addClass('start'); //adds the class 'start'
       }
