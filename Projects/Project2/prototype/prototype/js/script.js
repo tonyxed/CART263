@@ -5,7 +5,7 @@ Anthony Calderone
 Prototype: Use your exceptional typing capibilities to race fellow users(AI).
 Your character's speed depends on how fast you can type, and with minimal mistakes. The idea comes from the website; https://play.typeracer.com/
 I felt that I needed to create something that can utilise a junction of what was introduced this semester, therefore, Racer; start! was born.
-This project will encoorporate JQUERY, CSS, and obviously JAVASCRIPT.
+This project will incorporate JQUERY, CSS, and obviously JAVASCRIPT.
 
 With regards to my previous project, I felt that I neeeded to actually make an effort and prove that I can get higher than a B, so I decided why not, i'll do my best to get myself on the CART website as a project to show to future students taking the course.
 This is my goal when creating this interactive project.
