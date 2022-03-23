@@ -124,6 +124,7 @@ function btnEasyPress() {
   }
 
 }
+
 //prevents the player from pressing 'enter' to refresh the page
 $(window).keydown(function(key) {
   if (key.keyCode === 13) {
