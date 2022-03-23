@@ -87,7 +87,7 @@ function btnEasyPress() {
     const RANDOM_SENTENCES_DIV = $(`#random-sentences-easy`)[easyIndex];
 
     //splits the characters into single characters including spacing, then placed into an array
-    let singularCharacters = randomSentencesEasy[random].split("").map((character) => { //Places the randomized string into an array and then maps over each array using an empty string
+    let singularCharactersEasy = randomSentencesEasy[random].split("").map((character) => { //Places the randomized string into an array and then maps over each array using an empty string
       let span = $('<span/>'); //creates the <span>
       $(span).text(character);
       $(RANDOM_SENTENCES_DIV).append(span); //give each character a <span>
@@ -96,24 +96,24 @@ function btnEasyPress() {
 
     //highlights the first character in the array of singleCharacters
     let currentIndex = 0;
-    let initialCharacter = singularCharacters[currentIndex];
-    $(initialCharacter).addClass('start'); //adds class 'start' to initialCharacter in the array
+    let initialCharacterEasy = singularCharactersEasy[currentIndex];
+    $(initialCharacterEasy).addClass('start'); //adds class 'start' to initialCharacter in the array
     //if keypress is down
     $(document).on('keypress', function({
       key
     }) {
-      if (key === $(initialCharacter).text()) {
-        $(initialCharacter).removeClass('start'); //removes the class of 'start' if initialCharacter is the same as the character being typed
-        $(initialCharacter).addClass('correct'); //add correct class to the correct character typed
-        initialCharacter = singularCharacters[currentIndex += 1]; //adds 1 onto the array, moves on to the next character in the array //for loop didn't work here
+      if (key === $(initialCharacterEasy).text()) {
+        $(initialCharacterEasy).removeClass('start'); //removes the class of 'start' if initialCharacter is the same as the character being typed
+        $(initialCharacterEasy).addClass('correct'); //add correct class to the correct character typed
+        initialCharacterEasy = singularCharactersEasy[currentIndex += 1]; //adds 1 onto the array, moves on to the next character in the array //for loop didn't work here
         console.log(currentIndex);
-        $(initialCharacter).addClass('start'); //adds the class 'start'
+        $(initialCharacterEasy).addClass('start'); //adds the class 'start'
       }
       //if key isn't the same as initialCharacter then add class 'incorrect' to current index
-      else if (key !== $(initialCharacter).text()) {
-        $(initialCharacter).addClass('incorrect');
+      else if (key !== $(initialCharacterEasy).text()) {
+        $(initialCharacterEasy).addClass('incorrect');
       }
-      if (currentIndex === singularCharacters.length) {
+      if (currentIndex === singularCharactersEasy.length) {
         easyLevelSentencesTyped = true;
       }
       if (easyLevelSentencesTyped) {
