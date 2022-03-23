@@ -79,7 +79,7 @@ function btnEasyPress() {
   if (easyLevelSentencesShow) {
     $('#t-box').show().focus();
     $('#easy-level').text("Start typing into the text box!");
-    //selects a random sentence from the variable of randomSentences
+
     let random = Math.floor(Math.random() * randomSentencesEasy.length); //chooses a random string from the randomSentencesEasy array
 
     //creates the random sentences from the div
@@ -102,36 +102,37 @@ function btnEasyPress() {
     $(document).on('keypress', function({
       key
     }) {
-      if (key === $(initialCharacter).text()) {
-        let addedIndex = 1;
-        $(initialCharacter).removeClass('start'); //removes the class of 'start' if initialCharacter is the same as the character being typed
-        $(initialCharacter).addClass('correct'); //add correct class to the correct character typed
-        initialCharacter = singularCharacters[currentIndex += addedIndex]; //adds 1 onto the array, moves on to the next character in the array //for loop didn't work here
-        console.log(singularCharacters[currentIndex]);
-        $(initialCharacter).addClass('start'); //adds the class 'start'
-      }
-      //if key isn't the same as initialCharacter then add class 'incorrect' to current index
-      else if (key !== $(initialCharacter).text()) {
-        $(initialCharacter).addClass('incorrect');
-      }
-      if (currentIndex === singularCharacters.length) {
-        easyLevelSentencesTyped = true;
-      }
-      if (easyLevelSentencesTyped) {
-        $(`#btn-easy`).prop(`disabled`, false); //able to click on the easy button once all typed
-        location.reload(); //temporary
-      } else {
-        //do something like timer keeps going and wpm + cpm keeps calculating once implemented
+      for (let i = 0; i < initialCharacter.length; i++) {
+        if (key === $(initialCharacter).text()) {
+          $(initialCharacter).removeClass('start'); //removes the class of 'start' if initialCharacter is the same as the character being typed
+          $(initialCharacter).addClass('correct'); //add correct class to the correct character typed
+          initialCharacter = singularCharacters[currentIndex += 1]; //adds 1 onto the array, moves on to the next character in the array //for loop didn't work here
+          console.log(currentIndex);
+          $(initialCharacter).addClass('start'); //adds the class 'start'
+        }
+        //if key isn't the same as initialCharacter then add class 'incorrect' to current index
+        else if (key !== $(initialCharacter).text()) {
+          $(initialCharacter).addClass('incorrect');
+        }
+        if (currentIndex === singularCharacters.length) {
+          easyLevelSentencesTyped = true;
+        }
+        if (easyLevelSentencesTyped) {
+          $(`#btn-easy`).prop(`disabled`, false); //able to click on the easy button once all typed
+          location.reload(); //temporary
+        } else {
+          //do something like timer keeps going and wpm + cpm keeps calculating once implemented
+        }
       }
     });
     $(`#btn-easy`).prop(`disabled`, true); //only able to click on the easy button once
   }
-}
 
-//prevents the player from pressing 'enter' to refresh the page
-$(window).keydown(function(key) {
-  if (key.keyCode === 13) {
-    event.preventDefault();
-    return false;
-  }
-});
+}
+  //prevents the player from pressing 'enter' to refresh the page
+  $(window).keydown(function(key) {
+    if (key.keyCode === 13) {
+      event.preventDefault();
+      return false;
+    }
+  });
