@@ -2,22 +2,16 @@
 Racer; start!
 Anthony Calderone
 
-Prototype: Use your exceptional typing capibilities to race fellow users(AI).
+Use your exceptional typing capibilities to race fellow users(AI).
 Your character's speed depends on how fast you can type, and with minimal mistakes. The idea comes from the website; https://play.typeracer.com/
 I felt that I needed to create something that can utilise a junction of what was introduced this semester, therefore, Racer; start! was born.
 This project will incorporate JQUERY, CSS, and obviously JAVASCRIPT.
 
-With regards to my previous project, I felt that I neeeded to actually make an effort and prove that I can get higher than a B, so I decided why not, i'll do my best to get myself on the CART website as a project to show to future students taking the course.
-This is my goal when creating this interactive project.
-
-***WHAT NEEDS TO BE IMPLEMENTED FOR FINAL PROJECT***
-
--correct word/letters turn green on correct and vice versa with red on wrong //DONE
 -players move on correct spelling/AI???
 -prompt asking which level to type on? easy to impossible with harder sentences + less time to type
--accuracy to the typing? WPM??? CPM???
 -timer
--change levels with different html's
+-overtime texts changes(gets smaller, gets larger, the text changes completely mid sentence)
+-make the game more distracting when playing
 
 Documentation // tutorials
 
@@ -117,7 +111,7 @@ function btnEasyPress() {
         easyLevelSentencesTyped = true;
       }
       if (easyLevelSentencesTyped) {
-        $(`#btn-easy`).prop(`disabled`, false); //able to click on the easy button once all typed
+        alert("DONE");
         location.reload(); //temporary
       } else {
         //do something like timer keeps going and wpm + cpm keeps calculating once implemented
