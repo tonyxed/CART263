@@ -95,8 +95,8 @@ $(function() {
 });
 
 //shows and focuses on text field
-function showInput(){
-  $(function(){
+function showInput() {
+  $(function() {
     $('#t-box').show().focus();
   });
 }
@@ -149,21 +149,6 @@ function btnEasyPress() {
   }
 }
 
-//dialog box for typing texts on the easy level
-function easylevelTyped() {
-  $(function() {
-    $("#complete_easy_dialog").dialog({
-      modal: true,
-      buttons: {
-        Restart: function() {
-          $(this).dialog("close");
-          location.reload();
-        }
-      }
-    });
-  });
-}
-
 //medium level function
 function btnMediumPress() {
   if (mediumLevelSentencesShow) {
@@ -206,10 +191,7 @@ function btnMediumPress() {
         mediumLevelSentencesTyped = true;
       }
       if (mediumLevelSentencesTyped) {
-        alert("DONE");
-        location.reload();
-      } else {
-        //do something like timer keeps going and wpm + cpm keeps calculating once implemented
+        mediumlevelTyped();
       }
     });
   }
@@ -256,13 +238,55 @@ function btnHardPress() {
         hardLevelSentencesTyped = true;
       }
       if (hardLevelSentencesTyped) {
-        alert("DONE");
-        location.reload();
-      } else {
-        //do something like timer keeps going and wpm + cpm keeps calculating once implemented
+        hardlevelTyped();
       }
     });
   }
+}
+
+//dialog box for typing texts on the easy level
+function easylevelTyped() {
+  $(function() {
+    $("#complete_easy_dialog").dialog({
+      modal: true,
+      buttons: {
+        Restart: function() {
+          $(this).dialog("close");
+          location.reload();
+        }
+      }
+    });
+  });
+}
+
+//dialog box for typing texts on the medium level
+function mediumlevelTyped() {
+  $(function() {
+    $("#complete_medium_dialog").dialog({
+      modal: true,
+      buttons: {
+        Restart: function() {
+          $(this).dialog("close");
+          location.reload();
+        }
+      }
+    });
+  });
+}
+
+//dialog box for typing texts on the hard level
+function hardlevelTyped() {
+  $(function() {
+    $("#complete_hard_dialog").dialog({
+      modal: true,
+      buttons: {
+        Restart: function() {
+          $(this).dialog("close");
+          location.reload();
+        }
+      }
+    });
+  });
 }
 
 //prevents the player from pressing 'enter' to refresh the page
