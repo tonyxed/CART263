@@ -73,17 +73,24 @@ $(function() {
       "Easy": function() {
         $('#btn-easy').on(`click`, btnEasyPress);
         easyLevelSentencesShow = true;
+        $('#t-box').show().focus();
         btnEasyPress();
         $(this).dialog("close");
       },
       "Medium": function() {
         $('#btn-medium').on(`click`, btnMediumPress);
         mediumLevelSentencesShow = true;
+        $('#t-box').show()
+        $('#t-box').focus()
         btnMediumPress();
         $(this).dialog("close");
       },
       "Hard": function() {
-
+        $('#btn-hard').on(`click`, btnHardPress);
+        $('#t-box').show().focus();
+        hardLevelSentencesShow = true;
+        btnHardPress();
+        $(this).dialog("close");
       },
     }
   });
@@ -92,7 +99,6 @@ $(function() {
 //easy level function
 function btnEasyPress() {
   if (easyLevelSentencesShow) {
-    $('#t-box').show().focus();
     $('#easy-level').text("Start typing into the text box!");
 
     let random = Math.floor(Math.random() * randomSentencesEasy.length); //chooses a random string from the randomSentencesEasy array
@@ -133,7 +139,7 @@ function btnEasyPress() {
       }
       if (easyLevelSentencesTyped) {
         alert("DONE");
-        location.reload(); //temporary
+        location.reload();
       } else {
         //do something like timer keeps going and wpm + cpm keeps calculating once implemented
       }
@@ -144,8 +150,7 @@ function btnEasyPress() {
 //medium level function
 function btnMediumPress() {
   if (mediumLevelSentencesShow) {
-    $('#t-box').show().focus();
-    $('#easy-level').text("Start typing into the text box!");
+    $('#medium-level').text("Start typing into the text box!");
 
     let random = Math.floor(Math.random() * randomSentencesMedium.length); //chooses a random string from the randomSentencesEasy array
 
@@ -178,14 +183,64 @@ function btnMediumPress() {
       }
       //if key isn't the same as initialCharacter then add class 'incorrect' to current index
       else if (key !== $(initialCharacterMedium ).text()) {
-        $(initialCharacterEasy).addClass('incorrect');
+        $(initialCharacterMedium).addClass('incorrect');
       }
       if (currentIndex === singularCharactersMedium .length) {
         mediumLevelSentencesTyped = true;
       }
       if (mediumLevelSentencesTyped) {
         alert("DONE");
-        location.reload(); //temporary
+        location.reload();
+      } else {
+        //do something like timer keeps going and wpm + cpm keeps calculating once implemented
+      }
+    });
+  }
+}
+
+//hard level function
+function btnHardPress() {
+  if (hardLevelSentencesShow) {
+    $('#hard-level').text("Start typing into the text box!");
+
+    let random = Math.floor(Math.random() * randomSentencesHard.length); //chooses a random string from the randomSentencesEasy array
+
+    //creates the random sentences from the div
+    let hardIndex = 0;
+    const RANDOM_SENTENCES_DIV = $(`#random-sentences-hard`)[hardIndex];
+
+    //splits the characters into single characters including spacing, then placed into an array
+    let singularCharactersHard = randomSentencesHard[random].split("").map((character) => { //Places the randomized string into an array and then maps over each array using an empty string
+      let span = $('<span/>'); //creates the <span>
+      $(span).text(character);
+      $(RANDOM_SENTENCES_DIV).append(span); //give each character a <span>
+      return span; //returns the value of span
+    });
+
+    //highlights the first character in the array of singleCharacters
+    let currentIndex = 0;
+    let initialCharacterHard = singularCharactersHard [currentIndex];
+    $(initialCharacterHard ).addClass('start'); //adds class 'start' to initialCharacter in the array
+    //if keypress is down
+    $(document).on('keypress', function({
+      key
+    }) {
+      if (key === $(initialCharacterHard ).text()) {
+        $(initialCharacterHard ).removeClass('start'); //removes the class of 'start' if initialCharacter is the same as the character being typed
+        $(initialCharacterHard ).addClass('correct'); //add correct class to the correct character typed
+        initialCharacterHard  = singularCharactersHard [currentIndex += 1]; //adds 1 onto the array, moves on to the next character in the array //for loop didn't work here
+        $(initialCharacterHard ).addClass('start'); //adds the class 'start'
+      }
+      //if key isn't the same as initialCharacter then add class 'incorrect' to current index
+      else if (key !== $(initialCharacterHard ).text()) {
+        $(initialCharacterHard).addClass('incorrect');
+      }
+      if (currentIndex === singularCharactersHard .length) {
+        hardLevelSentencesTyped = true;
+      }
+      if (hardLevelSentencesTyped) {
+        alert("DONE");
+        location.reload();
       } else {
         //do something like timer keeps going and wpm + cpm keeps calculating once implemented
       }
