@@ -23,7 +23,7 @@ https://stackoverflow.com/questions/895171/prevent-users-from-submitting-a-form-
 https://api.jquery.com/
 */
 
-$(document).ready(btnGroupEasy); //on start up load btnGroup first
+$(document).ready("#difficulty_dialog"); //on start up load btnGroup first
 $('#t-box').hide(); //hides the text box until a level is choosen
 
 let easyLevelSentencesShow = false;
@@ -62,11 +62,32 @@ let randomSentencesHard = [
   "The fish listened intently to what the frogs had to say. The thunderous roar of the jet overhead confirmed her worst fears. A quiet house is nice until you are ordered to stay in it for months."
 ];
 
-//button group to show easy text
-function btnGroupEasy() {
-  $('#btn-easy').on(`click`, btnEasyPress); //TEMPORARY TO SEE IF IT WORKS
-  easyLevelSentencesShow = true; //change to false for testing
-}
+//LEVEL DIALOG
+$(function() {
+  $("#difficulty_dialog").dialog({
+    resizable: false,
+    height: "auto",
+    width: 400,
+    modal: true,
+    buttons: {
+      "Easy": function() {
+        $('#btn-easy').on(`click`, btnEasyPress);
+        easyLevelSentencesShow = true;
+        btnEasyPress();
+        $(this).dialog("close");
+      },
+      "Medium": function() {
+        $('#btn-medium').on(`click`, btnMediumPress);
+        mediumLevelSentencesShow = true;
+        btnMediumPress();
+        $(this).dialog("close");
+      },
+      "Hard": function() {
+
+      },
+    }
+  });
+});
 
 //easy level function
 function btnEasyPress() {
@@ -117,10 +138,61 @@ function btnEasyPress() {
         //do something like timer keeps going and wpm + cpm keeps calculating once implemented
       }
     });
-    $(`#btn-easy`).prop(`disabled`, true); //only able to click on the easy button once
   }
-
 }
+
+//medium level function
+function btnMediumPress() {
+  if (mediumLevelSentencesShow) {
+    $('#t-box').show().focus();
+    $('#easy-level').text("Start typing into the text box!");
+
+    let random = Math.floor(Math.random() * randomSentencesMedium.length); //chooses a random string from the randomSentencesEasy array
+
+    //creates the random sentences from the div
+    let mediumIndex = 0;
+    const RANDOM_SENTENCES_DIV = $(`#random-sentences-medium`)[mediumIndex];
+
+    //splits the characters into single characters including spacing, then placed into an array
+    let singularCharactersMedium = randomSentencesMedium[random].split("").map((character) => { //Places the randomized string into an array and then maps over each array using an empty string
+      let span = $('<span/>'); //creates the <span>
+      $(span).text(character);
+      $(RANDOM_SENTENCES_DIV).append(span); //give each character a <span>
+      return span; //returns the value of span
+    });
+
+    //highlights the first character in the array of singleCharacters
+    let currentIndex = 0;
+    let initialCharacterMedium = singularCharactersMedium [currentIndex];
+    $(initialCharacterMedium ).addClass('start'); //adds class 'start' to initialCharacter in the array
+    //if keypress is down
+    $(document).on('keypress', function({
+      key
+    }) {
+      if (key === $(initialCharacterMedium ).text()) {
+        $(initialCharacterMedium ).removeClass('start'); //removes the class of 'start' if initialCharacter is the same as the character being typed
+        $(initialCharacterMedium ).addClass('correct'); //add correct class to the correct character typed
+        initialCharacterMedium  = singularCharactersMedium [currentIndex += 1]; //adds 1 onto the array, moves on to the next character in the array //for loop didn't work here
+        console.log(currentIndex);
+        $(initialCharacterMedium ).addClass('start'); //adds the class 'start'
+      }
+      //if key isn't the same as initialCharacter then add class 'incorrect' to current index
+      else if (key !== $(initialCharacterMedium ).text()) {
+        $(initialCharacterEasy).addClass('incorrect');
+      }
+      if (currentIndex === singularCharactersMedium .length) {
+        mediumLevelSentencesTyped = true;
+      }
+      if (mediumLevelSentencesTyped) {
+        alert("DONE");
+        location.reload(); //temporary
+      } else {
+        //do something like timer keeps going and wpm + cpm keeps calculating once implemented
+      }
+    });
+  }
+}
+
 //prevents the player from pressing 'enter' to refresh the page
 $(window).keydown(function(key) {
   if (key.keyCode === 13) {
