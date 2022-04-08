@@ -8,7 +8,6 @@ I felt that I needed to create something that can utilise a junction of what was
 This project will incorporate JQUERY, CSS, and obviously JAVASCRIPT.
 
 -players move on correct spelling/AI???
--prompt asking which level to type on? easy to impossible with harder sentences + less time to type
 -timer
 -overtime texts changes(gets smaller, gets larger, the text changes completely mid sentence)
 -make the game more distracting when playing
@@ -73,28 +72,34 @@ $(function() {
       "Easy": function() {
         $('#btn-easy').on(`click`, btnEasyPress);
         easyLevelSentencesShow = true;
-        $('#t-box').show().focus();
+        showInput();
         btnEasyPress();
         $(this).dialog("close");
       },
       "Medium": function() {
         $('#btn-medium').on(`click`, btnMediumPress);
         mediumLevelSentencesShow = true;
-        $('#t-box').show()
-        $('#t-box').focus()
+        showInput();
         btnMediumPress();
         $(this).dialog("close");
       },
       "Hard": function() {
         $('#btn-hard').on(`click`, btnHardPress);
-        $('#t-box').show().focus();
         hardLevelSentencesShow = true;
+        showInput();
         btnHardPress();
         $(this).dialog("close");
       },
     }
   });
 });
+
+//shows and focuses on text field
+function showInput(){
+  $(function(){
+    $('#t-box').show().focus();
+  });
+}
 
 //easy level function
 function btnEasyPress() {
@@ -138,13 +143,25 @@ function btnEasyPress() {
         easyLevelSentencesTyped = true;
       }
       if (easyLevelSentencesTyped) {
-        alert("DONE");
-        location.reload();
-      } else {
-        //do something like timer keeps going and wpm + cpm keeps calculating once implemented
+        easylevelTyped();
       }
     });
   }
+}
+
+//dialog box for typing texts on the easy level
+function easylevelTyped() {
+  $(function() {
+    $("#complete_easy_dialog").dialog({
+      modal: true,
+      buttons: {
+        Restart: function() {
+          $(this).dialog("close");
+          location.reload();
+        }
+      }
+    });
+  });
 }
 
 //medium level function
@@ -168,24 +185,24 @@ function btnMediumPress() {
 
     //highlights the first character in the array of singleCharacters
     let currentIndex = 0;
-    let initialCharacterMedium = singularCharactersMedium [currentIndex];
-    $(initialCharacterMedium ).addClass('start'); //adds class 'start' to initialCharacter in the array
+    let initialCharacterMedium = singularCharactersMedium[currentIndex];
+    $(initialCharacterMedium).addClass('start'); //adds class 'start' to initialCharacter in the array
     //if keypress is down
     $(document).on('keypress', function({
       key
     }) {
-      if (key === $(initialCharacterMedium ).text()) {
-        $(initialCharacterMedium ).removeClass('start'); //removes the class of 'start' if initialCharacter is the same as the character being typed
-        $(initialCharacterMedium ).addClass('correct'); //add correct class to the correct character typed
-        initialCharacterMedium  = singularCharactersMedium [currentIndex += 1]; //adds 1 onto the array, moves on to the next character in the array //for loop didn't work here
+      if (key === $(initialCharacterMedium).text()) {
+        $(initialCharacterMedium).removeClass('start'); //removes the class of 'start' if initialCharacter is the same as the character being typed
+        $(initialCharacterMedium).addClass('correct'); //add correct class to the correct character typed
+        initialCharacterMedium = singularCharactersMedium[currentIndex += 1]; //adds 1 onto the array, moves on to the next character in the array //for loop didn't work here
         console.log(currentIndex);
-        $(initialCharacterMedium ).addClass('start'); //adds the class 'start'
+        $(initialCharacterMedium).addClass('start'); //adds the class 'start'
       }
       //if key isn't the same as initialCharacter then add class 'incorrect' to current index
-      else if (key !== $(initialCharacterMedium ).text()) {
+      else if (key !== $(initialCharacterMedium).text()) {
         $(initialCharacterMedium).addClass('incorrect');
       }
-      if (currentIndex === singularCharactersMedium .length) {
+      if (currentIndex === singularCharactersMedium.length) {
         mediumLevelSentencesTyped = true;
       }
       if (mediumLevelSentencesTyped) {
@@ -219,23 +236,23 @@ function btnHardPress() {
 
     //highlights the first character in the array of singleCharacters
     let currentIndex = 0;
-    let initialCharacterHard = singularCharactersHard [currentIndex];
-    $(initialCharacterHard ).addClass('start'); //adds class 'start' to initialCharacter in the array
+    let initialCharacterHard = singularCharactersHard[currentIndex];
+    $(initialCharacterHard).addClass('start'); //adds class 'start' to initialCharacter in the array
     //if keypress is down
     $(document).on('keypress', function({
       key
     }) {
-      if (key === $(initialCharacterHard ).text()) {
-        $(initialCharacterHard ).removeClass('start'); //removes the class of 'start' if initialCharacter is the same as the character being typed
-        $(initialCharacterHard ).addClass('correct'); //add correct class to the correct character typed
-        initialCharacterHard  = singularCharactersHard [currentIndex += 1]; //adds 1 onto the array, moves on to the next character in the array //for loop didn't work here
-        $(initialCharacterHard ).addClass('start'); //adds the class 'start'
+      if (key === $(initialCharacterHard).text()) {
+        $(initialCharacterHard).removeClass('start'); //removes the class of 'start' if initialCharacter is the same as the character being typed
+        $(initialCharacterHard).addClass('correct'); //add correct class to the correct character typed
+        initialCharacterHard = singularCharactersHard[currentIndex += 1]; //adds 1 onto the array, moves on to the next character in the array //for loop didn't work here
+        $(initialCharacterHard).addClass('start'); //adds the class 'start'
       }
       //if key isn't the same as initialCharacter then add class 'incorrect' to current index
-      else if (key !== $(initialCharacterHard ).text()) {
+      else if (key !== $(initialCharacterHard).text()) {
         $(initialCharacterHard).addClass('incorrect');
       }
-      if (currentIndex === singularCharactersHard .length) {
+      if (currentIndex === singularCharactersHard.length) {
         hardLevelSentencesTyped = true;
       }
       if (hardLevelSentencesTyped) {
