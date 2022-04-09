@@ -105,7 +105,7 @@ function showInput() {
 function btnEasyPress() {
   if (easyLevelSentencesShow) {
     $('#easy-level').text("Start typing into the text box!");
-
+    $('#title').text("Racer; start!");
     let random = Math.floor(Math.random() * randomSentencesEasy.length); //chooses a random string from the randomSentencesEasy array
 
     //creates the random sentences from the div
@@ -153,7 +153,7 @@ function btnEasyPress() {
 function btnMediumPress() {
   if (mediumLevelSentencesShow) {
     $('#medium-level').text("Start typing into the text box!");
-
+    $('#title').text("Racer; start!");
     let random = Math.floor(Math.random() * randomSentencesMedium.length); //chooses a random string from the randomSentencesEasy array
 
     //creates the random sentences from the div
@@ -201,7 +201,7 @@ function btnMediumPress() {
 function btnHardPress() {
   if (hardLevelSentencesShow) {
     $('#hard-level').text("Start typing into the text box!");
-
+    $('#title').text("Racer; start!");
     let random = Math.floor(Math.random() * randomSentencesHard.length); //chooses a random string from the randomSentencesEasy array
 
     //creates the random sentences from the div

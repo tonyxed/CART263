@@ -22,6 +22,10 @@
   font-size: 2rem;
 }
 
+#title {
+  color: white;
+}
+
 .start {
   background-color: #18abcc;
   text-decoration: underline;
