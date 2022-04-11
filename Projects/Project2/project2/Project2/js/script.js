@@ -8,7 +8,8 @@ I felt that I needed to create something that can utilise a junction of what was
 This project will incorporate JQUERY, CSS, and obviously JAVASCRIPT.
 
 -players move on correct spelling/AI???
--timer
+-wpm, cpm, accurary
+-timer, countdown after button click to start typing - voice counting down
 -overtime texts changes(gets smaller, gets larger, the text changes completely mid sentence)
 -make the game more distracting when playing
 
@@ -70,29 +71,68 @@ $(function() {
     modal: true,
     buttons: {
       "Easy": function() {
-        $('#btn-easy').on(`click`, btnEasyPress);
-        easyLevelSentencesShow = true;
-        showInput();
-        btnEasyPress();
+        timerEasyStart();
         $(this).dialog("close");
       },
       "Medium": function() {
-        $('#btn-medium').on(`click`, btnMediumPress);
-        mediumLevelSentencesShow = true;
-        showInput();
-        btnMediumPress();
+        timerMediumStart();
         $(this).dialog("close");
       },
       "Hard": function() {
-        $('#btn-hard').on(`click`, btnHardPress);
-        hardLevelSentencesShow = true;
-        showInput();
-        btnHardPress();
+        timerHardStart();
         $(this).dialog("close");
       },
     }
   });
 });
+
+//timerEasyCountdown
+function timerEasyStart() {
+  startTime = new Date();
+  let myTimer = setInterval(function() {
+    $("#timer").text(Math.round((new Date - startTime) / 1000));
+    if ($("#timer" == 3)){
+      easyLevelSentencesShow = true;
+    }
+    if(easyLevelSentencesShow){ //if easyLevelSentencesShow = true, then the timer stops
+      clearInterval(myTimer);
+      showInput();
+      btnEasyPress();
+    }
+  }, 3000);
+}
+
+//timerMediumCountdown
+function timerMediumStart() {
+  startTime = new Date();
+  let myTimer = setInterval(function() {
+    $("#timer").text(Math.round((new Date - startTime) / 1000));
+    if ($("#timer" == 3)){
+      mediumLevelSentencesShow = true;
+    }
+    if(mediumLevelSentencesShow){ //if mediumLevelSentencesShow = true, then the timer stops
+      clearInterval(myTimer);
+      showInput();
+      btnMediumPress();
+    }
+  }, 3000);
+}
+
+//timerHardCountdown
+function timerHardStart() {
+  startTime = new Date();
+  let myTimer = setInterval(function() {
+    $("#timer").text(Math.round((new Date - startTime) / 1000));
+    if ($("#timer" == 3)){
+      hardLevelSentencesShow = true;
+    }
+    if(hardLevelSentencesShow){ //if hardLevelSentencesShow = true, then the timer stops
+      clearInterval(myTimer);
+      showInput();
+      btnHardPress();
+    }
+  }, 3000);
+}
 
 //shows and focuses on text field
 function showInput() {
