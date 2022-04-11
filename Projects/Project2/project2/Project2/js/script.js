@@ -9,7 +9,6 @@ This project will incorporate JQUERY, CSS, and obviously JAVASCRIPT.
 
 -players move on correct spelling/AI???
 -wpm, cpm, accurary
--timer, countdown after button click to start typing - voice counting down
 -overtime texts changes(gets smaller, gets larger, the text changes completely mid sentence)
 -make the game more distracting when playing
 
@@ -73,14 +72,26 @@ $(function() {
       "Easy": function() {
         timerEasyStart();
         $(this).dialog("close");
+        responsiveVoice.speak("Easy level selected. Get ready to Type!", "UK English Male");
+        responsiveVoice.speak("3", "UK English Male");
+        responsiveVoice.speak("2", "UK English Male");
+        responsiveVoice.speak("1", "UK English Male");
       },
       "Medium": function() {
         timerMediumStart();
         $(this).dialog("close");
+        responsiveVoice.speak("Medium level selected. Get ready to Type!", "UK English Male");
+        responsiveVoice.speak("3", "UK English Male");
+        responsiveVoice.speak("2", "UK English Male");
+        responsiveVoice.speak("1", "UK English Male");
       },
       "Hard": function() {
         timerHardStart();
         $(this).dialog("close");
+        responsiveVoice.speak("Hard level selected. Get ready to Type!", "UK English Male");
+        responsiveVoice.speak("3", "UK English Male");
+        responsiveVoice.speak("2", "UK English Male");
+        responsiveVoice.speak("1", "UK English Male");
       },
     }
   });
@@ -99,7 +110,7 @@ function timerEasyStart() {
       showInput();
       btnEasyPress();
     }
-  }, 3000);
+  }, 5200);
 }
 
 //timerMediumCountdown
@@ -115,7 +126,7 @@ function timerMediumStart() {
       showInput();
       btnMediumPress();
     }
-  }, 3000);
+  }, 5200);
 }
 
 //timerHardCountdown
@@ -131,7 +142,7 @@ function timerHardStart() {
       showInput();
       btnHardPress();
     }
-  }, 3000);
+  }, 5200);
 }
 
 //shows and focuses on text field
@@ -144,7 +155,7 @@ function showInput() {
 //easy level function
 function btnEasyPress() {
   if (easyLevelSentencesShow) {
-    $('#easy-level').text("Start typing into the text box!");
+    $('#easy-level').text("Easy!");
     $('#title').text("Racer; start!");
     let random = Math.floor(Math.random() * randomSentencesEasy.length); //chooses a random string from the randomSentencesEasy array
 
@@ -192,7 +203,7 @@ function btnEasyPress() {
 //medium level function
 function btnMediumPress() {
   if (mediumLevelSentencesShow) {
-    $('#medium-level').text("Start typing into the text box!");
+    $('#medium-level').text("Medium!");
     $('#title').text("Racer; start!");
     let random = Math.floor(Math.random() * randomSentencesMedium.length); //chooses a random string from the randomSentencesEasy array
 
@@ -240,7 +251,7 @@ function btnMediumPress() {
 //hard level function
 function btnHardPress() {
   if (hardLevelSentencesShow) {
-    $('#hard-level').text("Start typing into the text box!");
+    $('#hard-level').text("Hard!");
     $('#title').text("Racer; start!");
     let random = Math.floor(Math.random() * randomSentencesHard.length); //chooses a random string from the randomSentencesEasy array
 
