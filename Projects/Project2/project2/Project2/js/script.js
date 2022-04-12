@@ -40,11 +40,11 @@ let blink = false;
 
 //EASY LEVEL
 let randomSentencesEasy = [
-   "It took me too long to realize that the ceiling hadn't been painted to look like the sky. The tour bus was packed with teenage girls heading toward their next adventure. The miniature pet elephant became the envy of the neighborhood.",
-  "The urgent care center was flooded with patients after the news of a new deadly virus was made public. The rain pelted the windshield as the darkness engulfed us.",
-  "Joe discovered that traffic cones make excellent megaphones. His get rich quick scheme was to grow a cactus farm. Going from child, to childish, to childlike is only a matter of time.",
-  "Cursive writing is the best way to build a race track. Flying fish few by the space station. Joyce enjoyed eating pancakes with ketchup.",
-  "The overpass went under the highway and into a secret world. The estate agent quickly marked out his territory on the dance floor. People generally approve of dogs eating cat food but not cats eating dog food."
+  "It" //took me too long to realize that the ceiling hadn't been painted to look like the sky. The tour bus was packed with teenage girls heading toward their next adventure. The miniature pet elephant became the envy of the neighborhood.",
+  // "The urgent care center was flooded with patients after the news of a new deadly virus was made public. The rain pelted the windshield as the darkness engulfed us.",
+  // "Joe discovered that traffic cones make excellent megaphones. His get rich quick scheme was to grow a cactus farm. Going from child, to childish, to childlike is only a matter of time.",
+  // "Cursive writing is the best way to build a race track. Flying fish few by the space station. Joyce enjoyed eating pancakes with ketchup.",
+  // "The overpass went under the highway and into a secret world. The estate agent quickly marked out his territory on the dance floor. People generally approve of dogs eating cat food but not cats eating dog food."
 ];
 
 //MEDIUM LEVEL
@@ -114,34 +114,6 @@ function blinkText() {
         $(`#random-sentences-easy`).effect("shake");
       }
     }
-  }, 1000);
-}
-
-//timerCountdownEasy
-function timerCountdownEasy() {
-  let timeLeft = 30;
-  let timerCountdown = setInterval(function() {
-    if (timeLeft <= 0) {
-      clearInterval(timerCountdown);
-      easyLevelTime();
-    } else {
-      $("#timerDisplay").text(timeLeft);
-    }
-    timeLeft -= 1;
-  }, 1000);
-}
-
-//timerCountdownMedium
-function timerCountdownMedium() {
-  let timeLeft = 50;
-  let timerCountdown = setInterval(function() {
-    if (timeLeft <= 0) {
-      clearInterval(timerCountdown);
-      mediumLevelTime();
-    } else {
-      $("#timerDisplay").text(timeLeft);
-    }
-    timeLeft -= 1;
   }, 1000);
 }
 
@@ -238,7 +210,6 @@ function btnEasyPress() {
       }
       if (easyLevelSentencesTyped) {
         easylevelTyped();
-        easyLevelSentencesTyped = false;
       }
     });
   }
@@ -246,7 +217,6 @@ function btnEasyPress() {
 
 //medium level function
 function btnMediumPress() {
-  timerCountdownMedium();
   if (mediumLevelSentencesShow) {
     $('#medium-level').text("Medium!");
     $('#title').text("Racer; start!");
@@ -338,6 +308,24 @@ function btnHardPress() {
       }
     });
   }
+}
+
+//timerCountdownEasy
+function timerCountdownEasy() {
+  let timeLeft = 5;
+  let timerCountdown = setInterval(function() {
+    if (timeLeft <= 0) {
+      clearInterval(timerCountdownEasy);
+      easyLevelTime();
+    } else {
+      $("#timerDisplay").text(timeLeft);
+    }
+    if (easyLevelSentencesTyped) {
+      timeLeft += 1;
+      clearInterval(timerCountdownEasy);
+    }
+    timeLeft -= 1;
+  }, 1000);
 }
 
 //shows and focuses on text field
