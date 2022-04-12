@@ -21,6 +21,7 @@ https://www.w3schools.com/jsref/jsref_split.asp split the text, as in spliting t
 https://stackoverflow.com/questions/6484670/how-do-i-split-a-string-into-an-array-of-characters
 https://stackoverflow.com/questions/895171/prevent-users-from-submitting-a-form-by-hitting-enter
 https://api.jquery.com/
+https://codepen.io/P1N2O/pen/pyBNzX - BACKGROUND GRADIENT
 */
 
 $(document).ready("#difficulty_dialog"); //on start up load btnGroup first
@@ -39,11 +40,11 @@ let blink = false;
 
 //EASY LEVEL
 let randomSentencesEasy = [
-   "It" //took me too long to realize that the ceiling hadn't been painted to look like the sky. The tour bus was packed with teenage girls heading toward their next adventure. The miniature pet elephant became the envy of the neighborhood.",
-  // "The urgent care center was flooded with patients after the news of a new deadly virus was made public. The rain pelted the windshield as the darkness engulfed us.",
-  // "Joe discovered that traffic cones make excellent megaphones. His get rich quick scheme was to grow a cactus farm. Going from child, to childish, to childlike is only a matter of time.",
-  // "Cursive writing is the best way to build a race track. Flying fish few by the space station. Joyce enjoyed eating pancakes with ketchup.",
-  // "The overpass went under the highway and into a secret world. The estate agent quickly marked out his territory on the dance floor. People generally approve of dogs eating cat food but not cats eating dog food."
+   "It took me too long to realize that the ceiling hadn't been painted to look like the sky. The tour bus was packed with teenage girls heading toward their next adventure. The miniature pet elephant became the envy of the neighborhood.",
+  "The urgent care center was flooded with patients after the news of a new deadly virus was made public. The rain pelted the windshield as the darkness engulfed us.",
+  "Joe discovered that traffic cones make excellent megaphones. His get rich quick scheme was to grow a cactus farm. Going from child, to childish, to childlike is only a matter of time.",
+  "Cursive writing is the best way to build a race track. Flying fish few by the space station. Joyce enjoyed eating pancakes with ketchup.",
+  "The overpass went under the highway and into a secret world. The estate agent quickly marked out his territory on the dance floor. People generally approve of dogs eating cat food but not cats eating dog food."
 ];
 
 //MEDIUM LEVEL
