@@ -28,21 +28,21 @@ $('#t-box').hide(); //hides the text box until a level is choosen
 let easyLevelSentencesShow = false;
 let easyLevelSentencesTyped = false;
 
-let blink = false;
-
 let mediumLevelSentencesShow = false;
 let mediumLevelSentencesTyped = false;
 
 let hardLevelSentencesShow = false;
 let hardLevelSentencesTyped = false;
 
+let blink = false;
+
 //EASY LEVEL
 let randomSentencesEasy = [
-  "It took me too long to realize that the ceiling hadn't been painted to look like the sky. The tour bus was packed with teenage girls heading toward their next adventure. The miniature pet elephant became the envy of the neighborhood. Tom got a small piece of pie.",
-  "The urgent care center was flooded with patients after the news of a new deadly virus was made public. The rain pelted the windshield as the darkness engulfed us. Tomorrow will bring something new, so leave today as a memory.",
-  "Joe discovered that traffic cones make excellent megaphones. His get rich quick scheme was to grow a cactus farm. Going from child, to childish, to childlike is only a matter of time. The near-death experience brought new ideas to light. ",
-  "Cursive writing is the best way to build a race track. Flying fish few by the space station. Joyce enjoyed eating pancakes with ketchup. He told us a very exciting adventure story.",
-  "The overpass went under the highway and into a secret world. The estate agent quickly marked out his territory on the dance floor. People generally approve of dogs eating cat food but not cats eating dog food. The two walked down the slot canyon oblivious to the sound of thunder in the distance."
+  "It took me too long to realize that the ceiling hadn't been painted to look like the sky. The tour bus was packed with teenage girls heading toward their next adventure. The miniature pet elephant became the envy of the neighborhood.",
+  "The urgent care center was flooded with patients after the news of a new deadly virus was made public. The rain pelted the windshield as the darkness engulfed us.",
+  "Joe discovered that traffic cones make excellent megaphones. His get rich quick scheme was to grow a cactus farm. Going from child, to childish, to childlike is only a matter of time.",
+  "Cursive writing is the best way to build a race track. Flying fish few by the space station. Joyce enjoyed eating pancakes with ketchup.",
+  "The overpass went under the highway and into a secret world. The estate agent quickly marked out his territory on the dance floor. People generally approve of dogs eating cat food but not cats eating dog food."
 ];
 
 //MEDIUM LEVEL
@@ -104,15 +104,14 @@ function blinkText() {
   startTime = new Date();
   let myTimer = setInterval(function() {
     $("#timer").text(Math.round((new Date - startTime) / 1000));
-    if ($("#timer" == 4)){
+    if ($("#timer" == 6)){
       blink = true;
       if(blink){
         $(`#random-sentences-easy`).fadeOut(500);
         $(`#random-sentences-easy`).fadeIn(500);
       }
-      setInterval(blinkText, 1000);
     }
-  }, 4000);
+  }, 1000);
 }
 
 //timerEasyCountdown
@@ -165,8 +164,8 @@ function timerHardStart() {
 
 //easy level function
 function btnEasyPress() {
+  blinkText();
   if (easyLevelSentencesShow) {
-    blinkText();
     $('#easy-level').text("Easy!");
     $('#title').text("Racer; start!");
     let random = Math.floor(Math.random() * randomSentencesEasy.length); //chooses a random string from the randomSentencesEasy array
