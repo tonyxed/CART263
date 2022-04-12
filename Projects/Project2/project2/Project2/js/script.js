@@ -7,8 +7,8 @@ I felt that I needed to create something that can utilise a junction of what was
 This project will incorporate JQUERY, CSS, and obviously JAVASCRIPT.
 
 -easy level = text starts to blink making it harder to see what your typing.
--medium level =
--hard level =
+-medium level = text gets large, then super small and vice versa
+-hard level = text is moving around everywhere on the screen.
 -overtime texts changes(gets smaller, gets larger, the text changes completely mid sentence)
 -make the game more distracting when playing
 
@@ -109,6 +109,7 @@ function blinkText() {
       if(blink){
         $(`#random-sentences-easy`).fadeOut(500);
         $(`#random-sentences-easy`).fadeIn(500);
+        $(`#random-sentences-easy`).effect("shake");
       }
     }
   }, 1000);
