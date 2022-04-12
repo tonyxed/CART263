@@ -73,7 +73,6 @@ $(function() {
     buttons: {
       "Easy": function() {
         timerEasyStart();
-        blinkText();
         $(this).dialog("close");
         responsiveVoice.speak("Easy level selected. Get ready to Type!", "UK English Male");
         responsiveVoice.speak("3", "UK English Male");
@@ -167,6 +166,7 @@ function timerHardStart() {
 //easy level function
 function btnEasyPress() {
   if (easyLevelSentencesShow) {
+    blinkText();
     $('#easy-level').text("Easy!");
     $('#title').text("Racer; start!");
     let random = Math.floor(Math.random() * randomSentencesEasy.length); //chooses a random string from the randomSentencesEasy array
