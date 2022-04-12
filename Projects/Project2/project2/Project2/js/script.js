@@ -2,13 +2,13 @@
 Racer; start!
 Anthony Calderone
 
-Use your exceptional typing capibilities to race fellow users(AI).
-Your character's speed depends on how fast you can type, and with minimal mistakes. The idea comes from the website; https://play.typeracer.com/
+Use your exceptional typing capibilities to race your way to victory.
 I felt that I needed to create something that can utilise a junction of what was introduced this semester, therefore, Racer; start! was born.
 This project will incorporate JQUERY, CSS, and obviously JAVASCRIPT.
 
--players move on correct spelling/AI???
--wpm, cpm, accurary
+-easy level = text starts to blink making it harder to see what your typing.
+-medium level =
+-hard level =
 -overtime texts changes(gets smaller, gets larger, the text changes completely mid sentence)
 -make the game more distracting when playing
 
@@ -28,6 +28,8 @@ $('#t-box').hide(); //hides the text box until a level is choosen
 let easyLevelSentencesShow = false;
 let easyLevelSentencesTyped = false;
 
+let blink = false;
+
 let mediumLevelSentencesShow = false;
 let mediumLevelSentencesTyped = false;
 
@@ -36,11 +38,11 @@ let hardLevelSentencesTyped = false;
 
 //EASY LEVEL
 let randomSentencesEasy = [
-  "It took me too long to realize that the ceiling hadn't been painted to look like the sky. The tour bus was packed with teenage girls heading toward their next adventure.",
-  "The urgent care center was flooded with patients after the news of a new deadly virus was made public. The rain pelted the windshield as the darkness engulfed us.",
-  "Joe discovered that traffic cones make excellent megaphones. His get rich quick scheme was to grow a cactus farm.",
-  "Cursive writing is the best way to build a race track. Flying fish few by the space station.",
-  "The overpass went under the highway and into a secret world. The estate agent quickly marked out his territory on the dance floor."
+  "It took me too long to realize that the ceiling hadn't been painted to look like the sky. The tour bus was packed with teenage girls heading toward their next adventure. The miniature pet elephant became the envy of the neighborhood. Tom got a small piece of pie.",
+  "The urgent care center was flooded with patients after the news of a new deadly virus was made public. The rain pelted the windshield as the darkness engulfed us. Tomorrow will bring something new, so leave today as a memory.",
+  "Joe discovered that traffic cones make excellent megaphones. His get rich quick scheme was to grow a cactus farm. Going from child, to childish, to childlike is only a matter of time. The near-death experience brought new ideas to light. ",
+  "Cursive writing is the best way to build a race track. Flying fish few by the space station. Joyce enjoyed eating pancakes with ketchup. He told us a very exciting adventure story.",
+  "The overpass went under the highway and into a secret world. The estate agent quickly marked out his territory on the dance floor. People generally approve of dogs eating cat food but not cats eating dog food. The two walked down the slot canyon oblivious to the sound of thunder in the distance."
 ];
 
 //MEDIUM LEVEL
@@ -71,6 +73,7 @@ $(function() {
     buttons: {
       "Easy": function() {
         timerEasyStart();
+        blinkText();
         $(this).dialog("close");
         responsiveVoice.speak("Easy level selected. Get ready to Type!", "UK English Male");
         responsiveVoice.speak("3", "UK English Male");
@@ -97,15 +100,31 @@ $(function() {
   });
 });
 
+//blinks the text on the easy level
+function blinkText() {
+  startTime = new Date();
+  let myTimer = setInterval(function() {
+    $("#timer").text(Math.round((new Date - startTime) / 1000));
+    if ($("#timer" == 4)){
+      blink = true;
+      if(blink){
+        $(`#random-sentences-easy`).fadeOut(500);
+        $(`#random-sentences-easy`).fadeIn(500);
+      }
+      setInterval(blinkText, 1000);
+    }
+  }, 4000);
+}
+
 //timerEasyCountdown
 function timerEasyStart() {
   startTime = new Date();
   let myTimer = setInterval(function() {
     $("#timer").text(Math.round((new Date - startTime) / 1000));
-    if ($("#timer" == 3)){
+    if ($("#timer" == 3)) {
       easyLevelSentencesShow = true;
     }
-    if(easyLevelSentencesShow){ //if easyLevelSentencesShow = true, then the timer stops
+    if (easyLevelSentencesShow) { //if easyLevelSentencesShow = true, then the timer stops
       clearInterval(myTimer);
       showInput();
       btnEasyPress();
@@ -118,10 +137,10 @@ function timerMediumStart() {
   startTime = new Date();
   let myTimer = setInterval(function() {
     $("#timer").text(Math.round((new Date - startTime) / 1000));
-    if ($("#timer" == 3)){
+    if ($("#timer" == 3)) {
       mediumLevelSentencesShow = true;
     }
-    if(mediumLevelSentencesShow){ //if mediumLevelSentencesShow = true, then the timer stops
+    if (mediumLevelSentencesShow) { //if mediumLevelSentencesShow = true, then the timer stops
       clearInterval(myTimer);
       showInput();
       btnMediumPress();
@@ -134,22 +153,15 @@ function timerHardStart() {
   startTime = new Date();
   let myTimer = setInterval(function() {
     $("#timer").text(Math.round((new Date - startTime) / 1000));
-    if ($("#timer" == 3)){
+    if ($("#timer" == 3)) {
       hardLevelSentencesShow = true;
     }
-    if(hardLevelSentencesShow){ //if hardLevelSentencesShow = true, then the timer stops
+    if (hardLevelSentencesShow) { //if hardLevelSentencesShow = true, then the timer stops
       clearInterval(myTimer);
       showInput();
       btnHardPress();
     }
   }, 5200);
-}
-
-//shows and focuses on text field
-function showInput() {
-  $(function() {
-    $('#t-box').show().focus();
-  });
 }
 
 //easy level function
@@ -293,6 +305,13 @@ function btnHardPress() {
       }
     });
   }
+}
+
+//shows and focuses on text field
+function showInput() {
+  $(function() {
+    $('#t-box').show().focus();
+  });
 }
 
 //dialog box for typing texts on the easy level
