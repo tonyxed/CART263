@@ -6,6 +6,7 @@ Use your exceptional typing capibilities to race your way to victory.
 I felt that I needed to create something that can utilise a junction of what was introduced this semester, therefore, Racer; start! was born.
 This project will incorporate JQUERY, CSS, and obviously JAVASCRIPT.
 
+-certain amount of time to type
 -easy level = text starts to blink making it harder to see what your typing.
 -medium level = text gets large, then super small and vice versa
 -hard level = text is moving around everywhere on the screen.
@@ -104,14 +105,28 @@ function blinkText() {
   startTime = new Date();
   let myTimer = setInterval(function() {
     $("#timer").text(Math.round((new Date - startTime) / 1000));
-    if ($("#timer" == 6)){
+    if ($("#timer" == 6)) {
       blink = true;
-      if(blink){
+      if (blink) {
         $(`#random-sentences-easy`).fadeOut(500);
         $(`#random-sentences-easy`).fadeIn(500);
         $(`#random-sentences-easy`).effect("shake");
       }
     }
+  }, 1000);
+}
+
+//timerCountdown
+function timerCountdown() {
+  let timeLeft = 10;
+  let timerCountdown = setInterval(function() {
+    if (timeLeft <= 0) {
+      clearInterval(timerCountdown);
+      easylevelTyped();
+    } else {
+      $("#timerDisplay").text(timeLeft);
+    }
+    timeLeft -= 1;
   }, 1000);
 }
 
@@ -166,6 +181,7 @@ function timerHardStart() {
 //easy level function
 function btnEasyPress() {
   blinkText();
+  timerCountdown();
   if (easyLevelSentencesShow) {
     $('#easy-level').text("Easy!");
     $('#title').text("Racer; start!");

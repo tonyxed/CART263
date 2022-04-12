@@ -106,3 +106,12 @@ body {
 #timer {
   color: #616161;
 }
+
+#timerDisplay {
+  font-family: cursive;
+  top: 2rem;
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+  color: purple;
+}
