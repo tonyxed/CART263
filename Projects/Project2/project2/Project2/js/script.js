@@ -6,12 +6,11 @@ Use your exceptional typing capibilities to race your way to victory.
 I felt that I needed to create something that can utilise a junction of what was introduced this semester, therefore, Racer; start! was born.
 This project will incorporate JQUERY, CSS, and obviously JAVASCRIPT.
 
--certain amount of time to type
--easy level = text starts to blink making it harder to see what your typing.
+-easy level = text starts to blink making it harder to see what your typing. -DONE
 -medium level = text gets large, then super small and vice versa
 -hard level = text is moving around everywhere on the screen.
--overtime texts changes(gets smaller, gets larger, the text changes completely mid sentence)
--make the game more distracting when playing
+-overtime texts changes(gets smaller, gets larger, the text changes completely mid sentence) -ONGOING
+-make the game more distracting when playing -ONGOING
 
 Documentation // tutorials
 
