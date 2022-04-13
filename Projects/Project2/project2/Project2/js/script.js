@@ -40,11 +40,11 @@ let blink = false;
 
 //EASY LEVEL
 let randomSentencesEasy = [
-  "It" //took me too long to realize that the ceiling hadn't been painted to look like the sky. The tour bus was packed with teenage girls heading toward their next adventure. The miniature pet elephant became the envy of the neighborhood.",
-  // "The urgent care center was flooded with patients after the news of a new deadly virus was made public. The rain pelted the windshield as the darkness engulfed us.",
-  // "Joe discovered that traffic cones make excellent megaphones. His get rich quick scheme was to grow a cactus farm. Going from child, to childish, to childlike is only a matter of time.",
-  // "Cursive writing is the best way to build a race track. Flying fish few by the space station. Joyce enjoyed eating pancakes with ketchup.",
-  // "The overpass went under the highway and into a secret world. The estate agent quickly marked out his territory on the dance floor. People generally approve of dogs eating cat food but not cats eating dog food."
+  "It took me too long to realize that the ceiling hadn't been painted to look like the sky. The tour bus was packed with teenage girls heading toward their next adventure. The miniature pet elephant became the envy of the neighborhood.",
+  "The urgent care center was flooded with patients after the news of a new deadly virus was made public. The rain pelted the windshield as the darkness engulfed us.",
+  "Joe discovered that traffic cones make excellent megaphones. His get rich quick scheme was to grow a cactus farm. Going from child, to childish, to childlike is only a matter of time.",
+  "Cursive writing is the best way to build a race track. Flying fish few by the space station. Joyce enjoyed eating pancakes with ketchup.",
+  "The overpass went under the highway and into a secret world. The estate agent quickly marked out his territory on the dance floor. People generally approve of dogs eating cat food but not cats eating dog food."
 ];
 
 //MEDIUM LEVEL
@@ -312,13 +312,16 @@ function btnHardPress() {
 
 //timerCountdownEasy
 function timerCountdownEasy() {
-  let timeLeft = 5;
+  let timeLeft = 45;
   let timerCountdown = setInterval(function() {
+    if (timeLeft == 20) {
+      responsiveVoice.speak("20 Seconds remain!", "UK English Male");
+    }
     if (timeLeft <= 0) {
       clearInterval(timerCountdownEasy);
       easyLevelTime();
     } else {
-      $("#timerDisplay").text(timeLeft);
+      $("#timerDisplay").text(timeLeft + " seconds left!");
     }
     if (easyLevelSentencesTyped) {
       timeLeft += 1;
