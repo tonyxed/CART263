@@ -6,8 +6,8 @@ Use your exceptional typing capibilities to race your way to victory.
 I felt that I needed to create something that can utilise a junction of what was introduced this semester, therefore, Racer; start! was born.
 This project will incorporate JQUERY, CSS, and obviously JAVASCRIPT.
 
--easy level = text starts to blink making it harder to see what your typing. -DONE
--medium level = text gets large, then super small and vice versa - add hamster of something when elevator music is playing
+-have dialog for each level explaining each level
+-medium level = text gets large, then super small and vice versa - add hamster of something when elevator music is playing -
 -hard level = text is moving around everywhere on the screen.
 
 Documentation // tutorials
@@ -86,7 +86,9 @@ function difficultyDialog() {
         "Easy": function() {
           timerEasyStart();
           $(this).dialog("close");
-          responsiveVoice.speak("Easy level selected. Get ready to Type!", "UK English Male");
+          responsiveVoice.speak("Easy level selected", "UK English Male");
+          responsiveVoice.speak("This level is quite unchallenging, should be a breeze.", "UK English Male");
+          responsiveVoice.speak("Get ready to type in:", "UK English Male");
           responsiveVoice.speak("3", "UK English Male");
           responsiveVoice.speak("2", "UK English Male");
           responsiveVoice.speak("1", "UK English Male");
@@ -141,7 +143,7 @@ function timerEasyStart() {
       showInput();
       btnEasyPress();
     }
-  }, 5200);
+  }, 9000);
 }
 
 //timerMediumCountdown
@@ -346,7 +348,7 @@ function timerCountdownEasy() {
 let relapse = true;
 //timerCountdownMedium
 function timerCountdownMedium() {
-  let timeLeft = 120;
+  let timeLeft = 30;
   let timerCountdown = setInterval(function() {
     if (timeLeft == 115) {
       responsiveVoice.speak("ERROR 404... Recalibrating!", "UK English Male");
@@ -528,6 +530,11 @@ function returnMediumNewNew() {
     key
   }) {
     if (key === $(initialCharacterMediumNewNew).text()) {
+      //hides the text every 3 seconds
+      $("#random-sentences-medium-new-new").animate({
+        left: "+=50",
+        height: "toggle"
+      }, 3000, function() {});
       $(initialCharacterMediumNewNew).removeClass('start'); //removes the class of 'start' if initialCharacter is the same as the character being typed
       $(initialCharacterMediumNewNew).addClass('correct'); //add correct class to the correct character typed
       initialCharacterMediumNewNew = singularCharactersMediumNewNew[currentIndexNewNew += 1]; //adds 1 onto the array, moves on to the next character in the array //for loop didn't work here
@@ -536,6 +543,12 @@ function returnMediumNewNew() {
     //if key isn't the same as initialCharacter then add class 'incorrect' to current index
     else if (key !== $(initialCharacterMediumNewNew).text()) {
       $(initialCharacterMediumNewNew).addClass('incorrect');
+      //changes font size if key is wrong
+      let fontSize = parseInt($('#random-sentences-medium-new-new').css("font-size"));
+      fontSize = fontSize - .0001 + "px";
+      $('#random-sentences-medium-new-new').css({
+        'font-size': fontSize
+      });
     }
     if (currentIndexNewNew === singularCharactersMediumNewNew.length) {
       mediumLevelSentencesTyped = true;
@@ -574,6 +587,12 @@ function returnNormalMediumTextNew() {
       $(initialCharacterMediumNew).addClass('start');
     } else if (key !== $(initialCharacterMediumNew).text()) {
       $(initialCharacterMediumNew).addClass('incorrect');
+      //changes font size if key is wrong
+      let fontSize = parseInt($('#random-sentences-medium-new-new').css("font-size"));
+      fontSize = fontSize - .0001 + "px";
+      $('#random-sentences-medium-new-new').css({
+        'font-size': fontSize
+      });
     }
     if (currentIndexNew === singularCharactersMediumNew.length) {
       mediumLevelSentencesTyped = true;
