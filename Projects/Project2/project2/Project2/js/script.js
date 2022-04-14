@@ -7,10 +7,8 @@ I felt that I needed to create something that can utilise a junction of what was
 This project will incorporate JQUERY, CSS, and obviously JAVASCRIPT.
 
 -easy level = text starts to blink making it harder to see what your typing. -DONE
--medium level = text gets large, then super small and vice versa
+-medium level = text gets large, then super small and vice versa - add hamster of something when elevator music is playing
 -hard level = text is moving around everywhere on the screen.
--overtime texts changes(gets smaller, gets larger, the text changes completely mid sentence) -ONGOING
--make the game more distracting when playing -ONGOING
 
 Documentation // tutorials
 
@@ -23,7 +21,7 @@ https://api.jquery.com/
 https://codepen.io/P1N2O/pen/pyBNzX - BACKGROUND GRADIENT
 */
 
-$(document).ready("#difficulty_dialog"); //on start up load btnGroup first
+$(document).ready(difficultyDialog); //on start up load btnGroup first
 $('#t-box').hide(); //hides the text box until a level is choosen
 
 let easyLevelSentencesShow = false;
@@ -49,10 +47,22 @@ let randomSentencesEasy = [
 //MEDIUM LEVEL
 let randomSentencesMedium = [
   "He enjoys practicing his ballet in the bathroom. Don't piss in my garden and tell me you're trying to help my plants grow. His son quipped that power bars were nothing more than adult candy bars.",
-  "He wasn't bitter that she had moved on but from the radish. He found rain fascinating yet unpleasant. The heat",
-  "It isn't difficult to do a handstand if you just stand on your hands. You bite up because of your lower jaw. At that moment he wasn't listening to music, he was living an experience.",
-  "Flying fish few by the space station. The urgent care center was flooded with patients after the news of a new deadly virus was made public. Jim liked driving around town with his hazard lights on.",
-  "It's always a good idea to seek shelter from the evil gaze of the sun. He put heat on the wound to see what would grow. Always bring cinnamon buns on a deep-sea diving expedition."
+  "He wasn't bitter that she had moved on but from the radish. He found rain fascinating yet unpleasant. It isn't difficult to do a handstand if you just stand on your hands. You bite up because of your lower jaw. At that moment he wasn't listening to music, he was living an experience.",
+  "Flying fish few by the space station. The urgent care center was flooded with patients after the news of a new deadly virus was made public. Jim liked driving around town with his hazard lights on. It's always a good idea to seek shelter from the evil gaze of the sun. He put heat on the wound to see what would grow. Always bring cinnamon buns on a deep-sea diving expedition."
+];
+
+//MEDIUM LEVEL New
+let randomSentencesMediumNew = [
+  "He enjoys practicing his ballet in the bathroom. Don't piss in my garden and tell me you're trying to help my plants grow. His son quipped that power bars were nothing more than adult candy bars.",
+  "He wasn't bitter that she had moved on but from the radish. He found rain fascinating yet unpleasant. It isn't difficult to do a handstand if you just stand on your hands. You bite up because of your lower jaw. At that moment he wasn't listening to music, he was living an experience.",
+  "Flying fish few by the space station. The urgent care center was flooded with patients after the news of a new deadly virus was made public. Jim liked driving around town with his hazard lights on. It's always a good idea to seek shelter from the evil gaze of the sun. He put heat on the wound to see what would grow. Always bring cinnamon buns on a deep-sea diving expedition."
+];
+
+//MEDIUM LEVEL NEW NEW
+let randomSentencesMediumNewNew = [
+  "He enjoys practicing his ballet in the bathroom. Don't piss in my garden and tell me you're trying to help my plants grow. His son quipped that power bars were nothing more than adult candy bars.",
+  "He wasn't bitter that she had moved on but from the radish. He found rain fascinating yet unpleasant. It isn't difficult to do a handstand if you just stand on your hands. You bite up because of your lower jaw. At that moment he wasn't listening to music, he was living an experience.",
+  "Flying fish few by the space station. The urgent care center was flooded with patients after the news of a new deadly virus was made public. Jim liked driving around town with his hazard lights on. It's always a good idea to seek shelter from the evil gaze of the sun. He put heat on the wound to see what would grow. Always bring cinnamon buns on a deep-sea diving expedition."
 ];
 
 //HARD LEVEL
@@ -65,40 +75,42 @@ let randomSentencesHard = [
 ];
 
 //LEVEL DIALOG
-$(function() {
-  $("#difficulty_dialog").dialog({
-    resizable: false,
-    height: "auto",
-    width: 400,
-    modal: true,
-    buttons: {
-      "Easy": function() {
-        timerEasyStart();
-        $(this).dialog("close");
-        responsiveVoice.speak("Easy level selected. Get ready to Type!", "UK English Male");
-        responsiveVoice.speak("3", "UK English Male");
-        responsiveVoice.speak("2", "UK English Male");
-        responsiveVoice.speak("1", "UK English Male");
-      },
-      "Medium": function() {
-        timerMediumStart();
-        $(this).dialog("close");
-        responsiveVoice.speak("Medium level selected. Get ready to Type!", "UK English Male");
-        responsiveVoice.speak("3", "UK English Male");
-        responsiveVoice.speak("2", "UK English Male");
-        responsiveVoice.speak("1", "UK English Male");
-      },
-      "Hard": function() {
-        timerHardStart();
-        $(this).dialog("close");
-        responsiveVoice.speak("Hard level selected. Get ready to Type!", "UK English Male");
-        responsiveVoice.speak("3", "UK English Male");
-        responsiveVoice.speak("2", "UK English Male");
-        responsiveVoice.speak("1", "UK English Male");
-      },
-    }
+function difficultyDialog() {
+  $(function() {
+    $("#difficulty_dialog").dialog({
+      resizable: false,
+      height: "auto",
+      width: 400,
+      modal: true,
+      buttons: {
+        "Easy": function() {
+          timerEasyStart();
+          $(this).dialog("close");
+          responsiveVoice.speak("Easy level selected. Get ready to Type!", "UK English Male");
+          responsiveVoice.speak("3", "UK English Male");
+          responsiveVoice.speak("2", "UK English Male");
+          responsiveVoice.speak("1", "UK English Male");
+        },
+        "Medium": function() {
+          timerMediumStart();
+          $(this).dialog("close");
+          responsiveVoice.speak("Medium level selected. Get ready to Type!", "UK English Male");
+          responsiveVoice.speak("3", "UK English Male");
+          responsiveVoice.speak("2", "UK English Male");
+          responsiveVoice.speak("1", "UK English Male");
+        },
+        "Hard": function() {
+          timerHardStart();
+          $(this).dialog("close");
+          responsiveVoice.speak("Hard level selected. Get ready to Type!", "UK English Male");
+          responsiveVoice.speak("3", "UK English Male");
+          responsiveVoice.speak("2", "UK English Male");
+          responsiveVoice.speak("1", "UK English Male");
+        },
+      }
+    });
   });
-});
+}
 
 //blinks the text on the easy level
 function blinkText() {
@@ -197,7 +209,6 @@ function btnEasyPress() {
         $(initialCharacterEasy).removeClass('start'); //removes the class of 'start' if initialCharacter is the same as the character being typed
         $(initialCharacterEasy).addClass('correct'); //add correct class to the correct character typed
         initialCharacterEasy = singularCharactersEasy[currentIndex += 1]; //adds 1 onto the array, moves on to the next character in the array //for loop didn't work here
-        console.log(currentIndex);
         $(initialCharacterEasy).addClass('start'); //adds the class 'start'
       }
       //if key isn't the same as initialCharacter then add class 'incorrect' to current index
@@ -216,6 +227,7 @@ function btnEasyPress() {
 
 //medium level function
 function btnMediumPress() {
+  timerCountdownMedium();
   if (mediumLevelSentencesShow) {
     $('#medium-level').text("Medium!");
     $('#title').text("Racer; start!");
@@ -245,7 +257,6 @@ function btnMediumPress() {
         $(initialCharacterMedium).removeClass('start'); //removes the class of 'start' if initialCharacter is the same as the character being typed
         $(initialCharacterMedium).addClass('correct'); //add correct class to the correct character typed
         initialCharacterMedium = singularCharactersMedium[currentIndex += 1]; //adds 1 onto the array, moves on to the next character in the array //for loop didn't work here
-        console.log(currentIndex);
         $(initialCharacterMedium).addClass('start'); //adds the class 'start'
       }
       //if key isn't the same as initialCharacter then add class 'incorrect' to current index
@@ -264,6 +275,7 @@ function btnMediumPress() {
 
 //hard level function
 function btnHardPress() {
+  timerCountdownHard();
   if (hardLevelSentencesShow) {
     $('#hard-level').text("Hard!");
     $('#title').text("Racer; start!");
@@ -330,6 +342,85 @@ function timerCountdownEasy() {
   }, 1000);
 }
 
+
+let relapse = true;
+//timerCountdownMedium
+function timerCountdownMedium() {
+  let timeLeft = 120;
+  let timerCountdown = setInterval(function() {
+    if (timeLeft == 115) {
+      responsiveVoice.speak("ERROR 404... Recalibrating!", "UK English Male");
+      $('#random-sentences-medium').text("ERROR 404 ... Recalibrating!");
+      responsiveVoice.speak("While we wait for the technicians to fix the issue, here is some relaxing music to sooth the brain!", "UK English Male");
+    }
+    if (timeLeft == 107) {
+      music.play();
+    }
+    if (timeLeft == 80) {
+      music.pause();
+      music.currentTime = 0;
+      $('#random-sentences-medium').hide();
+      responsiveVoice.speak("Resolved", "UK English Male");
+      returnNormalMediumTextNew();
+      showInput();
+    }
+    if (timeLeft == 70) {
+      $('#random-sentences-medium-new').text("ERROR 404 ... Recalibrating!");
+      responsiveVoice.speak("ERROR 404... Recalibrating!", "UK English Male");
+    }
+    if (timeLeft == 67) {
+      music.play();
+    }
+    if (relapse) {
+      if (timeLeft == 30) {
+        music.pause();
+        music.currentTime = 0;
+        $('#random-sentences-medium-new').hide();
+        responsiveVoice.speak("Resolved", "UK English Male");
+        $('#random-sentences-medium').hide();
+        returnMediumNewNew();
+        showInput();
+        responsiveVoice.speak("Sorry for the inconvience, we have added an extra fourty something seconds to the clock!", "UK English Male");
+        timeLeft = 66;
+        relapse = false;
+      }
+    }
+    if (timeLeft <= 0) {
+      clearInterval(timerCountdownEasy);
+      mediumLevelTime();
+    } else {
+      $("#timerDisplay").text(timeLeft + " seconds left!");
+    }
+    if (mediumLevelSentencesTyped) {
+      mediumlevelTyped();
+      timeLeft += 1;
+      clearInterval(timerCountdownMedium);
+    }
+    timeLeft -= 1;
+  }, 1000);
+}
+
+//timerCountdownHard
+function timerCountdownHard() {
+  let timeLeft = 120;
+  let timerCountdown = setInterval(function() {
+    if (timeLeft == 50) {
+      responsiveVoice.speak("50 Seconds remain!", "UK English Male");
+    }
+    if (timeLeft <= 0) {
+      clearInterval(timerCountdownEasy);
+      hardLevelTime();
+    } else {
+      $("#timerDisplay").text(timeLeft + " seconds left!");
+    }
+    if (hardLevelSentencesTyped) {
+      timeLeft += 1;
+      clearInterval(timerCountdownHard);
+    }
+    timeLeft -= 1;
+  }, 1000);
+}
+
 //shows and focuses on text field
 function showInput() {
   $(function() {
@@ -367,16 +458,13 @@ function mediumLevelTime() {
   });
 }
 
-//dialog box for typing texts on the easy level
+//dialog box for typing texts on the medium level
 function easylevelTyped() {
   $(function() {
     $("#complete_easy_dialog").dialog({
-      resizable: false,
-      height: "auto",
-      width: 400,
       modal: true,
       buttons: {
-        Finish: function() {
+        Menu: function() {
           $(this).dialog("close");
           location.reload();
         }
@@ -412,6 +500,87 @@ function hardlevelTyped() {
         }
       }
     });
+  });
+}
+
+//return to normal medium sentences
+function returnMediumNewNew() {
+  let random = Math.floor(Math.random() * randomSentencesMediumNewNew.length); //chooses a random string from the randomSentencesEasy array
+
+  //creates the random sentences from the div
+  let mediumIndexNewNew = 0;
+  const RANDOM_SENTENCES_DIV = $(`#random-sentences-medium-new-new`)[mediumIndexNewNew];
+
+  //splits the characters into single characters including spacing, then placed into an array
+  let singularCharactersMediumNewNew = randomSentencesMediumNewNew[random].split("").map((character) => { //Places the randomized string into an array and then maps over each array using an empty string
+    let span = $('<span/>'); //creates the <span>
+    $(span).text(character);
+    $(RANDOM_SENTENCES_DIV).append(span); //give each character a <span>
+    return span; //returns the value of span
+  });
+
+  //highlights the first character in the array of singleCharacters
+  let currentIndexNewNew = 0;
+  let initialCharacterMediumNewNew = singularCharactersMediumNewNew[currentIndexNewNew];
+  $(initialCharacterMediumNewNew).addClass('start'); //adds class 'start' to initialCharacter in the array
+  //if keypress is down
+  $(document).on('keypress', function({
+    key
+  }) {
+    if (key === $(initialCharacterMediumNewNew).text()) {
+      $(initialCharacterMediumNewNew).removeClass('start'); //removes the class of 'start' if initialCharacter is the same as the character being typed
+      $(initialCharacterMediumNewNew).addClass('correct'); //add correct class to the correct character typed
+      initialCharacterMediumNewNew = singularCharactersMediumNewNew[currentIndexNewNew += 1]; //adds 1 onto the array, moves on to the next character in the array //for loop didn't work here
+      $(initialCharacterMediumNewNew).addClass('start'); //adds the class 'start'
+    }
+    //if key isn't the same as initialCharacter then add class 'incorrect' to current index
+    else if (key !== $(initialCharacterMediumNewNew).text()) {
+      $(initialCharacterMediumNewNew).addClass('incorrect');
+    }
+    if (currentIndexNewNew === singularCharactersMediumNewNew.length) {
+      mediumLevelSentencesTyped = true;
+    }
+    if (mediumLevelSentencesTyped) {
+      mediumlevelTyped();
+    }
+  });
+}
+//return to normal medium sentences
+function returnNormalMediumTextNew() {
+  let random = Math.floor(Math.random() * randomSentencesMediumNew.length);
+
+  let mediumIndexNew = 0;
+  const RANDOM_SENTENCES_DIV = $(`#random-sentences-medium-new`)[mediumIndexNew];
+
+  let singularCharactersMediumNew = randomSentencesMediumNew[random].split("").map((character) => {
+    let span = $('<span/>');
+    $(span).text(character);
+    $(RANDOM_SENTENCES_DIV).append(span);
+    return span;
+  });
+
+
+  let currentIndexNew = 0;
+  let initialCharacterMediumNew = singularCharactersMediumNew[currentIndexNew];
+  $(initialCharacterMediumNew).addClass('start');
+
+  $(document).on('keypress', function({
+    key
+  }) {
+    if (key === $(initialCharacterMediumNew).text()) {
+      $(initialCharacterMediumNew).removeClass('start');
+      $(initialCharacterMediumNew).addClass('correct');
+      initialCharacterMediumNew = singularCharactersMediumNew[currentIndexNew += 1];
+      $(initialCharacterMediumNew).addClass('start');
+    } else if (key !== $(initialCharacterMediumNew).text()) {
+      $(initialCharacterMediumNew).addClass('incorrect');
+    }
+    if (currentIndexNew === singularCharactersMediumNew.length) {
+      mediumLevelSentencesTyped = true;
+    }
+    if (mediumLevelSentencesTyped) {
+      mediumlevelTyped();
+    }
   });
 }
 
