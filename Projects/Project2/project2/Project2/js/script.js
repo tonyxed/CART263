@@ -46,16 +46,15 @@ let randomSentencesEasy = [
 
 //MEDIUM LEVEL
 let randomSentencesMedium = [
-  ".srab ydnac tluda naht erom gnihton erew srab rewop taht deppiuq nos siH .worg stnalp ym pleh ot gniyrt er'uoy em llet dna nedrag ym ni ssip t'noD .moorhtab eht ni tellab sih gnicitcarp syojne eH",
-  ".ecneirepxe na gnivil saw eh ,cisum ot gninetsil t'nsaw eh tnemom taht tA .waj rewol ruoy fo esuaceb pu etib uoY .sdnah ruoy no dnats tsuj uoy fi dnatsdnah a od ot tluciffid t'nsi tI .tnasaelpnu tey gnitanicsaf niar dnuof eH .hsidar eht morf tub no devom dah ehs taht rettib t'nsaw eH",
-  ".noitidepxe gnivid aes-peed a no snub nomannic gnirb syawlA .worg dluow tahw ees ot dnuow eht no taeh tup eH .nus eht fo ezag live eht morf retlehs kees ot aedi doog a syawla s'tI .no sthgil drazah sih htiw nwot dnuora gnivird dekil miJ .cilbup edam saw suriv yldaed wen a fo swen eht retfa stneitap htiw dedoolf saw retnec erac tnegru ehT .noitats ecaps eht yb wef hsif gniylF"
-];
-
-//MEDIUM LEVEL New
-let randomSentencesMediumNew = [
   "He enjoys practicing his ballet in the bathroom. Don't piss in my garden and tell me you're trying to help my plants grow. His son quipped that power bars were nothing more than adult candy bars.",
   "He wasn't bitter that she had moved on but from the radish. He found rain fascinating yet unpleasant. It isn't difficult to do a handstand if you just stand on your hands. You bite up because of your lower jaw. At that moment he wasn't listening to music, he was living an experience.",
   "Flying fish few by the space station. The urgent care center was flooded with patients after the news of a new deadly virus was made public. Jim liked driving around town with his hazard lights on. It's always a good idea to seek shelter from the evil gaze of the sun. He put heat on the wound to see what would grow. Always bring cinnamon buns on a deep-sea diving expedition."
+];
+//MEDIUM LEVEL New
+let randomSentencesMediumNew = [
+  ".srab ydnac tluda naht erom gnihton erew srab rewop taht deppiuq nos siH .worg stnalp ym pleh ot gniyrt er'uoy em llet dna nedrag ym ni ssip t'noD .moorhtab eht ni tellab sih gnicitcarp syojne eH",
+  ".ecneirepxe na gnivil saw eh ,cisum ot gninetsil t'nsaw eh tnemom taht tA .waj rewol ruoy fo esuaceb pu etib uoY .sdnah ruoy no dnats tsuj uoy fi dnatsdnah a od ot tluciffid t'nsi tI .tnasaelpnu tey gnitanicsaf niar dnuof eH .hsidar eht morf tub no devom dah ehs taht rettib t'nsaw eH",
+  ".noitidepxe gnivid aes-peed a no snub nomannic gnirb syawlA .worg dluow tahw ees ot dnuow eht no taeh tup eH .nus eht fo ezag live eht morf retlehs kees ot aedi doog a syawla s'tI .no sthgil drazah sih htiw nwot dnuora gnivird dekil miJ .cilbup edam saw suriv yldaed wen a fo swen eht retfa stneitap htiw dedoolf saw retnec erac tnegru ehT .noitats ecaps eht yb wef hsif gniylF"
 ];
 
 //MEDIUM LEVEL NEW NEW
@@ -113,70 +112,6 @@ function difficultyDialog() {
       }
     });
   });
-}
-
-//blinks the text on the easy level
-function blinkText() {
-  startTime = new Date();
-  let myTimer = setInterval(function() {
-    $("#timer").text(Math.round((new Date - startTime) / 1000));
-    if ($("#timer" == 6)) {
-      blink = true;
-      if (blink) {
-        $(`#random-sentences-easy`).fadeOut(500);
-        $(`#random-sentences-easy`).fadeIn(500);
-        $(`#random-sentences-easy`).effect("shake");
-      }
-    }
-  }, 1000);
-}
-
-//timerEasyCountdown
-function timerEasyStart() {
-  startTime = new Date();
-  let myTimer = setInterval(function() {
-    $("#timer").text(Math.round((new Date - startTime) / 1000));
-    if ($("#timer" == 3)) {
-      easyLevelSentencesShow = true;
-    }
-    if (easyLevelSentencesShow) { //if easyLevelSentencesShow = true, then the timer stops
-      clearInterval(myTimer);
-      showInput();
-      btnEasyPress();
-    }
-  }, 9000);
-}
-
-//timerMediumCountdown
-function timerMediumStart() {
-  startTime = new Date();
-  let myTimer = setInterval(function() {
-    $("#timer").text(Math.round((new Date - startTime) / 1000));
-    if ($("#timer" == 3)) {
-      mediumLevelSentencesShow = true;
-    }
-    if (mediumLevelSentencesShow) { //if mediumLevelSentencesShow = true, then the timer stops
-      clearInterval(myTimer);
-      showInput();
-      btnMediumPress();
-    }
-  }, 7600);
-}
-
-//timerHardCountdown
-function timerHardStart() {
-  startTime = new Date();
-  let myTimer = setInterval(function() {
-    $("#timer").text(Math.round((new Date - startTime) / 1000));
-    if ($("#timer" == 3)) {
-      hardLevelSentencesShow = true;
-    }
-    if (hardLevelSentencesShow) { //if hardLevelSentencesShow = true, then the timer stops
-      clearInterval(myTimer);
-      showInput();
-      btnHardPress();
-    }
-  }, 5200);
 }
 
 //easy level function
@@ -258,9 +193,9 @@ function btnMediumPress() {
     }) {
       if (key === $(initialCharacterMedium).text()) {
         $("#random-sentences-medium").animate({
-          left: "+=50",
+          left: "+=1000",
           height: "toggle"
-        }, 100, function() {});
+        }, 10, function() {});
         $(initialCharacterMedium).removeClass('start'); //removes the class of 'start' if initialCharacter is the same as the character being typed
         $(initialCharacterMedium).addClass('correct'); //add correct class to the correct character typed
         initialCharacterMedium = singularCharactersMedium[currentIndex += 1]; //adds 1 onto the array, moves on to the next character in the array //for loop didn't work here
@@ -328,11 +263,75 @@ function btnHardPress() {
   }
 }
 
+//blinks the text on the easy level
+function blinkText() {
+  startTime = new Date();
+  let myTimer = setInterval(function() {
+    $("#timer").text(Math.round((new Date - startTime) / 1000));
+    if ($("#timer" == 6)) {
+      blink = true;
+      if (blink) {
+        $(`#random-sentences-easy`).fadeOut(500);
+        $(`#random-sentences-easy`).fadeIn(500);
+        $(`#random-sentences-easy`).effect("shake");
+      }
+    }
+  }, 1000);
+}
+
+//timerEasyCountdown
+function timerEasyStart() {
+  startTime = new Date();
+  let myTimer = setInterval(function() {
+    $("#timer").text(Math.round((new Date - startTime) / 1000));
+    if ($("#timer" == 3)) {
+      easyLevelSentencesShow = true;
+    }
+    if (easyLevelSentencesShow) { //if easyLevelSentencesShow = true, then the timer stops
+      clearInterval(myTimer);
+      showInput();
+      btnEasyPress();
+    }
+  }, 9000);
+}
+
+//timerMediumCountdown
+function timerMediumStart() {
+  startTime = new Date();
+  let myTimer = setInterval(function() {
+    $("#timer").text(Math.round((new Date - startTime) / 1000));
+    if ($("#timer" == 3)) {
+      mediumLevelSentencesShow = true;
+    }
+    if (mediumLevelSentencesShow) { //if mediumLevelSentencesShow = true, then the timer stops
+      clearInterval(myTimer);
+      showInput();
+      btnMediumPress();
+    }
+  }, 7600);
+}
+
+//timerHardCountdown
+function timerHardStart() {
+  startTime = new Date();
+  let myTimer = setInterval(function() {
+    $("#timer").text(Math.round((new Date - startTime) / 1000));
+    if ($("#timer" == 3)) {
+      hardLevelSentencesShow = true;
+    }
+    if (hardLevelSentencesShow) { //if hardLevelSentencesShow = true, then the timer stops
+      clearInterval(myTimer);
+      showInput();
+      btnHardPress();
+    }
+  }, 5200);
+}
+
 //timerCountdownEasy
 function timerCountdownEasy() {
   let timeLeft = 45;
   let timerCountdown = setInterval(function() {
-    if (timeLeft == 20) {
+    if (timeLeft == 21) {
       responsiveVoice.speak("20 Seconds remain!", "UK English Male");
     }
     if (timeLeft <= 0) {
@@ -393,6 +392,7 @@ function timerCountdownMedium() {
       music.pause();
       music.currentTime = 0;
       responsiveVoice.speak("Working now!", "UK English Male");
+      responsiveVoice.speak("Nevermind!", "UK English Male");
     }
     if (timeLeft == 66) {
       music.play();
@@ -401,7 +401,7 @@ function timerCountdownMedium() {
       if (timeLeft == 40) {
         music.pause();
         music.currentTime = 0;
-        responsiveVoice.speak("Issue resolved, sorry for the inconvience, we have added an extra twenty something seconds to the clock!", "UK English Male");
+        responsiveVoice.speak("Issue resolved, sorry for the inconvience, we have added an extra twenty five seconds to the clock!", "UK English Male");
         returnMediumNewNew();
         showInput();
         timeLeft = 65;
@@ -606,7 +606,6 @@ function returnMediumTextNew() {
       $('#random-sentences-medium-new').css({
         'font-size': fontSize
       });
-      return;
       $(initialCharacterMediumNew).removeClass('start');
       $(initialCharacterMediumNew).addClass('correct');
       initialCharacterMediumNew = singularCharactersMediumNew[currentIndexNew += 1];
