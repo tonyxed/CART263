@@ -46,9 +46,9 @@ let randomSentencesEasy = [
 
 //MEDIUM LEVEL
 let randomSentencesMedium = [
-  "He enjoys practicing his ballet in the bathroom. Don't piss in my garden and tell me you're trying to help my plants grow. His son quipped that power bars were nothing more than adult candy bars.",
-  "He wasn't bitter that she had moved on but from the radish. He found rain fascinating yet unpleasant. It isn't difficult to do a handstand if you just stand on your hands. You bite up because of your lower jaw. At that moment he wasn't listening to music, he was living an experience.",
-  "Flying fish few by the space station. The urgent care center was flooded with patients after the news of a new deadly virus was made public. Jim liked driving around town with his hazard lights on. It's always a good idea to seek shelter from the evil gaze of the sun. He put heat on the wound to see what would grow. Always bring cinnamon buns on a deep-sea diving expedition."
+  ".srab ydnac tluda naht erom gnihton erew srab rewop taht deppiuq nos siH .worg stnalp ym pleh ot gniyrt er'uoy em llet dna nedrag ym ni ssip t'noD .moorhtab eht ni tellab sih gnicitcarp syojne eH",
+  ".ecneirepxe na gnivil saw eh ,cisum ot gninetsil t'nsaw eh tnemom taht tA .waj rewol ruoy fo esuaceb pu etib uoY .sdnah ruoy no dnats tsuj uoy fi dnatsdnah a od ot tluciffid t'nsi tI .tnasaelpnu tey gnitanicsaf niar dnuof eH .hsidar eht morf tub no devom dah ehs taht rettib t'nsaw eH",
+  ".noitidepxe gnivid aes-peed a no snub nomannic gnirb syawlA .worg dluow tahw ees ot dnuow eht no taeh tup eH .nus eht fo ezag live eht morf retlehs kees ot aedi doog a syawla s'tI .no sthgil drazah sih htiw nwot dnuora gnivird dekil miJ .cilbup edam saw suriv yldaed wen a fo swen eht retfa stneitap htiw dedoolf saw retnec erac tnegru ehT .noitats ecaps eht yb wef hsif gniylF"
 ];
 
 //MEDIUM LEVEL New
@@ -96,7 +96,8 @@ function difficultyDialog() {
         "Medium": function() {
           timerMediumStart();
           $(this).dialog("close");
-          responsiveVoice.speak("Medium level selected. Get ready to Type!", "UK English Male");
+          responsiveVoice.speak("Medium level selected", "UK English Male");
+          responsiveVoice.speak("This level has superb coding, you will see!", "UK English Male");
           responsiveVoice.speak("3", "UK English Male");
           responsiveVoice.speak("2", "UK English Male");
           responsiveVoice.speak("1", "UK English Male");
@@ -159,7 +160,7 @@ function timerMediumStart() {
       showInput();
       btnMediumPress();
     }
-  }, 5200);
+  }, 7600);
 }
 
 //timerHardCountdown
@@ -256,6 +257,10 @@ function btnMediumPress() {
       key
     }) {
       if (key === $(initialCharacterMedium).text()) {
+        $("#random-sentences-medium").animate({
+          left: "+=50",
+          height: "toggle"
+        }, 100, function() {});
         $(initialCharacterMedium).removeClass('start'); //removes the class of 'start' if initialCharacter is the same as the character being typed
         $(initialCharacterMedium).addClass('correct'); //add correct class to the correct character typed
         initialCharacterMedium = singularCharactersMedium[currentIndex += 1]; //adds 1 onto the array, moves on to the next character in the array //for loop didn't work here
@@ -344,46 +349,62 @@ function timerCountdownEasy() {
   }, 1000);
 }
 
-
-let relapse = true;
 //timerCountdownMedium
 function timerCountdownMedium() {
-  let timeLeft = 30;
+  let relapse = true;
+  let timeLeft = 130;
   let timerCountdown = setInterval(function() {
-    if (timeLeft == 115) {
-      responsiveVoice.speak("ERROR 404... Recalibrating!", "UK English Male");
-      $('#random-sentences-medium').text("ERROR 404 ... Recalibrating!");
-      responsiveVoice.speak("While we wait for the technicians to fix the issue, here is some relaxing music to sooth the brain!", "UK English Male");
+    if (timeLeft == 125) {
+      responsiveVoice.speak("There seems to be something wrong with the code, give me a second!", "UK English Male");
     }
-    if (timeLeft == 107) {
+    if (timeLeft == 120) {
+      responsiveVoice.speak("Recalibrating!", "UK English Male");
+      responsiveVoice.speak("While we wait for the technicians to fix the issue, here is some relaxing music to sooth the brain!", "UK English Male");
+      $('#random-sentences-medium').empty();
+    }
+    if (timeLeft == 113) {
+      music.play();
+    }
+    if (timeLeft == 100) {
+      music.pause();
+      music.currentTime = 0;
+      responsiveVoice.speak("Don't look at me like that, this wasn't my fault!", "UK English Male");
+    }
+    if (timeLeft == 97) {
       music.play();
     }
     if (timeLeft == 80) {
       music.pause();
       music.currentTime = 0;
-      $('#random-sentences-medium').hide();
-      responsiveVoice.speak("Resolved", "UK English Male");
-      returnNormalMediumTextNew();
+      responsiveVoice.speak("Resolved, you may continue", "UK English Male");
+      returnMediumTextNew();
       showInput();
     }
-    if (timeLeft == 70) {
-      $('#random-sentences-medium-new').text("ERROR 404 ... Recalibrating!");
-      responsiveVoice.speak("ERROR 404... Recalibrating!", "UK English Male");
+    if (timeLeft == 75) {
+      $('#random-sentences-medium-new').empty();
+      $('#random-sentences-medium-new').remove();
+      $('#random-sentences-medium-new').hide();
+      responsiveVoice.speak("They seem to have broken it entirely, hold on please!", "UK English Male");
     }
-    if (timeLeft == 67) {
+    if (timeLeft == 71) {
+      music.play();
+    }
+    if (timeLeft == 68) {
+      music.pause();
+      music.currentTime = 0;
+      responsiveVoice.speak("Working now!", "UK English Male");
+    }
+    if (timeLeft == 66) {
       music.play();
     }
     if (relapse) {
-      if (timeLeft == 30) {
+      if (timeLeft == 40) {
         music.pause();
         music.currentTime = 0;
-        $('#random-sentences-medium-new').hide();
-        responsiveVoice.speak("Resolved", "UK English Male");
-        $('#random-sentences-medium').hide();
+        responsiveVoice.speak("Issue resolved, sorry for the inconvience, we have added an extra twenty something seconds to the clock!", "UK English Male");
         returnMediumNewNew();
         showInput();
-        responsiveVoice.speak("Sorry for the inconvience, we have added an extra fourty something seconds to the clock!", "UK English Male");
-        timeLeft = 66;
+        timeLeft = 65;
         relapse = false;
       }
     }
@@ -543,12 +564,6 @@ function returnMediumNewNew() {
     //if key isn't the same as initialCharacter then add class 'incorrect' to current index
     else if (key !== $(initialCharacterMediumNewNew).text()) {
       $(initialCharacterMediumNewNew).addClass('incorrect');
-      //changes font size if key is wrong
-      let fontSize = parseInt($('#random-sentences-medium-new-new').css("font-size"));
-      fontSize = fontSize - .0001 + "px";
-      $('#random-sentences-medium-new-new').css({
-        'font-size': fontSize
-      });
     }
     if (currentIndexNewNew === singularCharactersMediumNewNew.length) {
       mediumLevelSentencesTyped = true;
@@ -559,7 +574,7 @@ function returnMediumNewNew() {
   });
 }
 //return to normal medium sentences
-function returnNormalMediumTextNew() {
+function returnMediumTextNew() {
   let random = Math.floor(Math.random() * randomSentencesMediumNew.length);
 
   let mediumIndexNew = 0;
@@ -572,7 +587,6 @@ function returnNormalMediumTextNew() {
     return span;
   });
 
-
   let currentIndexNew = 0;
   let initialCharacterMediumNew = singularCharactersMediumNew[currentIndexNew];
   $(initialCharacterMediumNew).addClass('start');
@@ -581,18 +595,24 @@ function returnNormalMediumTextNew() {
     key
   }) {
     if (key === $(initialCharacterMediumNew).text()) {
+      //hides the text every 3 seconds
+      $("#random-sentences-medium-new").animate({
+        left: "+=50",
+        height: "toggle"
+      }, 2000, function() {});
+      //changes font size if key if right
+      let fontSize = parseInt($('#random-sentences-medium-new').css("font-size"));
+      fontSize = fontSize - .0001 + "px";
+      $('#random-sentences-medium-new').css({
+        'font-size': fontSize
+      });
+      return;
       $(initialCharacterMediumNew).removeClass('start');
       $(initialCharacterMediumNew).addClass('correct');
       initialCharacterMediumNew = singularCharactersMediumNew[currentIndexNew += 1];
       $(initialCharacterMediumNew).addClass('start');
     } else if (key !== $(initialCharacterMediumNew).text()) {
       $(initialCharacterMediumNew).addClass('incorrect');
-      //changes font size if key is wrong
-      let fontSize = parseInt($('#random-sentences-medium-new-new').css("font-size"));
-      fontSize = fontSize - .0001 + "px";
-      $('#random-sentences-medium-new-new').css({
-        'font-size': fontSize
-      });
     }
     if (currentIndexNew === singularCharactersMediumNew.length) {
       mediumLevelSentencesTyped = true;
