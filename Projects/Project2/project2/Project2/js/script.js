@@ -6,9 +6,7 @@ Use your exceptional typing capibilities to race your way to victory.
 I felt that I needed to create something that can utilise a junction of what was introduced this semester, therefore, Racer; start! was born.
 This project will incorporate JQUERY, CSS, and obviously JAVASCRIPT.
 
--have dialog for each level explaining each level
--medium level = text gets large, then super small and vice versa - add hamster of something when elevator music is playing -
--hard level = text is moving around everywhere on the screen.
+-hard level = text is moving around everywhere on the screen. -text font reduce for mistakes made, tex constantly moving around?
 
 Documentation // tutorials
 
@@ -19,6 +17,7 @@ https://stackoverflow.com/questions/6484670/how-do-i-split-a-string-into-an-arra
 https://stackoverflow.com/questions/895171/prevent-users-from-submitting-a-form-by-hitting-enter
 https://api.jquery.com/
 https://codepen.io/P1N2O/pen/pyBNzX - BACKGROUND GRADIENT
+https://codepen.io/alvarotrigo/pen/bGrXmwM - text animation
 */
 
 $(document).ready(difficultyDialog); //on start up load btnGroup first
@@ -51,14 +50,14 @@ let randomSentencesMedium = [
   "Flying fish few by the space station. The urgent care center was flooded with patients after the news of a new deadly virus was made public. Jim liked driving around town with his hazard lights on. It's always a good idea to seek shelter from the evil gaze of the sun. He put heat on the wound to see what would grow. Always bring cinnamon buns on a deep-sea diving expedition."
 ];
 //MEDIUM LEVEL New
-let randomSentencesMediumNew = [
+let randomSentencesMediumTwo = [
   ".srab ydnac tluda naht erom gnihton erew srab rewop taht deppiuq nos siH .worg stnalp ym pleh ot gniyrt er'uoy em llet dna nedrag ym ni ssip t'noD .moorhtab eht ni tellab sih gnicitcarp syojne eH",
   ".ecneirepxe na gnivil saw eh ,cisum ot gninetsil t'nsaw eh tnemom taht tA .waj rewol ruoy fo esuaceb pu etib uoY .sdnah ruoy no dnats tsuj uoy fi dnatsdnah a od ot tluciffid t'nsi tI .tnasaelpnu tey gnitanicsaf niar dnuof eH .hsidar eht morf tub no devom dah ehs taht rettib t'nsaw eH",
   ".noitidepxe gnivid aes-peed a no snub nomannic gnirb syawlA .worg dluow tahw ees ot dnuow eht no taeh tup eH .nus eht fo ezag live eht morf retlehs kees ot aedi doog a syawla s'tI .no sthgil drazah sih htiw nwot dnuora gnivird dekil miJ .cilbup edam saw suriv yldaed wen a fo swen eht retfa stneitap htiw dedoolf saw retnec erac tnegru ehT .noitats ecaps eht yb wef hsif gniylF"
 ];
 
 //MEDIUM LEVEL NEW NEW
-let randomSentencesMediumNewNew = [
+let randomSentencesMediumThree = [
   "He enjoys practicing his ballet in the bathroom. Don't piss in my garden and tell me you're trying to help my plants grow. His son quipped that power bars were nothing more than adult candy bars.",
   "He wasn't bitter that she had moved on but from the radish. He found rain fascinating yet unpleasant. It isn't difficult to do a handstand if you just stand on your hands. You bite up because of your lower jaw. At that moment he wasn't listening to music, he was living an experience.",
   "Flying fish few by the space station. The urgent care center was flooded with patients after the news of a new deadly virus was made public. Jim liked driving around town with his hazard lights on. It's always a good idea to seek shelter from the evil gaze of the sun. He put heat on the wound to see what would grow. Always bring cinnamon buns on a deep-sea diving expedition."
@@ -87,7 +86,7 @@ function difficultyDialog() {
           $(this).dialog("close");
           responsiveVoice.speak("Easy level selected", "UK English Male");
           responsiveVoice.speak("This level is quite unchallenging, should be a breeze.", "UK English Male");
-          responsiveVoice.speak("Get ready to type in:", "UK English Male");
+          responsiveVoice.speak("Get ready to type:", "UK English Male");
           responsiveVoice.speak("3", "UK English Male");
           responsiveVoice.speak("2", "UK English Male");
           responsiveVoice.speak("1", "UK English Male");
@@ -119,8 +118,6 @@ function btnEasyPress() {
   blinkText();
   timerCountdownEasy();
   if (easyLevelSentencesShow) {
-    $('#easy-level').text("Easy!");
-    $('#title').text("Racer; start!");
     let random = Math.floor(Math.random() * randomSentencesEasy.length); //chooses a random string from the randomSentencesEasy array
 
     //creates the random sentences from the div
@@ -167,8 +164,6 @@ function btnEasyPress() {
 function btnMediumPress() {
   timerCountdownMedium();
   if (mediumLevelSentencesShow) {
-    $('#medium-level').text("Medium!");
-    $('#title').text("Racer; start!");
     let random = Math.floor(Math.random() * randomSentencesMedium.length); //chooses a random string from the randomSentencesEasy array
 
     //creates the random sentences from the div
@@ -219,8 +214,6 @@ function btnMediumPress() {
 function btnHardPress() {
   timerCountdownHard();
   if (hardLevelSentencesShow) {
-    $('#hard-level').text("Hard!");
-    $('#title').text("Racer; start!");
     let random = Math.floor(Math.random() * randomSentencesHard.length); //chooses a random string from the randomSentencesEasy array
 
     //creates the random sentences from the div
@@ -272,7 +265,7 @@ function blinkText() {
       blink = true;
       if (blink) {
         $(`#random-sentences-easy`).fadeOut(500);
-        $(`#random-sentences-easy`).fadeIn(500);
+        $(`#random-sentences-easy`).fadeIn(100);
         $(`#random-sentences-easy`).effect("shake");
       }
     }
@@ -329,7 +322,7 @@ function timerHardStart() {
 
 //timerCountdownEasy
 function timerCountdownEasy() {
-  let timeLeft = 45;
+  let timeLeft = 50;
   let timerCountdown = setInterval(function() {
     if (timeLeft == 21) {
       responsiveVoice.speak("20 Seconds remain!", "UK English Male");
@@ -376,13 +369,13 @@ function timerCountdownMedium() {
       music.pause();
       music.currentTime = 0;
       responsiveVoice.speak("Resolved, you may continue", "UK English Male");
-      returnMediumTextNew();
+      returnMediumTextTwo();
       showInput();
     }
     if (timeLeft == 75) {
-      $('#random-sentences-medium-new').empty();
-      $('#random-sentences-medium-new').remove();
-      $('#random-sentences-medium-new').hide();
+      $('#random-sentences-medium-two').empty();
+      $('#random-sentences-medium-two').remove();
+      $('#random-sentences-medium-two').hide();
       responsiveVoice.speak("They seem to have broken it entirely, hold on please!", "UK English Male");
     }
     if (timeLeft == 71) {
@@ -402,7 +395,7 @@ function timerCountdownMedium() {
         music.pause();
         music.currentTime = 0;
         responsiveVoice.speak("Issue resolved, sorry for the inconvience, we have added an extra twenty five seconds to the clock!", "UK English Male");
-        returnMediumNewNew();
+        returnMediumThree();
         showInput();
         timeLeft = 65;
         relapse = false;
@@ -527,45 +520,46 @@ function hardlevelTyped() {
 }
 
 //return to normal medium sentences
-function returnMediumNewNew() {
-  let random = Math.floor(Math.random() * randomSentencesMediumNewNew.length); //chooses a random string from the randomSentencesEasy array
+function returnMediumTextTwo() {
+  let random = Math.floor(Math.random() * randomSentencesMediumTwo.length);
 
-  //creates the random sentences from the div
-  let mediumIndexNewNew = 0;
-  const RANDOM_SENTENCES_DIV = $(`#random-sentences-medium-new-new`)[mediumIndexNewNew];
+  let mediumIndexTwo = 0;
+  const RANDOM_SENTENCES_DIV = $(`#random-sentences-medium-two`)[mediumIndexTwo];
 
-  //splits the characters into single characters including spacing, then placed into an array
-  let singularCharactersMediumNewNew = randomSentencesMediumNewNew[random].split("").map((character) => { //Places the randomized string into an array and then maps over each array using an empty string
-    let span = $('<span/>'); //creates the <span>
+  let singularCharactersMediumTwo = randomSentencesMediumTwo[random].split("").map((character) => {
+    let span = $('<span/>');
     $(span).text(character);
-    $(RANDOM_SENTENCES_DIV).append(span); //give each character a <span>
-    return span; //returns the value of span
+    $(RANDOM_SENTENCES_DIV).append(span);
+    return span;
   });
 
-  //highlights the first character in the array of singleCharacters
-  let currentIndexNewNew = 0;
-  let initialCharacterMediumNewNew = singularCharactersMediumNewNew[currentIndexNewNew];
-  $(initialCharacterMediumNewNew).addClass('start'); //adds class 'start' to initialCharacter in the array
-  //if keypress is down
+  let currentIndexTwo = 0;
+  let initialCharacterMediumTwo = singularCharactersMediumTwo[currentIndexTwo];
+  $(initialCharacterMediumTwo).addClass('start');
+
   $(document).on('keypress', function({
     key
   }) {
-    if (key === $(initialCharacterMediumNewNew).text()) {
+    if (key === $(initialCharacterMediumTwo).text()) {
       //hides the text every 3 seconds
-      $("#random-sentences-medium-new-new").animate({
+      $("#random-sentences-medium-two").animate({
         left: "+=50",
         height: "toggle"
-      }, 3000, function() {});
-      $(initialCharacterMediumNewNew).removeClass('start'); //removes the class of 'start' if initialCharacter is the same as the character being typed
-      $(initialCharacterMediumNewNew).addClass('correct'); //add correct class to the correct character typed
-      initialCharacterMediumNewNew = singularCharactersMediumNewNew[currentIndexNewNew += 1]; //adds 1 onto the array, moves on to the next character in the array //for loop didn't work here
-      $(initialCharacterMediumNewNew).addClass('start'); //adds the class 'start'
+      }, 2000, function() {});
+      //changes font size if key if right
+      let fontSize = parseInt($('#random-sentences-medium-two').css("font-size"));
+      fontSize = fontSize - .0001 + "px";
+      $('#random-sentences-medium-two').css({
+        'font-size': fontSize
+      });
+      $(initialCharacterMediumTwo).removeClass('start');
+      $(initialCharacterMediumTwo).addClass('correct');
+      initialCharacterMediumTwo = singularCharactersMediumTwo[currentIndexTwo += 1];
+      $(initialCharacterMediumTwo).addClass('start');
+    } else if (key !== $(initialCharacterMediumTwo).text()) {
+      $(initialCharacterMediumTwo).addClass('incorrect');
     }
-    //if key isn't the same as initialCharacter then add class 'incorrect' to current index
-    else if (key !== $(initialCharacterMediumNewNew).text()) {
-      $(initialCharacterMediumNewNew).addClass('incorrect');
-    }
-    if (currentIndexNewNew === singularCharactersMediumNewNew.length) {
+    if (currentIndexTwo === singularCharactersMediumTwo.length) {
       mediumLevelSentencesTyped = true;
     }
     if (mediumLevelSentencesTyped) {
@@ -573,47 +567,47 @@ function returnMediumNewNew() {
     }
   });
 }
+
 //return to normal medium sentences
-function returnMediumTextNew() {
-  let random = Math.floor(Math.random() * randomSentencesMediumNew.length);
+function returnMediumThree() {
+  let random = Math.floor(Math.random() * randomSentencesMediumThree.length); //chooses a random string from the randomSentencesEasy array
 
-  let mediumIndexNew = 0;
-  const RANDOM_SENTENCES_DIV = $(`#random-sentences-medium-new`)[mediumIndexNew];
+  //creates the random sentences from the div
+  let mediumIndexThree = 0;
+  const RANDOM_SENTENCES_DIV = $(`#random-sentences-medium-three`)[mediumIndexThree];
 
-  let singularCharactersMediumNew = randomSentencesMediumNew[random].split("").map((character) => {
-    let span = $('<span/>');
+  //splits the characters into single characters including spacing, then placed into an array
+  let singularCharactersMediumThree = randomSentencesMediumThree[random].split("").map((character) => { //Places the randomized string into an array and then maps over each array using an empty string
+    let span = $('<span/>'); //creates the <span>
     $(span).text(character);
-    $(RANDOM_SENTENCES_DIV).append(span);
-    return span;
+    $(RANDOM_SENTENCES_DIV).append(span); //give each character a <span>
+    return span; //returns the value of span
   });
 
-  let currentIndexNew = 0;
-  let initialCharacterMediumNew = singularCharactersMediumNew[currentIndexNew];
-  $(initialCharacterMediumNew).addClass('start');
-
+  //highlights the first character in the array of singleCharacters
+  let currentIndexThree = 0;
+  let initialCharacterMediumThree = singularCharactersMediumThree[currentIndexThree];
+  $(initialCharacterMediumThree).addClass('start'); //adds class 'start' to initialCharacter in the array
+  //if keypress is down
   $(document).on('keypress', function({
     key
   }) {
-    if (key === $(initialCharacterMediumNew).text()) {
+    if (key === $(initialCharacterMediumThree).text()) {
       //hides the text every 3 seconds
-      $("#random-sentences-medium-new").animate({
+      $("#random-sentences-medium-three").animate({
         left: "+=50",
         height: "toggle"
-      }, 2000, function() {});
-      //changes font size if key if right
-      let fontSize = parseInt($('#random-sentences-medium-new').css("font-size"));
-      fontSize = fontSize - .0001 + "px";
-      $('#random-sentences-medium-new').css({
-        'font-size': fontSize
-      });
-      $(initialCharacterMediumNew).removeClass('start');
-      $(initialCharacterMediumNew).addClass('correct');
-      initialCharacterMediumNew = singularCharactersMediumNew[currentIndexNew += 1];
-      $(initialCharacterMediumNew).addClass('start');
-    } else if (key !== $(initialCharacterMediumNew).text()) {
-      $(initialCharacterMediumNew).addClass('incorrect');
+      }, 1000, function() {});
+      $(initialCharacterMediumThree).removeClass('start'); //removes the class of 'start' if initialCharacter is the same as the character being typed
+      $(initialCharacterMediumThree).addClass('correct'); //add correct class to the correct character typed
+      initialCharacterMediumThree = singularCharactersMediumThree[currentIndexThree += 1]; //adds 1 onto the array, moves on to the next character in the array //for loop didn't work here
+      $(initialCharacterMediumThree).addClass('start'); //adds the class 'start'
     }
-    if (currentIndexNew === singularCharactersMediumNew.length) {
+    //if key isn't the same as initialCharacter then add class 'incorrect' to current index
+    else if (key !== $(initialCharacterMediumThree).text()) {
+      $(initialCharacterMediumThree).addClass('incorrect');
+    }
+    if (currentIndexThree === singularCharactersMediumThree.length) {
       mediumLevelSentencesTyped = true;
     }
     if (mediumLevelSentencesTyped) {
