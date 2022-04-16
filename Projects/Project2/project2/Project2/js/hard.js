@@ -1,11 +1,18 @@
 //hard level function
+let isCorrect = false;
+let correct = 0;
+let answered = false;
+let show = false;
+let timeLeft = 90;
+let stopTime = false;
+//btn for hard
 function btnHardPress() {
   timerCountdownHard();
   if (hardLevelSentencesShow) {
     objectGuess();
     setTimeout(function() {
       randomGuess();
-    }, 3000);
+    }, 2000);
     let random = Math.floor(Math.random() * randomSentencesHard.length); //chooses a random string from the randomSentencesEasy array
 
     //creates the random sentences from the div
@@ -40,9 +47,7 @@ function btnHardPress() {
       }
       if (currentIndex === singularCharactersHard.length) {
         hardLevelSentencesTyped = true;
-      }
-      if (hardLevelSentencesTyped) {
-        hardlevelTyped();
+        stopTime = true;
       }
     });
   }
@@ -66,7 +71,6 @@ function timerHardStart() {
 
 //timerCountdownHard
 function timerCountdownHard() {
-  let timeLeft = 90;
   let timerCountdown = setInterval(function() {
     if (timeLeft == 20) {
       responsiveVoice.speak("20 Seconds remain!", "UK English Male");
@@ -77,7 +81,7 @@ function timerCountdownHard() {
     } else {
       $("#timerDisplay").text(timeLeft + " seconds left!");
     }
-    if (hardLevelSentencesTyped) {
+    if (stopTime && isCorrect) {
       timeLeft += 1;
       clearInterval(timerCountdownHard);
     }
@@ -96,23 +100,41 @@ function objectGuess() {
   }
 }
 
-//storing the array into currentObject variable
-function randomGuess() {
-  currentObject = object[Math.floor(Math.random() * object.length)];
-  // $(`#object`).text(currentObject);
-  responsiveVoice.speak(currentObject);
-}
 //checks to see if the guess is right or wrong and acts accordingly
-let correct = 0;
+function randomGuess() {
+  $("input").keypress(function(event) {
+    let keycode = (event.keyCode ? event.keyCode : event.which);
+    if (keycode == '32') {
+      currentObject = object[Math.floor(Math.random() * object.length)];
+      $(`#object`).text(currentObject);
+      responsiveVoice.speak(currentObject);
+      if (show) {
+        $('#object').show();
+      }
+    }
+  });
+}
+
+//guess the object
 function guessObject(object) {
   currentAnswer = object.toLowerCase();
   if (currentAnswer === currentObject) {
-    $(`#object`).css('color', "#00ff44");
-    correct+=1;
-    $(`#correct`).text("Correct:" + correct);
-    // player has to say 5 correct words, in order to complete the level(needs to press a button for it to happen) + type all of the text
+    answered = true;
+    correct += 1;
+    if (correct > 2) {
+      isCorrect = true;
+    }
+    if (answered) {
+      $('#object').hide();
+      show = true;
+    }
+    $(`#correct`).text("Correct: " + correct);
   }
-  if (currentAnswer !== currentObject) {
+  if (hardLevelSentencesTyped && isCorrect) { // if hardlevelTyped && isCorrect are true
+      hardlevelTyped();
+      responsiveVoice.speak("Nice, you got them all!")
+  }
+  if (currentAnswer !== currentObject) { // if currentAnswer doesn't == to currentObject
     $(`#object`).css('color', "red");
   }
 }
