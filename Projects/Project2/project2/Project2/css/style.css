@@ -2,7 +2,7 @@
   font-family: cursive;
   text-align: center;
   float: bottom;
-  margin-top: 100px;
+  margin-top: 250px;
   font-size: 2rem;
 }
 
@@ -137,12 +137,27 @@ h2 {
 
 #timerDisplay {
   font-family: cursive;
-  margin-top: 50px;
-  top: 2rem;
-  font-size: 3rem;
+  margin-top: 70px;
+  font-size: 2rem;
   font-weight: bold;
   text-align: center;
   color: purple;
+}
+
+#object {
+  color: black;
+  font-size: 2rem;
+  text-align: center;
+  font-family: cursive;
+  margin-top: 50px;
+}
+
+#correct {
+  color: blue;
+  font-size: 2rem;
+  text-align: center;
+  font-family: cursive;
+  margin-top: 50px;
 }
 
 body {

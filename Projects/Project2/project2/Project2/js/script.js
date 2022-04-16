@@ -6,7 +6,9 @@ Use your exceptional typing capibilities to race your way to victory.
 I felt that I needed to create something that can utilise a junction of what was introduced this semester, therefore, Racer; start! was born.
 This project will incorporate JQUERY, CSS, and obviously JAVASCRIPT.
 
--hard level = text is moving around everywhere on the screen. -text font reduce for mistakes made, tex constantly moving around?
+-hard level = text is moving around everywhere on the screen. -annyang, say what pops up while typing text, with movement and what not
+-player has to say 5 correct words, in order to complete the level(needs to press a button for it to happen) + type all of the text
+-WPM
 
 Documentation // tutorials
 
@@ -33,6 +35,8 @@ let hardLevelSentencesShow = false;
 let hardLevelSentencesTyped = false;
 
 let blink = false;
+let currentObject = ``;
+let currentAnswer = ``;
 
 //EASY LEVEL
 let randomSentencesEasy = [
@@ -70,6 +74,37 @@ let randomSentencesHard = [
   "She saw no irony asking me to change but wanting me to accept her for who she is. The stench from the feedlot permeated the car despite having the air conditioning on recycled air. Every manager should be able to recite at least ten nursery rhymes backward.",
   "Peter found road kill an excellent way to save money on dinner. Nothing is as cautiously cuddly as a pet porcupine. Douglas figured the best way to succeed was to do the opposite of what he'd been doing all his life.",
   "The fish listened intently to what the frogs had to say. The thunderous roar of the jet overhead confirmed her worst fears. A quiet house is nice until you are ordered to stay in it for months."
+];
+
+//objects for annyang
+let object = [
+  "christmas",
+  "acorn",
+  "apple",
+  "bag",
+  "ball",
+  "balloon",
+  "banana",
+  "bananas",
+  "bandana",
+  "bangle",
+  "bar",
+  "baseball",
+  "basketball",
+  "beaded",
+  "bed",
+  "beef",
+  "bell",
+  "belt",
+  "blouse",
+  "dryer",
+  "bonesaw",
+  "book",
+  "bookmark",
+  "boom",
+  "bottle",
+  "bouquet",
+  "flowers",
 ];
 
 //LEVEL DIALOG
@@ -214,6 +249,10 @@ function btnMediumPress() {
 function btnHardPress() {
   timerCountdownHard();
   if (hardLevelSentencesShow) {
+    objectGuess();
+    setTimeout(function() {
+      randomGuess();
+    }, 3000);
     let random = Math.floor(Math.random() * randomSentencesHard.length); //chooses a random string from the randomSentencesEasy array
 
     //creates the random sentences from the div
@@ -372,37 +411,37 @@ function timerCountdownMedium() {
       returnMediumTextTwo();
       showInput();
     }
-    if (timeLeft == 75) {
+    if (timeLeft == 70) {
       $('#random-sentences-medium-two').empty();
       $('#random-sentences-medium-two').remove();
       $('#random-sentences-medium-two').hide();
       responsiveVoice.speak("They seem to have broken it entirely, hold on please!", "UK English Male");
     }
-    if (timeLeft == 71) {
+    if (timeLeft == 67) {
       music.play();
     }
-    if (timeLeft == 68) {
+    if (timeLeft == 65) {
       music.pause();
       music.currentTime = 0;
       responsiveVoice.speak("Working now!", "UK English Male");
       responsiveVoice.speak("Nevermind!", "UK English Male");
     }
-    if (timeLeft == 66) {
+    if (timeLeft == 63) {
       music.play();
     }
     if (relapse) {
       if (timeLeft == 40) {
         music.pause();
         music.currentTime = 0;
-        responsiveVoice.speak("Issue resolved, sorry for the inconvience, we have added an extra twenty five seconds to the clock!", "UK English Male");
+        responsiveVoice.speak("Issue resolved, sorry for the inconvience, we have added an extra twenty three seconds to the clock!", "UK English Male");
         returnMediumThree();
         showInput();
-        timeLeft = 65;
+        timeLeft = 62;
         relapse = false;
       }
     }
     if (timeLeft <= 0) {
-      clearInterval(timerCountdownEasy);
+      clearInterval(timerCountdownMedium);
       mediumLevelTime();
     } else {
       $("#timerDisplay").text(timeLeft + " seconds left!");
@@ -418,13 +457,13 @@ function timerCountdownMedium() {
 
 //timerCountdownHard
 function timerCountdownHard() {
-  let timeLeft = 120;
+  let timeLeft = 90;
   let timerCountdown = setInterval(function() {
-    if (timeLeft == 50) {
-      responsiveVoice.speak("50 Seconds remain!", "UK English Male");
+    if (timeLeft == 20) {
+      responsiveVoice.speak("20 Seconds remain!", "UK English Male");
     }
     if (timeLeft <= 0) {
-      clearInterval(timerCountdownEasy);
+      clearInterval(timerCountdownHard);
       hardLevelTime();
     } else {
       $("#timerDisplay").text(timeLeft + " seconds left!");
@@ -435,6 +474,39 @@ function timerCountdownHard() {
     }
     timeLeft -= 1;
   }, 1000);
+}
+
+//setup for annyang
+function objectGuess() {
+  if (annyang) {
+    let commands = {
+      '*object': guessObject
+    };
+    annyang.addCommands(commands);
+    annyang.start();
+  }
+}
+
+//storing the array into currentObject variable
+function randomGuess() {
+  currentObject = object[Math.floor(Math.random() * object.length)];
+  // $(`#object`).text(currentObject);
+  responsiveVoice.speak(currentObject);
+}
+
+//checks to see if the guess is right or wrong and acts accordingly
+let correct = 0;
+function guessObject(object) {
+  currentAnswer = object.toLowerCase();
+  if (currentAnswer === currentObject) {
+    $(`#object`).css('color', "#00ff44");
+    correct+=1;
+    $(`#correct`).text("Correct:" + correct);
+    // player has to say 5 correct words, in order to complete the level(needs to press a button for it to happen) + type all of the text
+  }
+  if (currentAnswer !== currentObject) {
+    $(`#object`).css('color', "red");
+  }
 }
 
 //shows and focuses on text field
@@ -463,6 +535,21 @@ function easyLevelTime() {
 function mediumLevelTime() {
   $(function() {
     $("#fail_medium_dialog").dialog({
+      modal: true,
+      buttons: {
+        Restart: function() {
+          $(this).dialog("close");
+          location.reload();
+        }
+      }
+    });
+  });
+}
+
+//dialog box for easy level out of time
+function hardLevelTime() {
+  $(function() {
+    $("#fail_hard_dialog").dialog({
       modal: true,
       buttons: {
         Restart: function() {
