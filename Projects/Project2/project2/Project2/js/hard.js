@@ -61,7 +61,7 @@ function timerHardStart() {
       showInput();
       btnHardPress();
     }
-  }, 5200);
+  }, 13000);
 }
 
 //timerCountdownHard

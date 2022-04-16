@@ -4,7 +4,7 @@ Anthony Calderone
 
 Use your exceptional typing capibilities to race your way to victory.
 I felt that I needed to create something that can utilise a junction of what was introduced this semester, therefore, Racer; start! was born.
-This project will incorporate JQUERY, CSS, and obviously JAVASCRIPT.
+This project will incorporate JQUERY, CSS, and obviously JAVASCRIPT, with many different librabries that was seen throughout the semester.
 
 -hard level = text is moving around everywhere on the screen. -annyang, say what pops up while typing text, with movement and what not
 -player has to say 5 correct words, in order to complete the level(needs to press a button for it to happen) + type all of the text
@@ -56,14 +56,15 @@ let randomSentencesMedium = [
   "He wasn't bitter that she had moved on but from the radish. He found rain fascinating yet unpleasant. It isn't difficult to do a handstand if you just stand on your hands. You bite up because of your lower jaw. At that moment he wasn't listening to music, he was living an experience.",
   "Flying fish few by the space station. The urgent care center was flooded with patients after the news of a new deadly virus was made public. Jim liked driving around town with his hazard lights on. It's always a good idea to seek shelter from the evil gaze of the sun. He put heat on the wound to see what would grow. Always bring cinnamon buns on a deep-sea diving expedition."
 ];
-//MEDIUM LEVEL New
+
+//MEDIUM LEVEL SECOND VARIATION
 let randomSentencesMediumTwo = [
   ".srab ydnac tluda naht erom gnihton erew srab rewop taht deppiuq nos siH .worg stnalp ym pleh ot gniyrt er'uoy em llet dna nedrag ym ni ssip t'noD .moorhtab eht ni tellab sih gnicitcarp syojne eH",
   ".ecneirepxe na gnivil saw eh ,cisum ot gninetsil t'nsaw eh tnemom taht tA .waj rewol ruoy fo esuaceb pu etib uoY .sdnah ruoy no dnats tsuj uoy fi dnatsdnah a od ot tluciffid t'nsi tI .tnasaelpnu tey gnitanicsaf niar dnuof eH .hsidar eht morf tub no devom dah ehs taht rettib t'nsaw eH",
   ".noitidepxe gnivid aes-peed a no snub nomannic gnirb syawlA .worg dluow tahw ees ot dnuow eht no taeh tup eH .nus eht fo ezag live eht morf retlehs kees ot aedi doog a syawla s'tI .no sthgil drazah sih htiw nwot dnuora gnivird dekil miJ .cilbup edam saw suriv yldaed wen a fo swen eht retfa stneitap htiw dedoolf saw retnec erac tnegru ehT .noitats ecaps eht yb wef hsif gniylF"
 ];
 
-//MEDIUM LEVEL NEW NEW
+//MEDIUM LEVEL THIRD VARIATION
 let randomSentencesMediumThree = [
   "He enjoys practicing his ballet in the bathroom. Don't piss in my garden and tell me you're trying to help my plants grow. His son quipped that power bars were nothing more than adult candy bars.",
   "He wasn't bitter that she had moved on but from the radish. He found rain fascinating yet unpleasant. It isn't difficult to do a handstand if you just stand on your hands. You bite up because of your lower jaw. At that moment he wasn't listening to music, he was living an experience.",
@@ -101,7 +102,7 @@ let object = [
   "belt",
   "blouse",
   "dryer",
-  "bonesaw",
+  "duty",
   "book",
   "bookmark",
   "boom",
@@ -141,7 +142,9 @@ function difficultyDialog() {
         "Hard": function() {
           timerHardStart();
           $(this).dialog("close");
-          responsiveVoice.speak("Hard level selected. Get ready to Type!", "UK English Male");
+          responsiveVoice.speak("Hard level selected", "UK English Male");
+          responsiveVoice.speak("In this level, you are required to speak on what is being said.", "UK English Male");
+          responsiveVoice.speak("Fail to say five correct words, fail to complete the level.", "UK English Male");
           responsiveVoice.speak("3", "UK English Male");
           responsiveVoice.speak("2", "UK English Male");
           responsiveVoice.speak("1", "UK English Male");
