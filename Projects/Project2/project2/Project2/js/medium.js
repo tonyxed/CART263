@@ -1,3 +1,27 @@
+$(document).ready(difficultyMediumDialog);
+
+function difficultyMediumDialog() {
+  $(function() {
+    $("#medium_dialog").dialog({
+      resizable: false,
+      height: "auto",
+      width: 400,
+      modal: true,
+      buttons: {
+        "Medium": function() {
+          timerMediumStart();
+          $(this).dialog("close");
+          responsiveVoice.speak("Medium level selected", "UK English Male");
+          responsiveVoice.speak("This level has superb coding, you will see!", "UK English Male");
+          responsiveVoice.speak("3", "UK English Male");
+          responsiveVoice.speak("2", "UK English Male");
+          responsiveVoice.speak("1", "UK English Male");
+        },
+      }
+    });
+  });
+}
+
 //medium level function
 function btnMediumPress() {
   timerCountdownMedium();
@@ -26,7 +50,7 @@ function btnMediumPress() {
     }) {
       if (key === $(initialCharacterMedium).text()) {
         $("#random-sentences-medium").animate({
-          left: "+=1000",
+          left: "+=100",
           height: "toggle"
         }, 10, function() {});
         $(initialCharacterMedium).removeClass('start'); //removes the class of 'start' if initialCharacter is the same as the character being typed
@@ -50,6 +74,7 @@ function btnMediumPress() {
 
 //timerMediumCountdown
 function timerMediumStart() {
+
   startTime = new Date();
   let myTimer = setInterval(function() {
     $("#timer").text(Math.round((new Date - startTime) / 1000));
@@ -139,13 +164,14 @@ function timerCountdownMedium() {
   }, 1000);
 }
 
-//dialog box for easy level out of time
+//dialog box for medium level out of time
 function mediumLevelTime() {
   $(function() {
     $("#fail_medium_dialog").dialog({
       modal: true,
       buttons: {
         Restart: function() {
+          self.location = "mediumLevel.html";
           $(this).dialog("close");
           location.reload();
         }
@@ -160,9 +186,10 @@ function mediumlevelTyped() {
     $("#complete_medium_dialog").dialog({
       modal: true,
       buttons: {
-        Restart: function() {
-          $(this).dialog("close");
+        Hard: function() {
           location.reload();
+          self.location = "hardLevel.html";
+          $(this).dialog("close");
         }
       }
     });
@@ -243,11 +270,10 @@ function returnMediumThree() {
     key
   }) {
     if (key === $(initialCharacterMediumThree).text()) {
-      //hides the text every 3 seconds
       $("#random-sentences-medium-three").animate({
-        left: "+=50",
+        left: "+=100",
         height: "toggle"
-      }, 1000, function() {});
+      }, 2000, function() {});
       $(initialCharacterMediumThree).removeClass('start'); //removes the class of 'start' if initialCharacter is the same as the character being typed
       $(initialCharacterMediumThree).addClass('correct'); //add correct class to the correct character typed
       initialCharacterMediumThree = singularCharactersMediumThree[currentIndexThree += 1]; //adds 1 onto the array, moves on to the next character in the array //for loop didn't work here

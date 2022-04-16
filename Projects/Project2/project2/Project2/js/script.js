@@ -6,7 +6,7 @@ Use your exceptional typing capibilities to race your way to victory.
 I felt that I needed to create something that can utilise a junction of what was introduced this semester, therefore, Racer; start! was born.
 This project will incorporate JQUERY, CSS, and obviously JAVASCRIPT, with many different librabries that was seen throughout the semester.
 
--hard level = text is moving around everywhere on the screen. -annyang, say what pops up while typing text, with movement and what not
+-hard level = text is moving around everywhere on the screen - words that need to be guessed are moving around the screen
 -player has to say 5 correct words, in order to complete the level(needs to press a button(!) for it to happen) + type all of the text
 -WPM
 
@@ -22,9 +22,6 @@ https://api.jquery.com/
 https://codepen.io/P1N2O/pen/pyBNzX - BACKGROUND GRADIENT
 https://codepen.io/alvarotrigo/pen/bGrXmwM - text animation
 */
-
-$(document).ready(difficultyDialog); //on start up load btnGroup first
-$('#t-box').hide(); //hides the text box until a level is choosen
 
 let easyLevelSentencesShow = false;
 let easyLevelSentencesTyped = false;
@@ -73,11 +70,11 @@ let randomSentencesMediumThree = [
 
 //HARD LEVEL
 let randomSentencesHard = [
-   "Every" //manager should be able to recite at least ten nursery rhymes backward. Being unacquainted with the chief raccoon was harming his prospects for promotion. Nothing is as cautiously cuddly as a pet porcupine.",
-  // "If you don't like toenails, you probably shouldn't look at your feet. The tree fell unexpectedly short. Henry couldn't decide if he was an auto mechanic or a priest.",
-  // "She saw no irony asking me to change but wanting me to accept her for who she is. The stench from the feedlot permeated the car despite having the air conditioning on recycled air. Every manager should be able to recite at least ten nursery rhymes backward.",
-  // "Peter found road kill an excellent way to save money on dinner. Nothing is as cautiously cuddly as a pet porcupine. Douglas figured the best way to succeed was to do the opposite of what he'd been doing all his life.",
-  // "The fish listened intently to what the frogs had to say. The thunderous roar of the jet overhead confirmed her worst fears. A quiet house is nice until you are ordered to stay in it for months."
+  "Every manager should be able to recite at least ten nursery rhymes backward. Being unacquainted with the chief raccoon was harming his prospects for promotion. Nothing is as cautiously cuddly as a pet porcupine.",
+  "If you don't like toenails, you probably shouldn't look at your feet. The tree fell unexpectedly short. Henry couldn't decide if he was an auto mechanic or a priest.",
+  "She saw no irony asking me to change but wanting me to accept her for who she is. The stench from the feedlot permeated the car despite having the air conditioning on recycled air. Every manager should be able to recite at least ten nursery rhymes backward.",
+  "Peter found road kill an excellent way to save money on dinner. Nothing is as cautiously cuddly as a pet porcupine. Douglas figured the best way to succeed was to do the opposite of what he'd been doing all his life.",
+  "The fish listened intently to what the frogs had to say. The thunderous roar of the jet overhead confirmed her worst fears. A quiet house is nice until you are ordered to stay in it for months."
 ];
 
 //objects for annyang
@@ -110,49 +107,6 @@ let object = [
   "bouquet",
   "flowers",
 ];
-
-//LEVEL DIALOG
-function difficultyDialog() {
-  $(function() {
-    $("#difficulty_dialog").dialog({
-      resizable: false,
-      height: "auto",
-      width: 400,
-      modal: true,
-      buttons: {
-        "Easy": function() {
-          timerEasyStart();
-          $(this).dialog("close");
-          responsiveVoice.speak("Easy level selected", "UK English Male");
-          responsiveVoice.speak("This level is quite unchallenging, should be a breeze.", "UK English Male");
-          responsiveVoice.speak("Get ready to type:", "UK English Male");
-          responsiveVoice.speak("3", "UK English Male");
-          responsiveVoice.speak("2", "UK English Male");
-          responsiveVoice.speak("1", "UK English Male");
-        },
-        "Medium": function() {
-          timerMediumStart();
-          $(this).dialog("close");
-          responsiveVoice.speak("Medium level selected", "UK English Male");
-          responsiveVoice.speak("This level has superb coding, you will see!", "UK English Male");
-          responsiveVoice.speak("3", "UK English Male");
-          responsiveVoice.speak("2", "UK English Male");
-          responsiveVoice.speak("1", "UK English Male");
-        },
-        "Hard": function() {
-          timerHardStart();
-          $(this).dialog("close");
-          responsiveVoice.speak("Hard level selected", "UK English Male");
-          responsiveVoice.speak("In this level, you are required to say what is being said.", "UK English Male");
-          responsiveVoice.speak("Fail to say five correct words, fail to complete the level.", "UK English Male");
-          responsiveVoice.speak("3", "UK English Male");
-          responsiveVoice.speak("2", "UK English Male");
-          responsiveVoice.speak("1", "UK English Male");
-        },
-      }
-    });
-  });
-}
 
 //shows and focuses on text field
 function showInput() {

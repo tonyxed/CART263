@@ -1,3 +1,5 @@
+$(document).ready(difficultyHardDialog);
+
 //hard level function
 let isCorrect = false;
 let correct = 0;
@@ -6,6 +8,31 @@ let show = false;
 let timeLeft = 90;
 let stopTime = false;
 //btn for hard
+
+//LEVEL DIALOG
+function difficultyHardDialog() {
+  $(function() {
+    $("#hard_dialog").dialog({
+      resizable: false,
+      height: "auto",
+      width: 400,
+      modal: true,
+      buttons: {
+        "Hard": function() {
+          timerHardStart();
+            $(this).dialog("close");
+            responsiveVoice.speak("Hard level selected", "UK English Male");
+            responsiveVoice.speak("In this level, you are required to say what is being said.", "UK English Male");
+            responsiveVoice.speak("Fail to say five correct words, you will fail to complete the level.", "UK English Male");
+            responsiveVoice.speak("3", "UK English Male");
+            responsiveVoice.speak("2", "UK English Male");
+            responsiveVoice.speak("1", "UK English Male");
+        },
+      }
+    });
+  });
+}
+
 function btnHardPress() {
   timerCountdownHard();
   if (hardLevelSentencesShow) {
@@ -107,7 +134,7 @@ function randomGuess() {
     if (keycode == '32') {
       currentObject = object[Math.floor(Math.random() * object.length)];
       $(`#object`).text(currentObject);
-      responsiveVoice.speak(currentObject);
+      //responsiveVoice.speak(currentObject);
       if (show) {
         $('#object').show();
       }
@@ -121,7 +148,7 @@ function guessObject(object) {
   if (currentAnswer === currentObject) {
     answered = true;
     correct += 1;
-    if (correct > 2) {
+    if (correct > 5) {
       isCorrect = true;
     }
     if (answered) {
@@ -146,8 +173,9 @@ function hardLevelTime() {
       modal: true,
       buttons: {
         Restart: function() {
-          $(this).dialog("close");
           location.reload();
+          self.location = "hardLevel.html";
+          $(this).dialog("close");
         }
       }
     });
@@ -160,9 +188,9 @@ function hardlevelTyped() {
     $("#complete_hard_dialog").dialog({
       modal: true,
       buttons: {
-        Restart: function() {
+        Menu: function() {
           $(this).dialog("close");
-          location.reload();
+          self.location = "index.html";
         }
       }
     });

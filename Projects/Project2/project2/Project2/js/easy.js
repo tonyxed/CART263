@@ -1,3 +1,32 @@
+window.onload = function() { //on start up load btnGroup first
+    $(document).ready(difficultyDialog);
+    $('#t-box').hide(); //hides the text box until a level is choosen
+}
+
+//LEVEL DIALOG
+function difficultyDialog() {
+  $(function() {
+    $("#difficulty_dialog").dialog({
+      resizable: false,
+      height: "auto",
+      width: 400,
+      modal: true,
+      buttons: {
+        "Easy": function() {
+          timerEasyStart();
+          $(this).dialog("close");
+          responsiveVoice.speak("Easy level selected", "UK English Male");
+          responsiveVoice.speak("This level is quite unchallenging, should be a breeze.", "UK English Male");
+          responsiveVoice.speak("Get ready to type:", "UK English Male");
+          responsiveVoice.speak("3", "UK English Male");
+          responsiveVoice.speak("2", "UK English Male");
+          responsiveVoice.speak("1", "UK English Male");
+        },
+      }
+    });
+  });
+}
+
 //easy level function
 function btnEasyPress() {
   blinkText();
@@ -89,6 +118,7 @@ function easyLevelTime() {
       modal: true,
       buttons: {
         Restart: function() {
+          self.location = "index.html";
           $(this).dialog("close");
           location.reload();
         }
@@ -103,9 +133,10 @@ function easylevelTyped() {
     $("#complete_easy_dialog").dialog({
       modal: true,
       buttons: {
-        Menu: function() {
-          $(this).dialog("close");
+        Next: function() {
           location.reload();
+          self.location = "mediumLevel.html";
+          $(this).dialog("close");
         }
       }
     });
