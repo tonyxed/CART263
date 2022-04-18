@@ -6,10 +6,6 @@ Use your exceptional typing capibilities to race your way to victory.
 I felt that I needed to create something that can utilise a junction of what was introduced this semester, therefore, Racer; start! was born.
 This project will incorporate JQUERY, CSS, and obviously JAVASCRIPT, with many different librabries that was seen throughout the semester.
 
--hard level = text is moving around everywhere on the screen - words that need to be guessed are moving around the screen
--player has to say 5 correct words, in order to complete the level(needs to press a button(!) for it to happen) + type all of the text
--WPM
-
 Documentation // tutorials
 
 E5 Haiku Generator
@@ -23,6 +19,7 @@ https://codepen.io/P1N2O/pen/pyBNzX - BACKGROUND GRADIENT
 https://codepen.io/alvarotrigo/pen/bGrXmwM - text animation
 */
 
+//levels 
 let easyLevelSentencesShow = false;
 let easyLevelSentencesTyped = false;
 
@@ -32,6 +29,7 @@ let mediumLevelSentencesTyped = false;
 let hardLevelSentencesShow = false;
 let hardLevelSentencesTyped = false;
 
+//blink function variable
 let blink = false;
 
 //annyang arrays
@@ -63,18 +61,16 @@ let randomSentencesMediumTwo = [
 
 //MEDIUM LEVEL THIRD VARIATION
 let randomSentencesMediumThree = [
-  "He enjoys practicing his ballet in the bathroom. Don't piss in my garden and tell me you're trying to help my plants grow. His son quipped that power bars were nothing more than adult candy bars.",
+  "He enjoys practicing his ballet in the bathroom. Don't piss in my garden and tell me you're trying to help my plants grow. His son quipped that power bars were nothing more than adult candy bars. Always bring cinnamon buns on a deep-sea diving expedition.",
   "He wasn't bitter that she had moved on but from the radish. He found rain fascinating yet unpleasant. It isn't difficult to do a handstand if you just stand on your hands. You bite up because of your lower jaw. At that moment he wasn't listening to music, he was living an experience.",
-  "Flying fish few by the space station. The urgent care center was flooded with patients after the news of a new deadly virus was made public. Jim liked driving around town with his hazard lights on. It's always a good idea to seek shelter from the evil gaze of the sun. He put heat on the wound to see what would grow. Always bring cinnamon buns on a deep-sea diving expedition."
+  "Flying fish few by the space station. The urgent care center was flooded with patients after the news of a new deadly virus was made public. Jim liked driving around town with his hazard lights on. It's always a good idea to seek shelter from the evil gaze of the sun. He put heat on the wound to see what would grow.
 ];
 
 //HARD LEVEL
 let randomSentencesHard = [
-  "Every manager should be able to recite at least ten nursery rhymes backward. Being unacquainted with the chief raccoon was harming his prospects for promotion. Nothing is as cautiously cuddly as a pet porcupine.",
-  "If you don't like toenails, you probably shouldn't look at your feet. The tree fell unexpectedly short. Henry couldn't decide if he was an auto mechanic or a priest.",
+  "Every manager should be able to recite at least ten nursery rhymes backward. Being unacquainted with the chief raccoon was harming his prospects for promotion. Nothing is as cautiously cuddly as a pet porcupine. If you don't like toenails, you probably shouldn't look at your feet. The tree fell unexpectedly short. Henry couldn't decide if he was an auto mechanic or a priest.",
   "She saw no irony asking me to change but wanting me to accept her for who she is. The stench from the feedlot permeated the car despite having the air conditioning on recycled air. Every manager should be able to recite at least ten nursery rhymes backward.",
-  "Peter found road kill an excellent way to save money on dinner. Nothing is as cautiously cuddly as a pet porcupine. Douglas figured the best way to succeed was to do the opposite of what he'd been doing all his life.",
-  "The fish listened intently to what the frogs had to say. The thunderous roar of the jet overhead confirmed her worst fears. A quiet house is nice until you are ordered to stay in it for months."
+  "Peter found road kill an excellent way to save money on dinner. Nothing is as cautiously cuddly as a pet porcupine. Douglas figured the best way to succeed was to do the opposite of what he'd been doing all his life. The fish listened intently to what the frogs had to say. The thunderous roar of the jet overhead confirmed her worst fears. A quiet house is nice until you are ordered to stay in it for months."
 ];
 
 //objects for annyang
@@ -104,7 +100,14 @@ let object = [
   "bookmark",
   "boom",
   "bottle",
-  "bouquet",
+  "buquet",
+  "deadly",
+  "avenue",
+  "sunrise",
+  "cinema",
+  "parade",
+  "energy",
+  "supercalifragilisticexpialidocious",
   "flowers",
 ];
 

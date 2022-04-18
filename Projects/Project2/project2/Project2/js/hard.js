@@ -20,26 +20,27 @@ function difficultyHardDialog() {
       buttons: {
         "Hard": function() {
           timerHardStart();
-            $(this).dialog("close");
-            responsiveVoice.speak("Hard level selected", "UK English Male");
-            responsiveVoice.speak("In this level, you are required to say what is being said.", "UK English Male");
-            responsiveVoice.speak("Fail to say five correct words, you will fail to complete the level.", "UK English Male");
-            responsiveVoice.speak("3", "UK English Male");
-            responsiveVoice.speak("2", "UK English Male");
-            responsiveVoice.speak("1", "UK English Male");
+          $(this).dialog("close");
+          responsiveVoice.speak("Hard level selected", "UK English Male");
+          responsiveVoice.speak("In this level, you are required to say what will be shown on the screen at random intervals.", "UK English Male");
+          responsiveVoice.speak("Fail to say six correct words, you will fail to complete the level.", "UK English Male");
+          responsiveVoice.speak("3", "UK English Male");
+          responsiveVoice.speak("2", "UK English Male");
+          responsiveVoice.speak("1", "UK English Male");
         },
       }
     });
   });
 }
 
+//hard button
 function btnHardPress() {
   timerCountdownHard();
   if (hardLevelSentencesShow) {
     objectGuess();
-    setTimeout(function() {
+    let interval = setInterval(function() {
       randomGuess();
-    }, 2000);
+    }, 7000);
     let random = Math.floor(Math.random() * randomSentencesHard.length); //chooses a random string from the randomSentencesEasy array
 
     //creates the random sentences from the div
@@ -71,6 +72,13 @@ function btnHardPress() {
       //if key isn't the same as initialCharacter then add class 'incorrect' to current index
       else if (key !== $(initialCharacterHard).text()) {
         $(initialCharacterHard).addClass('incorrect');
+
+        //changes font size if key is wrong
+        let fontSize = parseInt($('#random-sentences-hard').css("font-size"));
+        fontSize = fontSize - 1 + "px";
+        $('#random-sentences-hard').css({
+          'font-size': fontSize
+        });
       }
       if (currentIndex === singularCharactersHard.length) {
         hardLevelSentencesTyped = true;
@@ -93,7 +101,7 @@ function timerHardStart() {
       showInput();
       btnHardPress();
     }
-  }, 13000);
+  }, 14500);
 }
 
 //timerCountdownHard
@@ -129,17 +137,11 @@ function objectGuess() {
 
 //checks to see if the guess is right or wrong and acts accordingly
 function randomGuess() {
-  $("input").keypress(function(event) {
-    let keycode = (event.keyCode ? event.keyCode : event.which);
-    if (keycode == '32') {
-      currentObject = object[Math.floor(Math.random() * object.length)];
-      $(`#object`).text(currentObject);
-      //responsiveVoice.speak(currentObject);
-      if (show) {
-        $('#object').show();
-      }
-    }
-  });
+  currentObject = object[Math.floor(Math.random() * object.length)];
+  $(`#object`).text(currentObject);
+  if (show) {
+    $('#object').show();
+  }
 }
 
 //guess the object
@@ -158,8 +160,8 @@ function guessObject(object) {
     $(`#correct`).text("Correct: " + correct);
   }
   if (hardLevelSentencesTyped && isCorrect) { // if hardlevelTyped && isCorrect are true
-      hardlevelTyped();
-      responsiveVoice.speak("Nice, you got them all!")
+    hardlevelTyped();
+    responsiveVoice.speak("Nice, you got them all!")
   }
   if (currentAnswer !== currentObject) { // if currentAnswer doesn't == to currentObject
     $(`#object`).css('color', "red");
