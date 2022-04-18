@@ -1,11 +1,11 @@
 $(document).ready(difficultyHardDialog);
 
-//hard level function
+//hard level variables
 let isCorrect = false;
 let correct = 0;
 let answered = false;
 let show = false;
-let timeLeft = 90;
+let timeLeft = 60;
 let stopTime = false;
 
 //btn for hard
@@ -71,7 +71,7 @@ function btnHardPress() {
       //if key isn't the same as initialCharacter then add class 'incorrect' to current index
       else if (key !== $(initialCharacterHard).text()) {
         $(initialCharacterHard).addClass('incorrect');
-
+        
         //changes font size if key is wrong
         let fontSize = parseInt($('#random-sentences-hard').css("font-size"));
         fontSize = fontSize - 1 + "px";

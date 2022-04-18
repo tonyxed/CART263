@@ -22,7 +22,7 @@ function difficultyMediumDialog() {
   });
 }
 
-//medium level function
+//medium level btn
 function btnMediumPress() {
   timerCountdownMedium();
   if (mediumLevelSentencesShow) {
@@ -69,7 +69,7 @@ function btnMediumPress() {
   }
 }
 
-//timerMediumCountdown
+//timer start
 function timerMediumStart() {
 
   startTime = new Date();
@@ -86,7 +86,7 @@ function timerMediumStart() {
   }, 7600);
 }
 
-//timerCountdownMedium
+//timer countdown
 function timerCountdownMedium() {
   let relapse = true;
   let timeLeft = 130;

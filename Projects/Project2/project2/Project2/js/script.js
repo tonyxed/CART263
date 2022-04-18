@@ -2,11 +2,11 @@
 Racer; start!
 Anthony Calderone
 
-Use your exceptional typing capibilities to race your way to victory.
+Use your exceptional typing capibilities to type to victory.
 I felt that I needed to create something that can utilise a junction of what was introduced this semester, therefore, Racer; start! was born.
 This project will incorporate JQUERY, CSS, and obviously JAVASCRIPT, with many different librabries that was seen throughout the semester.
 
-Documentation // tutorials
+Documentation // Guides
 
 E5 Haiku Generator
 https://randomwordgenerator.com/sentence.php - random sentences
