@@ -19,7 +19,7 @@ https://codepen.io/P1N2O/pen/pyBNzX - BACKGROUND GRADIENT
 https://codepen.io/alvarotrigo/pen/bGrXmwM - text animation
 */
 
-//levels 
+//levels
 let easyLevelSentencesShow = false;
 let easyLevelSentencesTyped = false;
 
@@ -63,7 +63,7 @@ let randomSentencesMediumTwo = [
 let randomSentencesMediumThree = [
   "He enjoys practicing his ballet in the bathroom. Don't piss in my garden and tell me you're trying to help my plants grow. His son quipped that power bars were nothing more than adult candy bars. Always bring cinnamon buns on a deep-sea diving expedition.",
   "He wasn't bitter that she had moved on but from the radish. He found rain fascinating yet unpleasant. It isn't difficult to do a handstand if you just stand on your hands. You bite up because of your lower jaw. At that moment he wasn't listening to music, he was living an experience.",
-  "Flying fish few by the space station. The urgent care center was flooded with patients after the news of a new deadly virus was made public. Jim liked driving around town with his hazard lights on. It's always a good idea to seek shelter from the evil gaze of the sun. He put heat on the wound to see what would grow.
+  "Flying fish few by the space station. The urgent care center was flooded with patients after the news of a new deadly virus was made public. Jim liked driving around town with his hazard lights on. It's always a good idea to seek shelter from the evil gaze of the sun. He put heat on the wound to see what would grow."
 ];
 
 //HARD LEVEL
@@ -108,7 +108,7 @@ let object = [
   "parade",
   "energy",
   "supercalifragilisticexpialidocious",
-  "flowers",
+  "flowers"
 ];
 
 //shows and focuses on text field

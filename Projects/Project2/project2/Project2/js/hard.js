@@ -7,9 +7,8 @@ let answered = false;
 let show = false;
 let timeLeft = 90;
 let stopTime = false;
-//btn for hard
 
-//LEVEL DIALOG
+//btn for hard
 function difficultyHardDialog() {
   $(function() {
     $("#hard_dialog").dialog({

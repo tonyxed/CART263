@@ -65,9 +65,6 @@ function btnMediumPress() {
       if (currentIndex === singularCharactersMedium.length) {
         mediumLevelSentencesTyped = true;
       }
-      if (mediumLevelSentencesTyped) {
-        mediumlevelTyped();
-      }
     });
   }
 }
@@ -238,9 +235,6 @@ function returnMediumTextTwo() {
     }
     if (currentIndexTwo === singularCharactersMediumTwo.length) {
       mediumLevelSentencesTyped = true;
-    }
-    if (mediumLevelSentencesTyped) {
-      mediumlevelTyped();
     }
   });
 }
