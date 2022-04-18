@@ -264,14 +264,14 @@ function returnMediumThree() {
     key
   }) {
     if (key === $(initialCharacterMediumThree).text()) {
-      $("#random-sentences-medium-three").animate({
-        left: "+=100",
-        height: "toggle"
-      }, 2000, function() {});
       $(initialCharacterMediumThree).removeClass('start'); //removes the class of 'start' if initialCharacter is the same as the character being typed
       $(initialCharacterMediumThree).addClass('correct'); //add correct class to the correct character typed
       initialCharacterMediumThree = singularCharactersMediumThree[currentIndexThree += 1]; //adds 1 onto the array, moves on to the next character in the array //for loop didn't work here
       $(initialCharacterMediumThree).addClass('start'); //adds the class 'start'
+      $("#random-sentences-medium-three").animate({
+        left: "+=100",
+        height: "toggle"
+      }, 2000, function() {});
     }
     //if key isn't the same as initialCharacter then add class 'incorrect' to current index
     else if (key !== $(initialCharacterMediumThree).text()) {

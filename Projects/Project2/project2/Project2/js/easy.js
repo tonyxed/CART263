@@ -1,6 +1,6 @@
 window.onload = function() { //on start up load btnGroup first
-    $(document).ready(difficultyDialog);
-    $('#t-box').hide(); //hides the text box until a level is choosen
+  $(document).ready(difficultyDialog);
+  $('#t-box').hide(); //hides the text box until a level is choosen
 }
 
 //LEVEL DIALOG
@@ -134,7 +134,6 @@ function easylevelTyped() {
       modal: true,
       buttons: {
         Next: function() {
-          location.reload();
           self.location = "mediumLevel.html";
           $(this).dialog("close");
         }
