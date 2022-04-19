@@ -4,7 +4,7 @@ window.onload = function() { //on start up load btnGroup first
 }
 
 //music dialog
-function onStart(){
+function onStart() {
   //start dialog
   $(function() {
     $("#difficulty_dialog").dialog({
