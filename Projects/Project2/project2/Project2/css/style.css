@@ -1,3 +1,4 @@
+/* random sentences properties */
 #random-sentences-easy {
   font-family: sans-serif;
   text-align: center;
@@ -37,7 +38,9 @@
   margin-top: 100px;
   font-size: 1.8rem;
 }
+/* end of random sentences properties */
 
+/* animation for wavy */
 .wavy {
   position: relative;
   text-align: center;
@@ -56,7 +59,9 @@
     transform: rotateY(360deg)
   }
 }
+/* end of aninmation for wavy */
 
+/* typing classes */
 .start {
   background-color: #0033ff;
   text-decoration: underline;
@@ -69,7 +74,9 @@
 .incorrect {
   background-color: #ff002b;
 }
+/* end of typing classes */
 
+/* text input */
 input {
   width: 100%;
   height: 4rem;
@@ -81,6 +88,7 @@ input {
   background-color: #f8f8f8;
   margin-top: 200px;
 }
+/* end of text input */
 
 h2 {
   font-family: sans-serif;
@@ -92,6 +100,7 @@ h2 {
   font-size: 2rem;
 }
 
+/* level properties */
 #easy-level {
   font-family: monospace;
   font-weight: bold;
@@ -121,7 +130,9 @@ h2 {
   margin-top: 100px;
   font-size: 2rem;
 }
+/* end of level properties */
 
+/* button easy */
 #btn-easy {
   margin: 0;
   position: absolute;
@@ -130,12 +141,16 @@ h2 {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
+/* end of button easy */
 
+/* timer  */
 #timer {
   color: #616161;
   font-size: 0rem;
 }
+/* timer  */
 
+/* timer display */
 #timerDisplay {
   font-family: cursive;
   margin-top: 70px;
@@ -144,7 +159,9 @@ h2 {
   text-align: center;
   color: purple;
 }
+/* end of timer display */
 
+/* annyang command properties */
 #object {
   color: black;
   font-size: 2rem;
@@ -161,7 +178,9 @@ h2 {
   font-family: cursive;
   margin-top: 50px;
 }
+/* end of annyang command properties */
 
+/* body gradient animation */
 body {
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 400% 400%;
@@ -182,3 +201,4 @@ body {
     background-position: 0% 50%;
   }
 }
+/* end of body gradient animation */
