@@ -36,17 +36,12 @@ function difficultyMediumDialog() {
         },
         "Country": function() {
           countryMusic.play();
-          countryMusic.volume = .030;
+          countryMusic.volume = .020;
           $(this).dialog("close");
         },
         "Lofi": function() {
           lofiMusic.play();
           lofiMusic.volume = .30;
-          $(this).dialog("close");
-        },
-        "Mix": function() {
-          mixMusic.play();
-          mixMusic.volume = .40;
           $(this).dialog("close");
         },
       }
@@ -55,7 +50,7 @@ function difficultyMediumDialog() {
 }
 
 //medium level btn
-function btnMediumPress() {
+function returnMediumText() {
   timerCountdownMedium();
   if (mediumLevelSentencesShow) {
     let random = Math.floor(Math.random() * randomSentencesMedium.length); //chooses a random string from the randomSentencesEasy array
@@ -81,6 +76,12 @@ function btnMediumPress() {
       key
     }) {
       if (key === $(initialCharacterMedium).text()) {
+        //changes font size if key is wrong
+        let fontSize = parseInt($('#random-sentences-medium').css("font-size"));
+        fontSize = fontSize - 1 + "px";
+        $('#random-sentences-medium').css({
+          'font-size': fontSize
+        });
         $("#random-sentences-medium").animate({
           left: "+=100",
           height: "toggle"
@@ -103,7 +104,6 @@ function btnMediumPress() {
 
 //timer start
 function timerMediumStart() {
-
   startTime = new Date();
   let myTimer = setInterval(function() {
     $("#timer").text(Math.round((new Date - startTime) / 1000));
@@ -113,7 +113,7 @@ function timerMediumStart() {
     if (mediumLevelSentencesShow) { //if mediumLevelSentencesShow = true, then the timer stops
       clearInterval(myTimer);
       showInput();
-      btnMediumPress();
+      returnMediumText();
     }
   }, 7600);
 }
@@ -172,7 +172,7 @@ function timerCountdownMedium() {
         music.pause();
         music.currentTime = 0;
         responsiveVoice.speak("Issue resolved, sorry for the inconvience, we have added an extra twenty three seconds to the clock!", "UK English Male");
-        returnMediumThree();
+        returnMediumTextThree();
         showInput();
         timeLeft = 62;
         relapse = false;
@@ -272,7 +272,7 @@ function returnMediumTextTwo() {
 }
 
 //return to normal medium sentences
-function returnMediumThree() {
+function returnMediumTextThree() {
   let random = Math.floor(Math.random() * randomSentencesMediumThree.length); //chooses a random string from the randomSentencesEasy array
 
   //creates the random sentences from the div

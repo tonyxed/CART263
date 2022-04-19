@@ -49,11 +49,6 @@ function onStart() {
           lofiMusic.volume = .30;
           $(this).dialog("close");
         },
-        "Mix": function() {
-          mixMusic.play();
-          mixMusic.volume = .40;
-          $(this).dialog("close");
-        },
       }
     });
   });

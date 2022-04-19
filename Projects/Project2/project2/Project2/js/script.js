@@ -1,25 +1,5 @@
-/**
-Racer; start!
-Anthony Calderone
-
-Use your exceptional typing capibilities to type to victory.
-I felt that I needed to create something that can utilise a junction of what was introduced this semester, therefore, Racer; start! was born.
-This project will incorporate JQUERY, CSS, and obviously JAVASCRIPT, with many different librabries that was seen throughout the semester.
-
--choose music to listen to with annyang
-
-Documentation // Guides
-
-E5 Haiku Generator
-https://randomwordgenerator.com/sentence.php - random sentences
-https://www.tutorialrepublic.com/codelab.php?topic=faq&file=javascript-get-the-value-of-text-input-field
-https://www.w3schools.com/jsref/jsref_split.asp split the text, as in spliting the words in solo letters into an array
-https://stackoverflow.com/questions/6484670/how-do-i-split-a-string-into-an-array-of-characters
-https://stackoverflow.com/questions/895171/prevent-users-from-submitting-a-form-by-hitting-enter
-https://api.jquery.com/
-https://codepen.io/P1N2O/pen/pyBNzX - BACKGROUND GRADIENT
-https://codepen.io/alvarotrigo/pen/bGrXmwM - text animation
-*/
+// Racer; start!
+// Anthony Calderone
 
 //levels
 let easyLevelSentencesShow = false;
@@ -41,10 +21,10 @@ let currentAnswer = ``;
 //EASY LEVEL
 let randomSentencesEasy = [
   "It took me too long to realize that the ceiling hadn't been painted to look like the sky. The tour bus was packed with teenage girls heading toward their next adventure. The miniature pet elephant became the envy of the neighborhood.",
-  "The urgent care center was flooded with patients after the news of a new deadly virus was made public. The rain pelted the windshield as the darkness engulfed us. She looked into the mirror and saw another person.",
+  "The urgent care center was flooded with patients after the news of a new deadly virus was made public. The rain pelted the windshield as the darkness engulfed us. She looked into the mirror and saw another person. I'm confused: when people ask me what's up, and I point, they groan.",
   "Joe discovered that traffic cones make excellent megaphones. His get rich quick scheme was to grow a cactus farm. Going from child, to childish, to childlike is only a matter of time. Happiness can be found in the depths of chocolate pudding.",
-  "Cursive writing is the best way to build a race track. Flying fish few by the space station. Joyce enjoyed eating pancakes with ketchup. The trick to getting kids to eat anything is to put catchup on it.",
-  "The overpass went under the highway and into a secret world. The estate agent quickly marked out his territory on the dance floor. People generally approve of dogs eating cat food but not cats eating dog food."
+  "Cursive writing is the best way to build a race track. Flying fish few by the space station. Joyce enjoyed eating pancakes with ketchup. The trick to getting kids to eat anything is to put catchup on it. Nothing seemed out of place except the washing machine in the bar.",
+  "The overpass went under the highway and into a secret world. The estate agent quickly marked out his territory on the dance floor. People generally approve of dogs eating cat food but not cats eating dog food. The secret ingredient to his wonderful life was crime."
 ];
 
 //MEDIUM LEVEL

@@ -53,11 +53,6 @@ function difficultyHardDialog() {
           lofiMusic.volume = .30;
           $(this).dialog("close");
         },
-        "Mix": function() {
-          mixMusic.play();
-          mixMusic.volume = .40;
-          $(this).dialog("close");
-        },
       }
     });
   });
@@ -68,8 +63,13 @@ function btnHardPress() {
   timerCountdownHard();
   if (hardLevelSentencesShow) {
     objectGuess();
+    //randomGuess fucntion
     let interval = setInterval(function() {
       randomGuess();
+    }, 7000);
+    //textSize function
+    let intervalFontSize = setInterval(function() {
+      textSize();
     }, 7000);
     let random = Math.floor(Math.random() * randomSentencesHard.length); //chooses a random string from the randomSentencesEasy array
 
@@ -102,13 +102,6 @@ function btnHardPress() {
       //if key isn't the same as initialCharacter then add class 'incorrect' to current index
       else if (key !== $(initialCharacterHard).text()) {
         $(initialCharacterHard).addClass('incorrect');
-
-        //changes font size if key is wrong
-        let fontSize = parseInt($('#random-sentences-hard').css("font-size"));
-        fontSize = fontSize - 1 + "px";
-        $('#random-sentences-hard').css({
-          'font-size': fontSize
-        });
       }
       if (currentIndex === singularCharactersHard.length) {
         hardLevelSentencesTyped = true;
@@ -123,7 +116,7 @@ function timerHardStart() {
   startTime = new Date();
   let myTimer = setInterval(function() {
     $("#timer").text(Math.round((new Date - startTime) / 1000));
-    if ($("#timer" == 3)) {
+    if ($("#timer" == 2)) {
       hardLevelSentencesShow = true;
     }
     if (hardLevelSentencesShow) { //if hardLevelSentencesShow = true, then the timer stops
@@ -132,6 +125,16 @@ function timerHardStart() {
       btnHardPress();
     }
   }, 14500);
+}
+
+//changes the text size
+function textSize() {
+  //changes font size
+  let fontSize = parseInt($('#random-sentences-hard').css("font-size"));
+  fontSize = fontSize - 2 + "px";
+  $('#random-sentences-hard').css({
+    'font-size': fontSize
+  });
 }
 
 //timerCountdownHard
@@ -191,6 +194,11 @@ function guessObject(object) {
   }
   if (hardLevelSentencesTyped && isCorrect) { // if hardlevelTyped && isCorrect are true
     hardlevelTyped();
+    let fontSize = parseInt($('#random-sentences-hard').css("font-size"));
+    fontSize = fontSize + 15 + "px";
+    $('#random-sentences-hard').css({
+      'font-size': fontSize
+    });
     responsiveVoice.speak("Nice, you got them all!")
   }
   if (currentAnswer !== currentObject) { // if currentAnswer doesn't == to currentObject
