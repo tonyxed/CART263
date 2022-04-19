@@ -129,10 +129,9 @@ function timerHardStart() {
 
 //changes the text size
 function textSize() {
-  //changes font size
   let fontSize = parseInt($('#random-sentences-hard').css("font-size"));
   fontSize = fontSize - 2 + "px";
-  $('#random-sentences-hard').css({
+  $('#random-sentences-hard').css({ //changes font size
     'font-size': fontSize
   });
 }
