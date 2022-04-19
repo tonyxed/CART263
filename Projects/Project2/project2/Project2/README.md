@@ -6,36 +6,6 @@ Speaking in terms of coding, I felt that the main content of the project was obv
 
 As illustrated, the main technical process involved when creating the main content of the project was that; I had to figure out how to take an array, randomize the array, using math.random, then split the array into their own <span>'s, then add those <span>'s back onto every character in the array including spaces, then add a start class, correct class and incorrect class, apply those classes to their respective inputs of the key presses. If correct, add 1 onto current index of the current <span> in the array which resides, then move onto the next <span> in the array and apply the start class. If keypressed is wrong to current <span> then apply the incorrect class. Consequently, I believe I achieved my goals both technically and artistically because I had an idea which I stuck with, and continued to build upon that idea using techniques and or content seen throughout the semester.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Documentation // Guides
 
 E5 Haiku Generator
