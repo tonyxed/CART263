@@ -1,6 +1,7 @@
 $(document).ready(difficultyMediumDialog);
 
 function difficultyMediumDialog() {
+  //medium dialog
   $(function() {
     $("#medium_dialog").dialog({
       resizable: false,
@@ -16,6 +17,37 @@ function difficultyMediumDialog() {
           responsiveVoice.speak("3", "UK English Male");
           responsiveVoice.speak("2", "UK English Male");
           responsiveVoice.speak("1", "UK English Male");
+        },
+      }
+    });
+  });
+  //music dialog
+  $(function() {
+    $("#music_dialog").dialog({
+      resizable: false,
+      height: 300,
+      width: 400,
+      modal: true,
+      buttons: {
+        "Chill": function() {
+          chillMusic.play();
+          chillMusic.volume = .060;
+          $(this).dialog("close");
+        },
+        "Country": function() {
+          countryMusic.play();
+          countryMusic.volume = .030;
+          $(this).dialog("close");
+        },
+        "Lofi": function() {
+          lofiMusic.play();
+          lofiMusic.volume = .30;
+          $(this).dialog("close");
+        },
+        "Mix": function() {
+          mixMusic.play();
+          mixMusic.volume = .40;
+          $(this).dialog("close");
         },
       }
     });
