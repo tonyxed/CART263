@@ -178,7 +178,7 @@ function timerCountdownMedium() {
         relapse = false;
       }
     }
-    if (timeLeft <= 0) {
+    if (timeLeft == 0) {
       clearInterval(timerCountdownMedium);
       mediumLevelTime();
     } else {
@@ -193,55 +193,26 @@ function timerCountdownMedium() {
   }, 1000);
 }
 
-//dialog box for medium level out of time
-function mediumLevelTime() {
-  $(function() {
-    $("#fail_medium_dialog").dialog({
-      modal: true,
-      buttons: {
-        Restart: function() {
-          self.location = "mediumLevel.html";
-          $(this).dialog("close");
-          location.reload();
-        }
-      }
-    });
-  });
-}
-
-//dialog box for typing texts on the medium level
-function mediumlevelTyped() {
-  $(function() {
-    $("#complete_medium_dialog").dialog({
-      modal: true,
-      buttons: {
-        Hard: function() {
-          location.reload();
-          self.location = "hardLevel.html";
-          $(this).dialog("close");
-        }
-      }
-    });
-  });
-}
-
 //return to normal medium sentences
 function returnMediumTextTwo() {
-  let random = Math.floor(Math.random() * randomSentencesMediumTwo.length);
+  let random = Math.floor(Math.random() * randomSentencesMediumTwo.length); //chooses a random string from the randomSentencesEasy array
 
+  //creates the random sentences from the div
   let mediumIndexTwo = 0;
   const RANDOM_SENTENCES_DIV = $(`#random-sentences-medium-two`)[mediumIndexTwo];
 
-  let singularCharactersMediumTwo = randomSentencesMediumTwo[random].split("").map((character) => {
-    let span = $('<span/>');
+  //splits the characters into single characters including spacing, then placed into an array
+  let singularCharactersMediumTwo = randomSentencesMediumTwo[random].split("").map((character) => { //Places the randomized string into an array and then maps over each array using an empty string
+    let span = $('<span/>'); //creates the <span>
     $(span).text(character);
-    $(RANDOM_SENTENCES_DIV).append(span);
-    return span;
+    $(RANDOM_SENTENCES_DIV).append(span); //give each character a <span>
+    return span; //returns the value of span
   });
 
+  //highlights the first character in the array of singleCharacters
   let currentIndexTwo = 0;
   let initialCharacterMediumTwo = singularCharactersMediumTwo[currentIndexTwo];
-  $(initialCharacterMediumTwo).addClass('start');
+  $(initialCharacterMediumTwo).addClass('start'); //adds class 'start' to initialCharacter in the array
 
   $(document).on('keypress', function({
     key
@@ -258,10 +229,11 @@ function returnMediumTextTwo() {
       $('#random-sentences-medium-two').css({
         'font-size': fontSize
       });
-      $(initialCharacterMediumTwo).removeClass('start');
-      $(initialCharacterMediumTwo).addClass('correct');
-      initialCharacterMediumTwo = singularCharactersMediumTwo[currentIndexTwo += 1];
-      $(initialCharacterMediumTwo).addClass('start');
+      $(initialCharacterMediumTwo).removeClass('start'); //removes the class of 'start' if initialCharacter is the same as the character being typed
+      $(initialCharacterMediumTwo).addClass('correct'); //add correct class to the correct character typed
+      initialCharacterMediumTwo = singularCharactersMediumTwo[currentIndexTwo += 1]; //adds 1 onto the array, moves on to the next character in the array //for loop didn't work here
+      $(initialCharacterMediumTwo).addClass('start'); //adds the class 'start'
+      //if key isn't the same as initialCharacter then add class 'incorrect' to current index
     } else if (key !== $(initialCharacterMediumTwo).text()) {
       $(initialCharacterMediumTwo).addClass('incorrect');
     }
@@ -300,7 +272,7 @@ function returnMediumTextThree() {
       $(initialCharacterMediumThree).addClass('correct'); //add correct class to the correct character typed
       initialCharacterMediumThree = singularCharactersMediumThree[currentIndexThree += 1]; //adds 1 onto the array, moves on to the next character in the array //for loop didn't work here
       $(initialCharacterMediumThree).addClass('start'); //adds the class 'start'
-      $("#random-sentences-medium-three").animate({
+      $("#random-sentences-medium-three").animate({ //animates
         left: "+=100",
         height: "toggle"
       }, 2000, function() {});
@@ -315,5 +287,37 @@ function returnMediumTextThree() {
     if (mediumLevelSentencesTyped) {
       mediumlevelTyped();
     }
+  });
+}
+
+//dialog box for medium level out of time
+function mediumLevelTime() {
+  $(function() {
+    $("#fail_medium_dialog").dialog({
+      modal: true,
+      buttons: {
+        Restart: function() {
+          self.location = "mediumLevel.html";
+          $(this).dialog("close");
+          location.reload();
+        }
+      }
+    });
+  });
+}
+
+//dialog box for typing texts on the medium level
+function mediumlevelTyped() {
+  $(function() {
+    $("#complete_medium_dialog").dialog({
+      modal: true,
+      buttons: {
+        Hard: function() {
+          location.reload();
+          self.location = "hardLevel.html";
+          $(this).dialog("close");
+        }
+      }
+    });
   });
 }
