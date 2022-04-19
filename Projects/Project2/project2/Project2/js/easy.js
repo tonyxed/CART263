@@ -151,7 +151,7 @@ function blinkText() {
       blink = true;
       if (blink) {
         $(`#random-sentences-easy`).fadeOut(500);
-        $(`#random-sentences-easy`).fadeIn(100);
+        $(`#random-sentences-easy`).fadeIn(500);
         $(`#random-sentences-easy`).effect("shake");
       }
     }

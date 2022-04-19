@@ -1,5 +1,5 @@
 #random-sentences-easy {
-  font-family: cursive;
+  font-family: sans-serif;
   text-align: center;
   float: bottom;
   margin-top: 250px;
@@ -58,12 +58,12 @@
 }
 
 .start {
-  background-color: #18abcc;
+  background-color: #0033ff;
   text-decoration: underline;
 }
 
 .correct {
-  background-color: #28f74a;
+  background-color: #00d16c;
 }
 
 .incorrect {
