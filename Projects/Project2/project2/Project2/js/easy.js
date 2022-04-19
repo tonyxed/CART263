@@ -26,6 +26,7 @@ function onStart() {
       }
     });
   });
+  
   //music dialog
   $(function() {
     $("#music_dialog").dialog({
