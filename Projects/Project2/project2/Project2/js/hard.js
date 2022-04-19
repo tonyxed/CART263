@@ -64,11 +64,11 @@ function btnHardPress() {
   if (hardLevelSentencesShow) {
     objectGuess();
     //randomGuess fucntion
-    let interval = setInterval(function() {
+    let interval = setInterval(function() { //calls this function of annyang every 7 seconds
       randomGuess();
     }, 7000);
     //textSize function
-    let intervalFontSize = setInterval(function() {
+    let intervalFontSize = setInterval(function() { //calls this function of textSize every 7 seconds
       textSize();
     }, 7000);
     let random = Math.floor(Math.random() * randomSentencesHard.length); //chooses a random string from the randomSentencesEasy array

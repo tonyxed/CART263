@@ -11,9 +11,6 @@ let mediumLevelSentencesTyped = false;
 let hardLevelSentencesShow = false;
 let hardLevelSentencesTyped = false;
 
-//blink function variable
-let blink = false;
-
 //annyang arrays
 let currentObject = ``;
 let currentAnswer = ``;

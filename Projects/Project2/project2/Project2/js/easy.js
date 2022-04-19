@@ -1,3 +1,6 @@
+//easy level variables
+let blink = false;
+
 window.onload = function() { //on start up load btnGroup first
   $(document).ready(onStart);
   $('#t-box').hide(); //hides the text box until a level is choosen
@@ -26,7 +29,7 @@ function onStart() {
       }
     });
   });
-  
+
   //music dialog
   $(function() {
     $("#music_dialog").dialog({
