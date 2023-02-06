@@ -16,15 +16,35 @@ function onStart() {
       width: 400,
       modal: true,
       buttons: {
-        "Start": function() {
+        "CART310": function() {
           timerEasyStart();
           $(this).dialog("close");
-          responsiveVoice.speak("Easy level selected", "UK English Male");
-          responsiveVoice.speak("This level is quite unchallenging, should be a breeze.", "UK English Male");
-          responsiveVoice.speak("Get ready to type:", "UK English Male");
-          responsiveVoice.speak("3", "UK English Male");
-          responsiveVoice.speak("2", "UK English Male");
-          responsiveVoice.speak("1", "UK English Male");
+          // responsiveVoice.speak("Easy level selected", "UK English Male");
+          // responsiveVoice.speak("This level is quite unchallenging, should be a breeze.", "UK English Male");
+          // responsiveVoice.speak("Get ready to type:", "UK English Male");
+          // responsiveVoice.speak("3", "UK English Male");
+          // responsiveVoice.speak("2", "UK English Male");
+          // responsiveVoice.speak("1", "UK English Male");
+        },
+        "CART431": function() {
+          timerEasyStart();
+          $(this).dialog("close");
+          // responsiveVoice.speak("Easy level selected", "UK English Male");
+          // responsiveVoice.speak("This level is quite unchallenging, should be a breeze.", "UK English Male");
+          // responsiveVoice.speak("Get ready to type:", "UK English Male");
+          // responsiveVoice.speak("3", "UK English Male");
+          // responsiveVoice.speak("2", "UK English Male");
+          // responsiveVoice.speak("1", "UK English Male");
+        },
+        "CART890": function() {
+          timerEasyStart();
+          $(this).dialog("close");
+          // responsiveVoice.speak("Easy level selected", "UK English Male");
+          // responsiveVoice.speak("This level is quite unchallenging, should be a breeze.", "UK English Male");
+          // responsiveVoice.speak("Get ready to type:", "UK English Male");
+          // responsiveVoice.speak("3", "UK English Male");
+          // responsiveVoice.speak("2", "UK English Male");
+          // responsiveVoice.speak("1", "UK English Male");
         },
       }
     });
@@ -60,7 +80,7 @@ function onStart() {
 
 //easy level function
 function btnEasyPress() {
-  blinkText();
+  //blinkText();
   timerCountdownEasy();
   if (easyLevelSentencesShow) {
     let random = Math.floor(Math.random() * randomSentencesEasy.length); //chooses a random string from the randomSentencesEasy array
@@ -126,7 +146,7 @@ function timerCountdownEasy() {
   let timeLeft = 50;
   let timerCountdown = setInterval(function() {
     if (timeLeft == 21) {
-      responsiveVoice.speak("20 Seconds remain!", "UK English Male");
+      // responsiveVoice.speak("20 Seconds remain!", "UK English Male");
     }
     if (timeLeft <= 0) {
       clearInterval(timerCountdownEasy);
@@ -174,17 +194,17 @@ function easylevelTyped() {
 }
 
 //blinks the text on the easy level
-function blinkText() {
-  startTime = new Date();
-  let myTimer = setInterval(function() {
-    $("#timer").text(Math.round((new Date - startTime) / 1000));
-    if ($("#timer" == 6)) {
-      blink = true;
-      if (blink) {
-        $(`#random-sentences-easy`).fadeOut(500);
-        $(`#random-sentences-easy`).fadeIn(500);
-        $(`#random-sentences-easy`).effect("shake");
-      }
-    }
-  }, 1000);
-}
+// function blinkText() {
+//   startTime = new Date();
+//   let myTimer = setInterval(function() {
+//     $("#timer").text(Math.round((new Date - startTime) / 1000));
+//     if ($("#timer" == 6)) {
+//       blink = true;
+//       if (blink) {
+//         $(`#random-sentences-easy`).fadeOut(500);
+//         $(`#random-sentences-easy`).fadeIn(500);
+//         $(`#random-sentences-easy`).effect("shake");
+//       }
+//     }
+//   }, 1000);
+// }

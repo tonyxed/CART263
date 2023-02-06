@@ -17,11 +17,12 @@ let currentAnswer = ``;
 
 //EASY LEVEL
 let randomSentencesEasy = [
-  "It took me too long to realize that the ceiling hadn't been painted to look like the sky. The tour bus was packed with teenage girls heading toward their next adventure. The miniature pet elephant became the envy of the neighborhood.",
-  "The urgent care center was flooded with patients after the news of a new deadly virus was made public. The rain pelted the windshield as the darkness engulfed us. She looked into the mirror and saw another person. I'm confused: when people ask me what's up, and I point, they groan.",
-  "Joe discovered that traffic cones make excellent megaphones. His get rich quick scheme was to grow a cactus farm. Going from child, to childish, to childlike is only a matter of time. Happiness can be found in the depths of chocolate pudding.",
-  "Cursive writing is the best way to build a race track. Flying fish few by the space station. Joyce enjoyed eating pancakes with ketchup. The trick to getting kids to eat anything is to put catchup on it. Nothing seemed out of place except the washing machine in the bar.",
-  "The overpass went under the highway and into a secret world. The estate agent quickly marked out his territory on the dance floor. People generally approve of dogs eating cat food but not cats eating dog food. The secret ingredient to his wonderful life was crime."
+  "Video prototypes are a way of conveying context of use, interactions, and functionality. It's a technique that employs narrative that borrows heavily from film, TV and or advertising. Keeping a narritive is key to producing a conveying prototype."
+  // "It took me too long to realize that the ceiling hadn't been painted to look like the sky. The tour bus was packed with teenage girls heading toward their next adventure. The miniature pet elephant became the envy of the neighborhood.",
+  // "The urgent care center was flooded with patients after the news of a new deadly virus was made public. The rain pelted the windshield as the darkness engulfed us. She looked into the mirror and saw another person. I'm confused: when people ask me what's up, and I point, they groan.",
+  // "Joe discovered that traffic cones make excellent megaphones. His get rich quick scheme was to grow a cactus farm. Going from child, to childish, to childlike is only a matter of time. Happiness can be found in the depths of chocolate pudding.",
+  // "Cursive writing is the best way to build a race track. Flying fish few by the space station. Joyce enjoyed eating pancakes with ketchup. The trick to getting kids to eat anything is to put catchup on it. Nothing seemed out of place except the washing machine in the bar.",
+  // "The overpass went under the highway and into a secret world. The estate agent quickly marked out his territory on the dance floor. People generally approve of dogs eating cat food but not cats eating dog food. The secret ingredient to his wonderful life was crime."
 ];
 
 //MEDIUM LEVEL
